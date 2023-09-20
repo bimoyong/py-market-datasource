@@ -1,6 +1,6 @@
 from setuptools import setup
 
-setup(name='py-datasource',
+setup(name='t7_datasource',
       version='0.1',
       description='Crawl data from many data sources',
       url='https://github.com/TsevenSG/py-datasource',
