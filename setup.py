@@ -7,7 +7,7 @@ setup(name='py-datasource',
       author='Trung',
       author_email='trung@t7.sg',
       license='MIT',
-      packages=['t7_datasource'],
+      packages=['tradingview'],
       install_requires=[
       ],
       zip_safe=False)
