@@ -1,4 +1,4 @@
-# @title ##Spreadsheet Utils
+# @title Spreadsheet Utils
 
 from contextlib import suppress
 from google.auth.credentials import Credentials
@@ -31,13 +31,14 @@ class GoogleSheet():
     @staticmethod
     def get_or_add_worksheet(title: str,
                              sheet: Spreadsheet,
+                             template_title='',
                              template_data_range='') -> Worksheet:
         ws: Worksheet = None
 
         ws_template: Worksheet = None
         if template_data_range:
             with suppress(WorksheetNotFound):
-                ws_template = sheet.worksheet(WORKSHEET_TEMPLATE_TITLE)
+                ws_template = sheet.worksheet(template_title)
 
         ws: Spreadsheet = None
         with suppress(WorksheetNotFound):
