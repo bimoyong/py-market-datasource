@@ -13,7 +13,7 @@ setup(name='py_datasource',
           'googlesheet': 'src/googlesheet',
       },
       install_requires=[
-          'google-auth==2.22.0',
+          'google-auth==2.17.3',
           'gspread-dataframe==3.3.1',
           'gspread==5.10.0',
       ],
