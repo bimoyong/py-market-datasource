@@ -14,7 +14,7 @@ setup(name='py_datasource',
       },
       install_requires=[
           'google-auth==2.22.0',
-          'gspread-dataframe==3.3.1'
+          'gspread-dataframe==3.3.1',
           'gspread==5.10.0',
       ],
       zip_safe=False)
