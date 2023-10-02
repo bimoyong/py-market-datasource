@@ -8,7 +8,6 @@ from datetime import datetime
 from typing import Dict, List
 
 import pandas as pd
-import pytz
 from requests import get, post
 from websocket import create_connection
 
@@ -16,7 +15,7 @@ _GLOBAL_URL_ = 'https://scanner.tradingview.com/global/scan'
 _API_URL_ = 'https://symbol-search.tradingview.com/symbol_search'
 _WS_URL_ = 'wss://data.tradingview.com/socket.io/websocket?&type=chart'
 
-CHARTS_SETTINGS = {
+_CHARTS_SETTINGS = {
     'ema10': ['Script@tv-scripting-101!', {'text': 'bmI9Ks46_u96awLDSJj8c4xVHubmEMw==_E3G6GqoJr5rLISOgO9nBsoc2e4nLvKBi1q5InR7AttexejdPJoAOC8z/vvUAqlCMpPiv11uwGy2v0EG7phDcDFZiaEKMt/1ooB+5hPaSKK7EuUzKTIGLFzbLtwjwO5Z7jR11jP1Z2MsAt9cN0smrwQMTjphpEDRVvzDqBcB2wZRR7BxQeQ9j7ynKMseInC5G34ToyLmrle0+4Dcw9IhWNkvpGLKhODeEIdjlfm6ZzEAu3cuuLIx9Kn1f1h6AdSVccLpVDzTy67dQ9TanhaaIy5Ogz+kuRYKTkkP63IaXvEn03t29DDUoWMxzQolZuBW6vDVAbHMgPm52yHN88uvJ5px4IGDbuRdJlTLrMpbgG4SAP+DWhKL6wbsu9MfYfe4bGMzfvF7vE/ltqlycHIHIjOS2SfFrqxmVg4eH1+V+/7g0JbnCvSJAeY/RKUCx+jJZa+Gm0mvhmvz+abYWJLpqTpBctZ8kYI+6EGVXgshUZrkahn+S0oGnvwOB4NzLMCSX9NLidpDZKuDuI2Whfb08toOkoGiF8JYhvnotLZSDa0DTDhwZtqQf0hAChG/3RK42S75LxcZwyTl39emlxdU9uDoDV+d/NHZFao+FSoNhSkTsqOnfuVp5l3V1yop8Psh64sbs2A1cGqu1', 'pineId': 'STD;EMA', 'pineVersion': '29.0', 'pineFeatures': {'v': '{\'indicator\':1,\'plot\':1,\'ta\':1}', 'f': True, 't': 'text'}, 'in_0': {'v': 10, 'f': True, 't': 'integer'}, 'in_1': {'v': 'close', 'f': True, 't': 'source'}, 'in_2': {'v': 0, 'f': True, 't': 'integer'}, 'in_3': {'v': 'EMA', 'f': True, 't': 'text'}, 'in_4': {'v': 5, 'f': True, 't': 'integer'}, 'in_5': {'v': '', 'f': True, 't': 'resolution'}, 'in_6': {'v': True, 'f': True, 't': 'bool'}}],
     'ema21': ['Script@tv-scripting-101!', {'text': 'bmI9Ks46_iAX8exg0i/mBcDvY1smolQ==_jO5cug1NHY+z8s0TpdR7Fev6EEMhjfmTU5mbl5iuXE4UOVqejOvpDjiTL5t3fgGOAjkPxvD/uGIuqepaXnEzXZf3Dfcivitq36RSeVQJZkcjMjW9VjSBs2JBC46Z2XEHj1oKNZSZOQlx1NXqJiPhl4wEzpiWIDdgSG2mxoZXjp+4Bq9+C9cMfH0E9t8pFWkvKeckFaN5P8ZtdAR8k/UBSaMd0r68pvEpiLdujfRKb2xjbIQMsnJzqq0/BRMx0rFzK1OHtZLyqaxdHDjIsmwVmyd2OwzJg498v08fSIrlK5VNnlrxk/RUc+ZVrWVY/eH4XmqMuzaNha3HtFUO3wjQip8ISjaWgv+WwGPAnMgVVWSSJrZ9Urtj6+NIbwCRctEaMLKzHI01uk8+JXlzs5pqjzmAyaXvgMkKVvhp5+NjRxKHyHfCD9Gd+UNN8QoAPnRVied3ETVygHjvK6eoD9Wb5TvS9U4sWoShZ8QBX28FinVjbNDYxq/RUTrcevujlasFaD7Y4gbGqakbVBjJx+xNVzbzA4usJMEeCOd9ahtX2HtJdajXxFZkZPImRk+kMtuNSElCq2E10PSn6jFEcHYnOkwF43wDilGsMHWJDI9gXr4nCUqfWBBn8XPrOJVdWyZ7GIxOl9ZOn1ix', 'pineId': 'STD;EMA', 'pineVersion': '29.0', 'pineFeatures': {'v': '{\'indicator\':1,\'plot\':1,\'ta\':1}', 'f': True, 't': 'text'}, 'in_0': {'v': 21, 'f': True, 't': 'integer'}, 'in_1': {'v': 'close', 'f': True, 't': 'source'}, 'in_2': {'v': 0, 'f': True, 't': 'integer'}, 'in_3': {'v': 'EMA', 'f': True, 't': 'text'}, 'in_4': {'v': 5, 'f': True, 't': 'integer'}, 'in_5': {'v': '', 'f': True, 't': 'resolution'}, 'in_6': {'v': True, 'f': True, 't': 'bool'}}],
     'ema50': ['Script@tv-scripting-101!', {'text': 'bmI9Ks46_YgiQhsSwDdbNYHsEzTaxnA==_tysyiC9xdsEwtdmdMBSVgXuVvcZQ9j6XhIppaillwsxzP5xbNHizoC2fq0d6Q6EZeh3JWFos4nGmxiOETJ4ncnF0L/i6laHxlvePKlj2JEbxW5NGFl5l2KgufioukfuvBYZK/wIWE/3hLrlxXITNc1MWs10LKta7PyhbyJ2gW6G8S+VU0P4L4JBVQurjsKg7vFM9IiSGgZ1MYb655UzYrm9q4VuIlFVj3wQsYj+xf2lK947wZETX1p8T3moRqYmpZ32GT6V5Krk2pVttLcUIAu1pzUOC6cw1f7PNI7dmOskToyk4TpxiVnqbZRRmj2N+vPdb/nXCSQOLH3fX3McEz6uguxb0MBQgnbCMrdV6bDtVB5xiCfYjA0uoxqCH7kKdzhQbRWVO8J6M+NZkxvPI7A4EJtgYFiRKEOjYO74BeW0UIj904Ms9NAYN6MnU28GjQ895q7AmIkyP/RO9z2yNU5Obnt4VZhJoLsWU+sfMFK0VdoPAoPK52EjeUq7gW3Bfd9ig2/V5dlcNPn55R5HY8Hs5lq6iTpH2rM2wr2s7q4VEfbLQZw7mHNm01btpH7MSuuxgHBJc7DcN9uxRYViDQw666TMjWXflJFzB3WA/NotrRbAH9KWTMISrtc9XunRjd+plBbUOyNPR', 'pineId': 'STD;EMA', 'pineVersion': '29.0', 'pineFeatures': {'v': '{\'indicator\':1,\'plot\':1,\'ta\':1}', 'f': True, 't': 'text'}, 'in_0': {'v': 50, 'f': True, 't': 'integer'}, 'in_1': {'v': 'close', 'f': True, 't': 'source'}, 'in_2': {'v': 0, 'f': True, 't': 'integer'}, 'in_3': {'v': 'EMA', 'f': True, 't': 'text'}, 'in_4': {'v': 5, 'f': True, 't': 'integer'}, 'in_5': {'v': '', 'f': True, 't': 'resolution'}, 'in_6': {'v': True, 'f': True, 't': 'bool'}}],
@@ -143,7 +142,7 @@ class TradingView:
         _send_message(ws, 'create_series', [sess, 's_ohlcv', 's1', 'sds_sym_1', str(interval), total_candle, ""])
 
         for chart in charts:
-            chart_setting = CHARTS_SETTINGS[chart]
+            chart_setting = _CHARTS_SETTINGS[chart]
             _send_message(ws, 'create_study', [sess, f's_{chart}', 'st1', 's_ohlcv', *chart_setting])
 
         # Start job
