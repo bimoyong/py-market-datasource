@@ -77,3 +77,11 @@ SYMBOLS_LATIN_AMERICA = {
     'USO': 'AMEX:USO',
     'CPER': 'AMEX:CPER',
 }
+
+SYMBOLS_TREASURY = {
+    'TLT': 'NASDAQ:TLT',
+    'BIL': 'AMEX:BIL',
+    'SHY': 'NASDAQ:SHY',
+    'IEI': 'NASDAQ:IEI',
+    'IEF': 'NASDAQ:IEF',
+}
