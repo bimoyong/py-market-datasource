@@ -109,14 +109,14 @@ class TradingView:
 
         df = pd.DataFrame()
         for i in batched(charts, 3):
-            data = self.historical_charts_chunk(symbol=symbol, interval=interval, total_candle=total_candle, charts=i, adjustment='dividends')
+            data = self.historical_charts_chunk(symbol=symbol, interval=interval, total_candle=total_candle, charts=i, adjustment=adjustment)
             if df.empty:
                 df = data
             else:
                 df = pd.concat([df, data], axis=1).T.drop_duplicates().T
 
         if df.empty:
-            df = self.historical_charts_chunk(symbol=symbol, interval=interval, total_candle=total_candle, charts=[], adjustment='dividends')
+            df = self.historical_charts_chunk(symbol=symbol, interval=interval, total_candle=total_candle, charts=[], adjustment=adjustment)
 
         df['timestamp_ts'] = df['timestamp_ts'].astype(int)
         df['volume'] = df['volume'].astype(int)
@@ -289,7 +289,7 @@ def _parse_bar_charts(ws, interval, series_num=1) -> pd.DataFrame:
             out = out.group(1)
             items = out.split(',{\"')
             if len(items) == 0:
-                _send_ping_packet(ws, interval, result)
+                _send_ping_packet(ws, result)
                 continue
 
             series = find_series(result)
@@ -372,7 +372,7 @@ def _socket_bar_chart(ws, interval) -> pd.DataFrame:
             else:
                 # ping packet
                 print("................retry")
-                _send_ping_packet(ws, interval, result)
+                _send_ping_packet(ws, result)
         except KeyboardInterrupt:
             break
         except Exception as e:

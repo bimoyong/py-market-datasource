@@ -18,41 +18,37 @@ WORKSHEET_TEMPLATE_TITLE = '_template'
 
 
 class GoogleSheet():
-    _credentials: Credentials
-    _client: Client
-
     def __init__(self, credentials: Credentials = None) -> None:
-        self._credentials = credentials
-
-    @property
-    def client(self):
-        if self._client:
-            return self._client
-
+        self._client: Client = None
         if exists(f'{HOMEDIR}/.config/gspread/service_account.json'):
             self._client = gspread.service_account()
         else:
-            self._client = gspread.authorize(self._credentials)
+            self._client = gspread.authorize(credentials)
 
+    @property
+    def client(self):
         return self._client
 
-    def open_or_create_spreadsheet(self, title: str, folder_id='') -> Spreadsheet:
+    def open_or_create_spreadsheet(self, title: str, folder_id='') -> Tuple[Spreadsheet, bool]:
         sh: Spreadsheet = None
+        created = False
 
         with suppress(SpreadsheetNotFound):
             sh = self._client.open(title, folder_id)
 
         if not sh:
             sh = self._client.create(title, folder_id)
+            created = True
 
-        return sh
+        return sh, created
 
     @staticmethod
     def get_or_add_worksheet(title: str,
                              sheet: Spreadsheet,
                              template_title='',
-                             template_data_range='') -> Worksheet:
+                             template_data_range='') -> Tuple[Worksheet, bool]:
         ws: Worksheet = None
+        created = False
 
         ws_template: Worksheet = None
         if template_data_range:
@@ -69,10 +65,11 @@ class GoogleSheet():
                 ws.batch_clear([template_data_range])
             else:
                 ws = sheet.add_worksheet(title, rows=0, cols=0)
+                created = True
 
         __class__.unhide_worksheet(ws, sheet)
 
-        return ws
+        return ws, created
 
     @staticmethod
     def unhide_worksheet(worksheet: Worksheet,
@@ -113,11 +110,12 @@ class GoogleSheet():
     @staticmethod
     def worksheet_to_dataframe(worksheet: Worksheet,
                                row=1,
-                               index='') -> Tuple[pd.DataFrame, int]:
+                               find_value='',
+                               index_col='timestamp') -> Tuple[pd.DataFrame, int]:
         row_idx = row
-        if index:
+        if find_value:
             with suppress(CellNotFound, AttributeError):
-                row_idx = worksheet.find(index).row
+                row_idx = worksheet.find(find_value).row
 
         def skip(x):
             not_header = x != row - 1
@@ -126,7 +124,7 @@ class GoogleSheet():
             if not_header and to_index:
                 return True
 
-        df_ws = get_as_dataframe(worksheet, parse_dates=True, index_col='timestamp', skiprows=skip)
+        df_ws = get_as_dataframe(worksheet, parse_dates=True, index_col=index_col, skiprows=skip)
         df_ws = df_ws.dropna(how='all', axis=0).dropna(how='all', axis=1)
 
         row_last = {True: len(df_ws) + 1, False: row_idx}[row_idx == row]
