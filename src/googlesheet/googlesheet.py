@@ -1,30 +1,49 @@
 # @title Spreadsheet Utils
 
 from contextlib import suppress
-from google.auth.credentials import Credentials
-from gspread import Spreadsheet, Worksheet
-from gspread_dataframe import get_as_dataframe, set_with_dataframe
-from gspread.exceptions import CellNotFound, SpreadsheetNotFound, WorksheetNotFound
-from pandas.api.types import is_datetime64_ns_dtype
+from os.path import exists, expanduser
 from typing import Any, Dict, Tuple
+
 import gspread
 import pandas as pd
+from google.auth.credentials import Credentials
+from gspread import Client, Spreadsheet, Worksheet
+from gspread.exceptions import (CellNotFound, SpreadsheetNotFound,
+                                WorksheetNotFound)
+from gspread_dataframe import get_as_dataframe, set_with_dataframe
+from pandas.api.types import is_datetime64_ns_dtype
 
+HOMEDIR = expanduser('~')
 WORKSHEET_TEMPLATE_TITLE = '_template'
 
 
 class GoogleSheet():
-    def __init__(self, credentials: Credentials) -> None:
-        self._client = gspread.authorize(credentials)
+    _credentials: Credentials
+    _client: Client
 
-    def open_or_create_spreadsheet(self, title: str) -> Spreadsheet:
+    def __init__(self, credentials: Credentials = None) -> None:
+        self._credentials = credentials
+
+    @property
+    def client(self):
+        if self._client:
+            return self._client
+
+        if exists(f'{HOMEDIR}/.config/gspread/service_account.json'):
+            self._client = gspread.service_account()
+        else:
+            self._client = gspread.authorize(self._credentials)
+
+        return self._client
+
+    def open_or_create_spreadsheet(self, title: str, folder_id='') -> Spreadsheet:
         sh: Spreadsheet = None
 
         with suppress(SpreadsheetNotFound):
-            sh = self._client.open(title)
+            sh = self._client.open(title, folder_id)
 
         if not sh:
-            sh = self._client.create(title)
+            sh = self._client.create(title, folder_id)
 
         return sh
 
