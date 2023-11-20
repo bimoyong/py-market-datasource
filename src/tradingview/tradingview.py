@@ -102,7 +102,7 @@ class TradingView:
                                  symbols: List[str],
                                  interval: str,
                                  total_candle: int,
-                                 charts: List[str] = None,
+                                 charts: List[str] = [],
                                  adjustment='dividends') -> Iterator:
         args = [
             symbols,
@@ -120,7 +120,7 @@ class TradingView:
                           symbol: str,
                           interval: str,
                           total_candle: int,
-                          charts: List[str] = None,
+                          charts: List[str] = [],
                           adjustment='dividends') -> pd.DataFrame:
         from itertools import islice
 
