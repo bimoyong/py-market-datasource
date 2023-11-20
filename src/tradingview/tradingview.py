@@ -102,8 +102,11 @@ class TradingView:
                                  symbols: List[str],
                                  interval: str,
                                  total_candle: int,
-                                 charts: List[str] = [],
+                                 charts: List[str] = None,
                                  adjustment='dividends') -> Iterator:
+        if not charts:
+            charts = []
+
         args = [
             symbols,
             [interval] * len(symbols),
@@ -120,8 +123,11 @@ class TradingView:
                           symbol: str,
                           interval: str,
                           total_candle: int,
-                          charts: List[str] = [],
+                          charts: List[str] = None,
                           adjustment='dividends') -> pd.DataFrame:
+        if not charts:
+            charts = []
+
         from itertools import islice
 
         def batched(iterable, n):
