@@ -4,8 +4,9 @@ import json
 import random
 import re
 import string
+from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime
-from typing import Dict, List
+from typing import Dict, Iterator, List
 
 import pandas as pd
 from requests import get, post
@@ -30,11 +31,13 @@ class TradingView:
                  username='',
                  password='',
                  token='',
-                 market='') -> None:
+                 market='',
+                 workers_no=1) -> None:
         self._username = username
         self._password = password
         self._market = market
         self._token = token
+        self._executor = ThreadPoolExecutor(max_workers=workers_no)
 
     @property
     def username(self) -> str:
@@ -95,7 +98,30 @@ class TradingView:
         # Start job
         _socket_quote(ws, callback)
 
-    def historical_charts(self, symbol: str, interval: str, total_candle: int, charts: List[str], adjustment='dividends') -> pd.DataFrame:
+    def historical_multi_symbols(self,
+                                 symbols: List[str],
+                                 interval: str,
+                                 total_candle: int,
+                                 charts: List[str] = None,
+                                 adjustment='dividends') -> Iterator:
+        args = [
+            symbols,
+            [interval] * len(symbols),
+            [total_candle] * len(symbols),
+            [charts] * len(symbols),
+            [adjustment] * len(symbols),
+        ]
+
+        ohlcv_iter = self._executor.map(self.historical_charts, *args)
+
+        return ohlcv_iter
+
+    def historical_charts(self,
+                          symbol: str,
+                          interval: str,
+                          total_candle: int,
+                          charts: List[str] = None,
+                          adjustment='dividends') -> pd.DataFrame:
         from itertools import islice
 
         def batched(iterable, n):
@@ -150,6 +176,7 @@ class TradingView:
 
         return df
 
+    # !DEPRECATED
     def historical_bar_chart(self, symbol: str, interval, total_candle, adjustment='dividends') -> pd.DataFrame:
         # create tunnel
         headers = json.dumps({'Origin': 'https://data.tradingview.com'})
