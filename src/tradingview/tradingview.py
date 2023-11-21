@@ -70,7 +70,7 @@ class TradingView:
             _send_message(ws, 'set_auth_token', ['unauthorized_user_token'])
 
         _send_message(ws, 'quote_create_session', [sess])
-        _send_message(ws, 'quote_set_fields', [sess, 'lp', 'ch', 'lp_time', 'volume'])
+        _send_message(ws, 'quote_set_fields', [sess, 'lp', 'ch', 'lp_time', 'change_pct', 'volume'])
         _send_message(ws, 'quote_add_symbols', [sess, symbol])
 
         quote = _socket_quote(ws)
@@ -90,7 +90,7 @@ class TradingView:
             _send_message(ws, 'set_auth_token', ['unauthorized_user_token'])
 
         _send_message(ws, 'quote_create_session', [sess])
-        _send_message(ws, 'quote_set_fields', [sess, 'lp', 'ch', 'lp_time'])
+        _send_message(ws, 'quote_set_fields', [sess, 'lp', 'ch', 'lp_time', 'change_pct', 'volume'])
 
         for i in symbols:
             _send_message(ws, 'quote_add_symbols', [sess, i])
