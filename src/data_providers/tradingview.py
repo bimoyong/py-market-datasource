@@ -2,12 +2,12 @@ from typing import List
 
 import pandas as pd
 import pytz
-import tradingview as tv_lib
-from tradingview import set_index_by_timestamp
 
-from data_providers.data_providers import DataProvider
+import tradingview as tv_lib
+from data_providers.data_provider import DataProvider
 from data_providers.enums import Adjustment
 from data_providers.models import Quote
+from tradingview import set_index_by_timestamp
 
 
 class TradingView(DataProvider):

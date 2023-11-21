@@ -1,6 +1,6 @@
 from dependency_injector import containers, providers
 
-from data_providers.data_providers import DataProvider
+from data_providers.data_provider import DataProvider
 
 
 class Container(containers.DeclarativeContainer):
