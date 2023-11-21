@@ -7,11 +7,15 @@ setup(name='py_datasource',
       author='Trung',
       author_email='trung@t7.sg',
       license='MIT',
-      packages=['tradingview', 'googlesheet'],
+      packages=[
+          'data_providers',
+          'tradingview',
+          'googlesheet',
+      ],
       package_dir={
-          'tradingview': 'src/tradingview',
-          'googlesheet': 'src/googlesheet',
           'data_providers': 'src/data_providers',
+          'googlesheet': 'src/googlesheet',
+          'tradingview': 'src/tradingview',
       },
       install_requires=[
           'dependency-injector==4.41.0',
