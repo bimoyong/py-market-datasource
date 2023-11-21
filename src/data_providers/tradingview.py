@@ -7,7 +7,6 @@ import tradingview as tv_lib
 from data_providers.data_provider import DataProvider
 from data_providers.enums import Adjustment
 from data_providers.models import Quote
-from tradingview import set_index_by_timestamp
 
 
 class TradingView(DataProvider):
@@ -28,7 +27,7 @@ class TradingView(DataProvider):
         return self._tv
 
     def quote(self, symbol: str) -> Quote:
-        quote = self._tv.current_quote(symbol)
+        quote = self.tv.current_quote(symbol)
         rst = Quote(**quote)
 
         return rst
@@ -49,7 +48,7 @@ class TradingView(DataProvider):
                                                       charts,
                                                       adjustment.value)
 
-        ohlcv_ts_index = map(lambda x: set_index_by_timestamp(x, tzinfo), ohlcv_iter)
+        ohlcv_ts_index = map(lambda x: tv_lib.set_index_by_timestamp(x, tzinfo), ohlcv_iter)
         df = pd.concat(ohlcv_ts_index, axis=0, keys=symbols)
         df.index.names = ['symbol', 'timestamp']
 
