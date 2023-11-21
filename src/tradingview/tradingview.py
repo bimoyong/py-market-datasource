@@ -70,7 +70,7 @@ class TradingView:
             _send_message(ws, 'set_auth_token', ['unauthorized_user_token'])
 
         _send_message(ws, 'quote_create_session', [sess])
-        _send_message(ws, 'quote_set_fields', [sess, 'lp', 'ch', 'lp_time', 'change_pct', 'volume'])
+        _send_message(ws, 'quote_set_fields', [sess, 'lp', 'ch', 'lp_time', 'chp', 'volume'])
         _send_message(ws, 'quote_add_symbols', [sess, symbol])
 
         quote = _socket_quote(ws)
@@ -90,7 +90,7 @@ class TradingView:
             _send_message(ws, 'set_auth_token', ['unauthorized_user_token'])
 
         _send_message(ws, 'quote_create_session', [sess])
-        _send_message(ws, 'quote_set_fields', [sess, 'lp', 'ch', 'lp_time', 'change_pct', 'volume'])
+        _send_message(ws, 'quote_set_fields', [sess, 'lp', 'ch', 'lp_time', 'chp', 'volume'])
 
         for i in symbols:
             _send_message(ws, 'quote_add_symbols', [sess, i])
@@ -276,6 +276,7 @@ def _socket_quote(ws, callback=None):
                     n = resp['p'][1]['n']
                     lp = resp['p'][1]['v'].get('lp', 0.0)
                     ch = resp['p'][1]['v'].get('ch', 0.0)
+                    chp = resp['p'][1]['v'].get('chp', 0.0)
                     ts = resp['p'][1]['v'].get('lp_time', 0)
                     vol = resp['p'][1]['v'].get('volume', 0)
                     resp_cb = resp_cbs.get(n, {'symbol': n})
@@ -283,6 +284,8 @@ def _socket_quote(ws, callback=None):
                         resp_cb.update({'price': lp})
                     if ch:
                         resp_cb.update({'change': ch})
+                    if chp:
+                        resp_cb.update({'change_pct': chp})
                     if ts:
                         resp_cb.update({'timestamp_ts': ts})
                     if vol:
