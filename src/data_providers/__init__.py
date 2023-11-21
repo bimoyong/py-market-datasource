@@ -3,10 +3,7 @@
 from logging import INFO, basicConfig
 from sys import stdout
 
-from data_providers.containers import *
-from data_providers.data_providers import *
-from data_providers.enums import *
-from data_providers.models import *
+from data_providers.data_providers import DataProvider
 
 basicConfig(
     level=INFO,
