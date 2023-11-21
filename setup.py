@@ -22,7 +22,7 @@ setup(name='py_datasource',
           'google-auth==2.17.3',
           'gspread-dataframe==3.3.1',
           'gspread==5.10.0',
-          'pydantic==2.5.1',
+          'pydantic==1.10.13',
           'websocket-client==1.6.3',
       ],
       zip_safe=False)
