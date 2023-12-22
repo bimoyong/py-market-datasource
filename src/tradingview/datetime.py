@@ -2,6 +2,7 @@ import pandas as pd
 import pytz
 
 TZ_CST = pytz.timezone('America/Chicago')
+TZ_JST = pytz.timezone('Asia/Tokyo')
 
 
 def set_index_by_timestamp(df: pd.DataFrame, tzinfo: pytz.BaseTzInfo = None) -> pd.DataFrame:
