@@ -6,11 +6,14 @@ import re
 import string
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime
-from typing import Dict, Iterator, List
+from typing import Dict, Iterator, List, Union
 
 import pandas as pd
+import pytz
 from requests import get, post
 from websocket import create_connection
+
+from tradingview.datetime import set_index_by_timestamp
 
 _GLOBAL_URL_ = 'https://scanner.tradingview.com/global/scan'
 _API_URL_ = 'https://symbol-search.tradingview.com/symbol_search'
@@ -103,7 +106,8 @@ class TradingView:
                                  interval: str,
                                  total_candle: int,
                                  charts: List[str] = None,
-                                 adjustment='dividends') -> Iterator:
+                                 adjustment='dividends',
+                                 tzinfo: pytz.BaseTzInfo = pytz.UTC) -> Union[Iterator, pd.DataFrame]:
         if not charts:
             charts = []
 
@@ -117,7 +121,23 @@ class TradingView:
 
         ohlcv_iter = self._executor.map(self.historical_charts, *args)
 
-        return ohlcv_iter
+        ohlcv_dict = dict(zip(symbols, ohlcv_iter))
+
+        for symbol, frame in ohlcv_dict.items():
+            frame['Symbol'] = symbol
+
+        ohlcv = pd.concat(ohlcv_dict.values())
+
+        # TODO: simplify this, no need set index and reset index later on
+        ohlcv = set_index_by_timestamp(ohlcv, tzinfo)
+        ohlcv.reset_index(inplace=True)
+        ohlcv.drop(['timestamp_ts'], axis=1, inplace=True, errors='ignore')
+
+        ohlcv.index.name = 'Date'
+        ohlcv.columns = ['Date', 'Open', 'High', 'Low', 'Close', 'Volume', 'Symbol']
+        ohlcv = ohlcv[['Date', 'Symbol', 'Open', 'High', 'Low', 'Close', 'Volume']]
+
+        return ohlcv
 
     def historical_charts(self,
                           symbol: str,
