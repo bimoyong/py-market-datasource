@@ -133,7 +133,6 @@ class TradingView:
         ohlcv.reset_index(inplace=True)
         ohlcv.drop(['timestamp_ts'], axis=1, inplace=True, errors='ignore')
 
-        ohlcv.index.name = 'Date'
         ohlcv.columns = ['Date', 'Open', 'High', 'Low', 'Close', 'Volume', 'Symbol']
         ohlcv = ohlcv[['Date', 'Symbol', 'Open', 'High', 'Low', 'Close', 'Volume']]
 
