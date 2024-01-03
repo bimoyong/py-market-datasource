@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Union
 
 import pandas as pd
 import pytz
@@ -33,7 +33,7 @@ class TradingView(DataProvider):
         return rst
 
     def ohlcv(self,
-              symbols: str | List[str],
+              symbols: Union[str, List[str]],
               interval: str,
               total_candle: int,
               charts: List[str] = None,

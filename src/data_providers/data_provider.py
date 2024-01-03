@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import List
+from typing import List, Union
 
 import pandas as pd
 import pytz
@@ -15,7 +15,7 @@ class DataProvider(ABC):
 
     @abstractmethod
     def ohlcv(self,
-              symbols: str | List[str],
+              symbols: Union[str, List[str]],
               interval: str,
               total_candle: int,
               charts: List[str] = None,

@@ -1,5 +1,5 @@
 from os.path import exists, join
-from typing import List
+from typing import List, Union
 
 import pandas as pd
 import pytz
@@ -14,7 +14,7 @@ class Local(TradingView):
         return join('/tmp', f'{hex(id(self))}.h5')
 
     def ohlcv(self,
-              symbols: str | List[str],
+              symbols: Union[str, List[str]],
               interval: str,
               total_candle: int,
               charts: List[str] = None,
