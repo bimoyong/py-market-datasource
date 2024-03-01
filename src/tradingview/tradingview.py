@@ -128,6 +128,9 @@ class TradingView:
 
         ohlcv = pd.concat(ohlcv_dict.values())
 
+        if ohlcv.empty:
+            ohlcv = pd.DataFrame(columns=['timestamp_ts', 'Open', 'High', 'Low', 'Close', 'Volume', 'Symbol'])
+
         # TODO: simplify this, no need set index and reset index later on
         ohlcv = set_index_by_timestamp(ohlcv, tzinfo)
         ohlcv.reset_index(inplace=True)
@@ -168,6 +171,9 @@ class TradingView:
 
         if df.empty:
             df = self.historical_charts_chunk(symbol=symbol, interval=interval, total_candle=total_candle, charts=[], adjustment=adjustment)
+
+        if df is None:
+            return pd.DataFrame()
 
         df['timestamp_ts'] = df['timestamp_ts'].astype(int)
         df['volume'] = df['volume'].astype(int)
@@ -387,11 +393,11 @@ def _parse_bar_charts(ws, interval, series_num=1) -> pd.DataFrame:
         except KeyboardInterrupt:
             break
         except Exception as e:
-            # break
             print("=========except", datetime.now(), e)
             if ('closed' in str(e) or 'lost' in str(e)):
                 print("=========try")
                 # self.realtime_bar_chart(5, 1, callback)
+            break
 
 
 def _socket_bar_chart(ws, interval) -> pd.DataFrame:
