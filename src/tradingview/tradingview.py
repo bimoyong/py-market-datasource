@@ -17,7 +17,7 @@ from tradingview.datetime import set_index_by_timestamp
 
 _GLOBAL_URL_ = 'https://scanner.tradingview.com/global/scan'
 _API_URL_ = 'https://symbol-search.tradingview.com/symbol_search'
-_WS_URL_ = 'wss://data.tradingview.com/socket.io/websocket?&type=chart'
+_WS_URL_ = 'wss://prodata.tradingview.com/socket.io/websocket?&type=chart'
 
 _CHARTS_SETTINGS = {
     'ema10': ['Script@tv-scripting-101!', {'text': 'bmI9Ks46_u96awLDSJj8c4xVHubmEMw==_E3G6GqoJr5rLISOgO9nBsoc2e4nLvKBi1q5InR7AttexejdPJoAOC8z/vvUAqlCMpPiv11uwGy2v0EG7phDcDFZiaEKMt/1ooB+5hPaSKK7EuUzKTIGLFzbLtwjwO5Z7jR11jP1Z2MsAt9cN0smrwQMTjphpEDRVvzDqBcB2wZRR7BxQeQ9j7ynKMseInC5G34ToyLmrle0+4Dcw9IhWNkvpGLKhODeEIdjlfm6ZzEAu3cuuLIx9Kn1f1h6AdSVccLpVDzTy67dQ9TanhaaIy5Ogz+kuRYKTkkP63IaXvEn03t29DDUoWMxzQolZuBW6vDVAbHMgPm52yHN88uvJ5px4IGDbuRdJlTLrMpbgG4SAP+DWhKL6wbsu9MfYfe4bGMzfvF7vE/ltqlycHIHIjOS2SfFrqxmVg4eH1+V+/7g0JbnCvSJAeY/RKUCx+jJZa+Gm0mvhmvz+abYWJLpqTpBctZ8kYI+6EGVXgshUZrkahn+S0oGnvwOB4NzLMCSX9NLidpDZKuDuI2Whfb08toOkoGiF8JYhvnotLZSDa0DTDhwZtqQf0hAChG/3RK42S75LxcZwyTl39emlxdU9uDoDV+d/NHZFao+FSoNhSkTsqOnfuVp5l3V1yop8Psh64sbs2A1cGqu1', 'pineId': 'STD;EMA', 'pineVersion': '29.0', 'pineFeatures': {'v': '{\'indicator\':1,\'plot\':1,\'ta\':1}', 'f': True, 't': 'text'}, 'in_0': {'v': 10, 'f': True, 't': 'integer'}, 'in_1': {'v': 'close', 'f': True, 't': 'source'}, 'in_2': {'v': 0, 'f': True, 't': 'integer'}, 'in_3': {'v': 'EMA', 'f': True, 't': 'text'}, 'in_4': {'v': 5, 'f': True, 't': 'integer'}, 'in_5': {'v': '', 'f': True, 't': 'resolution'}, 'in_6': {'v': True, 'f': True, 't': 'bool'}}],
