@@ -4,6 +4,7 @@ import json
 import random
 import re
 import string
+import time
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime
 from itertools import islice
@@ -11,6 +12,7 @@ from typing import Any, Dict, Iterator, List, Union
 
 import pandas as pd
 import pytz
+from pydantic.utils import deep_update
 from requests import get, post
 from websocket import WebSocket, create_connection
 
@@ -86,12 +88,10 @@ class TradingView:
         _send_message(ws, 'quote_create_session', [sess])
         _send_message(ws, 'quote_set_fields', [sess, *fields])
 
-        if isinstance(symbols, str):
-            _send_message(ws, 'quote_add_symbols', [sess, symbols])
+        _symbols = [symbols] if isinstance(symbols, str) else symbols
 
-        elif isinstance(symbols, list):
-            for i in symbols:
-                _send_message(ws, 'quote_add_symbols', [sess, i])
+        for i in _symbols:
+            _send_message(ws, 'quote_add_symbols', [sess, i])
 
         quote = _socket_quote(ws, symbols=symbols)
 
@@ -229,6 +229,40 @@ class TradingView:
         df = _parse_bar_charts(ws, interval, series_num=1 + len(charts))
 
         return df
+
+    def get_analysis(self,
+                     symbols: Union[str, List[str]]) -> Union[dict, None]:
+
+        # create tunnel
+        headers = json.dumps({'Origin': 'https://data.tradingview.com'})
+        ws = create_connection(_WS_URL_, headers=headers)
+        sess = _generate_session('cs_')
+
+        # Send messages
+        if self.token:
+            _send_message(ws, 'set_auth_token', [self.token])
+        else:
+            _send_message(ws, 'set_auth_token', ['unauthorized_user_token'])
+
+        # Then send a message through the tunnel
+        _send_message(ws, 'set_data_quality', ['high'])
+        _send_message(ws, 'quote_create_session', [sess])
+
+        return_single = isinstance(symbols, str)
+        _symbols = [symbols] if return_single else symbols
+
+        for i in _symbols:
+            _send_message(ws, 'quote_add_symbols', [sess, i])
+
+        # Start job
+        rst = _parse_or_subscribe_ws(ws, symbols=symbols)
+        analysis = rst[sess]
+
+        if return_single:
+            k = next(iter(analysis.keys()))
+            return analysis[k]
+
+        return analysis
 
     def get_symbol_id(self, pair: str, market: str = ''):
         data = self.search(pair, market)
@@ -410,48 +444,70 @@ def _parse_bar_charts(ws, interval, series_num=1) -> pd.DataFrame:
             break
 
 
-def _socket_bar_chart(ws, interval) -> pd.DataFrame:
+def _parse_or_subscribe_ws(ws: WebSocket,
+                           symbols: Union[str, List[str]] = None,
+                           realtime=False,
+                           callback: callable = None) -> dict:
+    msg = {}
+
     while True:
         try:
-            result = ws.recv()
-            if not result or '"quote_completed"' in result or '"session_id"' in result:
+            msgs = ws.recv()
+
+            if re.findall(r'~m~\d+~m~~h~\d+', msgs):
+                _send_ping_packet(ws, msgs)
                 continue
 
-            out = re.search('"s":\[(.+?)\}\]', result)
-            if not out:
+            if not msgs or '"session_id"' in msgs:
                 continue
 
-            out = out.group(1)
-            items = out.split(',{\"')
-            if len(items) != 0:
-                datas = []
-                for item in items:
-                    item = re.split('\[|:|,|\]', item)
-                    s = {
-                        'timestamp_ts': int(float(item[4])),
-                        'open': float(item[5]),
-                        'high': float(item[6]),
-                        'low': float(item[7]),
-                        'close': float(item[8]),
-                        'volume': float(item[9] if item[9].replace('.', '').isnumeric() else 0.0),
-                    }
-                    datas.append(s)
+            m_items = filter(None, re.split(r'~m~\d+~m~', msgs))
+            m_items = list(m_items)
 
-                df = pd.DataFrame(datas)
+            m: str = None
+            for i in m_items:
+                m_data = json.loads(i)
 
-                return df
-            else:
-                # ping packet
-                print("................retry")
-                _send_ping_packet(ws, result)
+                m = m_data.get('m')
+                if not m:
+                    continue
+
+                if m == 'quote_completed':
+                    break
+
+                p = m_data['p']
+                s = p[1]['s']
+                if s != 'ok':
+                    continue
+
+                n = p[1]['n']
+                v = p[1]['v']
+
+                sess = p[0]
+                data = {sess: {n: v}}
+
+                msg = deep_update(msg, data)
+
+                if callback is not None:
+                    callback(data)
+
+            if not realtime and m == 'quote_completed':
+                _symbols = [symbols] if isinstance(symbols, str) else symbols
+                sess = next(iter(msg.keys()))
+
+                if not set(_symbols) - set(msg[sess].keys()):
+                    break
+
         except KeyboardInterrupt:
             break
         except Exception as e:
-            # break
             print("=========except", datetime.now(), e)
             if ('closed' in str(e) or 'lost' in str(e)):
                 print("=========try")
-                # self.realtime_bar_chart(5, 1, callback)
+
+            time.sleep(30)
+
+    return msg
 
 
 def _generate_session(prefix):

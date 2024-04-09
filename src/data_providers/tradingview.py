@@ -29,10 +29,11 @@ class TradingView(DataProvider):
         return self._tv
 
     def quote(self, symbols: Union[str, List[str]]) -> Union[Quote, Dict[str, Quote]]:
-        return_multi = isinstance(symbols, list)
+        return_single = isinstance(symbols, str)
 
         quotes = self.tv.current_quote(symbols)
-        if not return_multi:
+
+        if return_single:
             quotes = {symbols: quotes}
 
         rst: Dict[str, Quote] = {}
@@ -47,10 +48,10 @@ class TradingView(DataProvider):
 
             rst[k] = q
 
-        if return_multi:
-            return rst
+        if return_single:
+            return rst[symbols]
 
-        return rst[symbols]
+        return rst
 
     def ohlcv(self,
               symbols: Union[str, List[str]],
