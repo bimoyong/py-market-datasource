@@ -1,4 +1,4 @@
-#@title Define TradingView class
+# @title Define TradingView class
 
 import json
 import random
@@ -6,12 +6,13 @@ import re
 import string
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime
-from typing import Dict, Iterator, List, Union
+from itertools import islice
+from typing import Any, Dict, Iterator, List, Union
 
 import pandas as pd
 import pytz
 from requests import get, post
-from websocket import create_connection
+from websocket import WebSocket, create_connection
 
 from tradingview.datetime import set_index_by_timestamp
 
@@ -60,7 +61,9 @@ class TradingView:
             self._token = _get_auth_token(self.username, self.password)
         return self._token
 
-    def current_quote(self, symbol: str) -> dict:
+    def current_quote(self,
+                      symbols: Union[str, List[str]],
+                      fields: List[str] = None) -> Union[Dict[str, Any], Dict[str, Dict[str, Any]]]:
         # create tunnel
         headers = json.dumps({'Origin': 'https://data.tradingview.com'})
         ws = create_connection(_WS_URL_, headers=headers)
@@ -72,15 +75,31 @@ class TradingView:
         else:
             _send_message(ws, 'set_auth_token', ['unauthorized_user_token'])
 
-        _send_message(ws, 'quote_create_session', [sess])
-        _send_message(ws, 'quote_set_fields', [sess, 'lp', 'ch', 'lp_time', 'chp', 'volume'])
-        _send_message(ws, 'quote_add_symbols', [sess, symbol])
+        fields_basic = ['lp', 'ch', 'lp_time', 'chp', 'volume']
+        if fields is None:
+            fields_extra_1 = ['base-currency-logoid', 'currency-logoid', 'currency_code', 'currency_id', 'base_currency_id', 'current_session', 'description', 'exchange', 'format', 'fractional', 'is_tradable', 'language', 'local_description', 'listed_exchange', 'logoid', 'minmov', 'minmove2', 'original_name', 'pricescale', 'pro_name', 'short_name', 'type', 'typespecs', 'update_mode', 'variable_tick_size', 'value_unit_id']
+            fields_extra_2 = ["pro_name", "base_name", "short_name", "description", "type", "exchange", "typespecs", "listed_exchange", "country_code", "provider_id", "symbol-primaryname", "logoid", "base-currency-logoid", "currency-logoid", "source-logoid", "update_mode", "source", "source2", "pricescale", "minmov", "fractional", "visible-plots-set"]
+            fields = [*fields_basic, *fields_extra_1, *fields_extra_2]
+        else:
+            fields = [*fields_basic, *fields]
 
-        quote = _socket_quote(ws)
+        _send_message(ws, 'quote_create_session', [sess])
+        _send_message(ws, 'quote_set_fields', [sess, *fields])
+
+        if isinstance(symbols, str):
+            _send_message(ws, 'quote_add_symbols', [sess, symbols])
+
+        elif isinstance(symbols, list):
+            for i in symbols:
+                _send_message(ws, 'quote_add_symbols', [sess, i])
+
+        quote = _socket_quote(ws, symbols=symbols)
 
         return quote
 
-    def realtime_quote(self, symbols: List[str], callback):
+    def realtime_quote(self,
+                       symbols: Union[str, List[str]],
+                       callback: callable) -> Union[Dict[str, Any], Dict[str, Dict[str, Any]]]:
         # create tunnel
         headers = json.dumps({'Origin': 'https://data.tradingview.com'})
         ws = create_connection(_WS_URL_, headers=headers)
@@ -92,14 +111,20 @@ class TradingView:
         else:
             _send_message(ws, 'set_auth_token', ['unauthorized_user_token'])
 
-        _send_message(ws, 'quote_create_session', [sess])
-        _send_message(ws, 'quote_set_fields', [sess, 'lp', 'ch', 'lp_time', 'chp', 'volume'])
+        fields = ['lp', 'ch', 'lp_time', 'chp', 'volume']
 
-        for i in symbols:
-            _send_message(ws, 'quote_add_symbols', [sess, i])
+        _send_message(ws, 'quote_create_session', [sess])
+        _send_message(ws, 'quote_set_fields', [sess, *fields])
+
+        if isinstance(symbols, str):
+            _send_message(ws, 'quote_add_symbols', [sess, symbols])
+
+        elif isinstance(symbols, list):
+            for i in symbols:
+                _send_message(ws, 'quote_add_symbols', [sess, i])
 
         # Start job
-        _socket_quote(ws, callback)
+        _socket_quote(ws, callback=callback)
 
     def historical_multi_symbols(self,
                                  symbols: List[str],
@@ -108,7 +133,7 @@ class TradingView:
                                  charts: List[str] = None,
                                  adjustment='dividends',
                                  tzinfo: pytz.BaseTzInfo = pytz.UTC) -> Union[Iterator, pd.DataFrame]:
-        if not charts:
+        if charts is None:
             charts = []
 
         args = [
@@ -149,8 +174,6 @@ class TradingView:
                           adjustment='dividends') -> pd.DataFrame:
         if not charts:
             charts = []
-
-        from itertools import islice
 
         def batched(iterable, n):
             "Batch data into tuples of length n. The last batch may be shorter."
@@ -207,31 +230,6 @@ class TradingView:
 
         return df
 
-    # !DEPRECATED
-    def historical_bar_chart(self, symbol: str, interval, total_candle, adjustment='dividends') -> pd.DataFrame:
-        # create tunnel
-        headers = json.dumps({'Origin': 'https://data.tradingview.com'})
-        ws = create_connection(_WS_URL_, headers=headers)
-        sess = _generate_session('cs_')
-
-        # Send messages
-        if self.token:
-            _send_message(ws, 'set_auth_token', [self.token])
-        else:
-            _send_message(ws, 'set_auth_token', ['unauthorized_user_token'])
-
-        # Then send a message through the tunnel
-        _send_message(ws, 'set_data_quality', ['high'])
-        _send_message(ws, 'set_auth_token', ['unauthorized_user_token'])
-        _send_message(ws, 'chart_create_session', [sess, ''])
-        _send_message(ws, 'resolve_symbol', [sess, 'symbol_1', '={"symbol":"' + symbol + '","adjustment":"' + adjustment + '","session":"regular"}'])
-        _send_message(ws, 'create_series', [sess, 's1', 's1', 'symbol_1', str(interval), total_candle, ''])
-
-        # Start job
-        df = _socket_bar_chart(ws, interval)
-
-        return df
-
     def get_symbol_id(self, pair: str, market: str = ''):
         data = self.search(pair, market)
 
@@ -269,13 +267,15 @@ def _get_auth_token(username, password):
     headers = {'Referer': 'https://www.tradingview.com'}
     resp = post(url=sign_in_url, data=data,
                 headers=headers, timeout=60)
-    import json
+
     auth_token = resp.json()['user']['auth_token']
 
     return auth_token
 
 
-def _socket_quote(ws, callback=None):
+def _socket_quote(ws: WebSocket,
+                  symbols: Union[str, List[str]] = None,
+                  callback=None) -> Union[None, Dict[str, Any], Dict[str, Dict[str, Any]]]:
     resp_cbs = {}
 
     while True:
@@ -299,29 +299,39 @@ def _socket_quote(ws, callback=None):
                 resp_cb = {}
                 if resp['m'] == 'qsd':
                     n = resp['p'][1]['n']
-                    lp = resp['p'][1]['v'].get('lp', 0.0)
-                    ch = resp['p'][1]['v'].get('ch', 0.0)
-                    chp = resp['p'][1]['v'].get('chp', 0.0)
-                    ts = resp['p'][1]['v'].get('lp_time', 0)
-                    vol = resp['p'][1]['v'].get('volume', 0)
                     resp_cb = resp_cbs.get(n, {'symbol': n})
-                    if lp:
-                        resp_cb.update({'price': lp})
-                    if ch:
-                        resp_cb.update({'change': ch})
-                    if chp:
-                        resp_cb.update({'change_pct': chp})
-                    if ts:
-                        resp_cb.update({'timestamp_ts': ts})
-                    if vol:
-                        resp_cb.update({'volume': vol})
+
+                    resp_cb.update({'price': resp['p'][1]['v'].get('lp', 0.0)})
+                    resp_cb.update({'change': resp['p'][1]['v'].get('ch', 0.0)})
+                    resp_cb.update({'change_pct': resp['p'][1]['v'].get('chp', 0.0)})
+                    resp_cb.update({'timestamp_ts': resp['p'][1]['v'].get('lp_time', 0)})
+                    resp_cb.update({'volume': resp['p'][1]['v'].get('volume', 0)})
+                    resp_cb.update({'country_code': resp['p'][1]['v'].get('country_code')})
+                    resp_cb.update({'logoid': resp['p'][1]['v'].get('logoid')})
+                    resp_cb.update({'short_name': resp['p'][1]['v'].get('short_name')})
+                    resp_cb.update({'pro_name': resp['p'][1]['v'].get('pro_name')})
+                    resp_cb.update({'currency_id': resp['p'][1]['v'].get('currency_id')})
+                    resp_cb.update({'type': resp['p'][1]['v'].get('type')})
+                    resp_cb.update({'source_logoid': resp['p'][1]['v'].get('source-logoid')})
+                    resp_cb.update({'description': resp['p'][1]['v'].get('description')})
+                    resp_cb.update({'current_session': resp['p'][1]['v'].get('current_session')})
+
+                    resp_cb = {k: v for k, v in resp_cb.items() if v is not None}
 
                     resp_cbs.update({n: resp_cb})
 
                     if callback:
                         callback(resp_cb)
-                    elif 'price' in resp_cb and 'timestamp_ts' in resp_cb:
-                        return resp_cb
+
+                    if symbols is not None:
+                        if isinstance(symbols, str) and \
+                                'price' in resp_cb and 'timestamp_ts' in resp_cb:
+                            return resp_cb
+
+                        elif isinstance(symbols, list) and \
+                                len(symbols) == len(resp_cbs) and \
+                                all(['price' in v and 'timestamp_ts' in v for _, v in resp_cbs.items()]):
+                            return resp_cbs
 
             if not res:
                 # ping packet

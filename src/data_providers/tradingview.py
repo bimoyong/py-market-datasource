@@ -1,4 +1,4 @@
-from typing import List, Union
+from typing import Dict, List, Union
 
 import pandas as pd
 import pytz
@@ -10,6 +10,8 @@ from data_providers.models import Quote
 
 
 class TradingView(DataProvider):
+    STORAGE_BASE_URL = 'https://s3-symbol-logo.tradingview.com'
+
     _tv: tv_lib.TradingView = None
     username: str = ''
     password: str = ''
@@ -26,11 +28,29 @@ class TradingView(DataProvider):
 
         return self._tv
 
-    def quote(self, symbol: str) -> Quote:
-        quote = self.tv.current_quote(symbol)
-        rst = Quote(**quote)
+    def quote(self, symbols: Union[str, List[str]]) -> Union[Quote, Dict[str, Quote]]:
+        return_multi = isinstance(symbols, list)
 
-        return rst
+        quotes = self.tv.current_quote(symbols)
+        if not return_multi:
+            quotes = {symbols: quotes}
+
+        rst: Dict[str, Quote] = {}
+        for k, v in quotes.items():
+            q = Quote(**v)
+
+            if q.logoid:
+                q.logo_url = f'{__class__.STORAGE_BASE_URL}/{q.logoid}.svg'
+
+            if q.source_logoid:
+                q.source_logo_url = f'{__class__.STORAGE_BASE_URL}/{q.source_logo_url}.svg'
+
+            rst[k] = q
+
+        if return_multi:
+            return rst
+
+        return rst[symbols]
 
     def ohlcv(self,
               symbols: Union[str, List[str]],
@@ -38,9 +58,12 @@ class TradingView(DataProvider):
               total_candle: int,
               charts: List[str] = None,
               adjustment=Adjustment.DIVIDENDS,
-              tzinfo: pytz.BaseTzInfo = pytz.UTC) -> pd.DataFrame:
+              tzinfo: Union[str, pytz.BaseTzInfo] = pytz.UTC) -> pd.DataFrame:
         if isinstance(symbols, str):
             symbols = [symbols]
+
+        if isinstance(tzinfo, str):
+            tzinfo = pytz.timezone(tzinfo)
 
         ohlcv_iter = self.tv.historical_multi_symbols(symbols,
                                                       interval,

@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import List, Union
+from typing import Dict, List, Union
 
 import pandas as pd
 import pytz
@@ -10,7 +10,7 @@ from data_providers.models import Quote
 
 class DataProvider(ABC):
     @abstractmethod
-    def quote(self, symbol: str) -> Quote:
+    def quote(self, symbols: Union[str, List[str]]) -> Union[Quote, Dict[str, Quote]]:
         pass
 
     @abstractmethod
