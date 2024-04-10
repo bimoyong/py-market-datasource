@@ -13,7 +13,7 @@ from typing import Any, Dict, Iterator, List, Union
 
 import pandas as pd
 import pytz
-from pydantic.utils import deep_update
+from pydantic.v1.utils import deep_update
 from requests import get, post
 from websocket import WebSocket, create_connection
 
