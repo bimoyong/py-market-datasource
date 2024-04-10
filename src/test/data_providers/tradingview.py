@@ -1,4 +1,6 @@
+import json
 import logging
+import re
 import subprocess
 import sys
 import unittest
@@ -11,6 +13,7 @@ from subprocess import CalledProcessError
 
 import pandas as pd
 from dependency_injector import providers
+from pydantic.utils import deep_update
 
 with suppress(CalledProcessError):
     WORKING_DIR = subprocess.check_output(['git', 'rev-parse', '--show-toplevel']).strip().decode()
@@ -38,22 +41,22 @@ class TestTradingView(unittest.TestCase):
         self.container.client.override(providers.Singleton(TradingView))
         self.client = self.container.client()
 
-    def test_get_current_quote_good_connection(self):
+    def test_get_current_quotes_good_connection(self):
         symbol = 'NASDAQ:MSFT'
         symbols = ['NASDAQ:MSFT', 'NASDAQ:QQQ']
 
-        quote = self.client.quote(symbol)
-        quotes = self.client.quote(symbols)
+        quote = self.client.quotes(symbol)
+        quotes = self.client.quotes(symbols)
 
         self.assertTrue(quote.symbol, symbol)
         list(map(lambda x: self.assertIn(x, symbols), quotes.keys()))
 
-    def test_get_current_quote_return_type(self):
+    def test_get_current_quotes_return_type(self):
         symbol = 'NASDAQ:MSFT'
         symbols = ['NASDAQ:MSFT', 'NASDAQ:QQQ']
 
-        quote = self.client.quote(symbol)
-        quotes = self.client.quote(symbols)
+        quote = self.client.quotes(symbol)
+        quotes = self.client.quotes(symbols)
 
         self.assertIsInstance(quote, Quote)
 
@@ -61,12 +64,12 @@ class TestTradingView(unittest.TestCase):
         list(map(lambda x: self.assertIsInstance(x, Quote), quotes.values()))
         list(map(lambda x: self.assertIsInstance(x, str), quotes.keys()))
 
-    def test_get_current_quote_require_fields(self):
+    def test_get_current_quotes_require_fields(self):
         symbol = 'NASDAQ:MSFT'
         symbols = ['NASDAQ:MSFT', 'NASDAQ:QQQ']
 
-        quote = self.client.quote(symbol)
-        quotes = self.client.quote(symbols)
+        quote = self.client.quotes(symbol)
+        quotes = self.client.quotes(symbols)
 
         for q in [quote, *quotes.values()]:
             q: Quote
@@ -75,3 +78,33 @@ class TestTradingView(unittest.TestCase):
             self.assertIsNotNone(q.timestamp_ts)
             self.assertIsNotNone(q.change_pct)
             self.assertIsNotNone(q.volume)
+
+    def test_split(self):
+        with open('src/test/fixtures/NASDAQ:QQQ_analysis.csv') as msgs:
+            msg = {}
+
+            for m in msgs:
+                m_items = filter(None, re.split('~m~\d+~m~', m))
+
+                for i in m_items:
+                    m_data = json.loads(i)
+
+                    m = m_data.get('m')
+                    if not m:
+                        continue
+
+                    if m == 'quote_completed':
+                        break
+
+                    p = m_data['p']
+                    s = p[1]['s']
+                    if s != 'ok':
+                        continue
+
+                    n = p[1]['n']
+                    v = p[1]['v']
+
+                    sess = p[0]
+                    data = {sess: {n: v}}
+
+                    msg = deep_update(msg, data)

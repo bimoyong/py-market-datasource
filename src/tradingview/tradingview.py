@@ -8,6 +8,7 @@ import time
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime
 from itertools import islice
+from time import perf_counter
 from typing import Any, Dict, Iterator, List, Union
 
 import pandas as pd
@@ -63,13 +64,16 @@ class TradingView:
             self._token = _get_auth_token(self.username, self.password)
         return self._token
 
-    def current_quote(self,
-                      symbols: Union[str, List[str]],
-                      fields: List[str] = None) -> Union[Dict[str, Any], Dict[str, Dict[str, Any]]]:
+    def current_quotes(self,
+                       symbols: Union[str, List[str]],
+                       fields: List[str] = None) -> Union[Dict[str, Any], Dict[str, Dict[str, Any]]]:
+        return_single = isinstance(symbols, str)
+        _symbols = [symbols] if return_single else symbols
+
         # create tunnel
         headers = json.dumps({'Origin': 'https://data.tradingview.com'})
         ws = create_connection(_WS_URL_, headers=headers)
-        sess = _generate_session('qs_')
+        sess = _generate_session('cs_')
 
         # Send messages
         if self.token:
@@ -77,29 +81,35 @@ class TradingView:
         else:
             _send_message(ws, 'set_auth_token', ['unauthorized_user_token'])
 
-        fields_basic = ['lp', 'ch', 'lp_time', 'chp', 'volume']
-        if fields is None:
-            fields_extra_1 = ['base-currency-logoid', 'currency-logoid', 'currency_code', 'currency_id', 'base_currency_id', 'current_session', 'description', 'exchange', 'format', 'fractional', 'is_tradable', 'language', 'local_description', 'listed_exchange', 'logoid', 'minmov', 'minmove2', 'original_name', 'pricescale', 'pro_name', 'short_name', 'type', 'typespecs', 'update_mode', 'variable_tick_size', 'value_unit_id']
-            fields_extra_2 = ["pro_name", "base_name", "short_name", "description", "type", "exchange", "typespecs", "listed_exchange", "country_code", "provider_id", "symbol-primaryname", "logoid", "base-currency-logoid", "currency-logoid", "source-logoid", "update_mode", "source", "source2", "pricescale", "minmov", "fractional", "visible-plots-set"]
-            fields = [*fields_basic, *fields_extra_1, *fields_extra_2]
-        else:
-            fields = [*fields_basic, *fields]
-
+        # Then send a message through the tunnel
+        _send_message(ws, 'set_data_quality', ['high'])
         _send_message(ws, 'quote_create_session', [sess])
-        _send_message(ws, 'quote_set_fields', [sess, *fields])
 
-        _symbols = [symbols] if isinstance(symbols, str) else symbols
+        if fields is not None:
+            _send_message(ws, 'quote_set_fields', [sess, *fields])
 
         for i in _symbols:
             _send_message(ws, 'quote_add_symbols', [sess, i])
 
-        quote = _socket_quote(ws, symbols=symbols)
+        # Start job
+        rst = _socket_quote(ws,
+                            symbols=symbols)
 
-        return quote
+        quotes = rst[sess]
 
-    def realtime_quote(self,
-                       symbols: Union[str, List[str]],
-                       callback: callable) -> Union[Dict[str, Any], Dict[str, Dict[str, Any]]]:
+        if return_single:
+            k = next(iter(quotes.keys()))
+            return quotes[k]
+
+        return quotes
+
+    def realtime_quotes(self,
+                        symbols: Union[str, List[str]],
+                        callback: callable) -> Union[Dict[str, Any], Dict[str, Dict[str, Any]]]:
+        return_single = isinstance(symbols, str)
+        _symbols = [symbols] if return_single else symbols
+        fields = ['lp', 'ch', 'lp_time', 'chp', 'volume']
+
         # create tunnel
         headers = json.dumps({'Origin': 'https://data.tradingview.com'})
         ws = create_connection(_WS_URL_, headers=headers)
@@ -111,20 +121,20 @@ class TradingView:
         else:
             _send_message(ws, 'set_auth_token', ['unauthorized_user_token'])
 
-        fields = ['lp', 'ch', 'lp_time', 'chp', 'volume']
-
+        _send_message(ws, 'set_data_quality', ['high'])
         _send_message(ws, 'quote_create_session', [sess])
-        _send_message(ws, 'quote_set_fields', [sess, *fields])
 
-        if isinstance(symbols, str):
-            _send_message(ws, 'quote_add_symbols', [sess, symbols])
+        if fields is not None:
+            _send_message(ws, 'quote_set_fields', [sess, *fields])
 
-        elif isinstance(symbols, list):
-            for i in symbols:
-                _send_message(ws, 'quote_add_symbols', [sess, i])
+        for i in _symbols:
+            _send_message(ws, 'quote_add_symbols', [sess, i])
 
         # Start job
-        _socket_quote(ws, callback=callback)
+        _ = _socket_quote(ws,
+                          symbols=symbols,
+                          realtime=True,
+                          callback=callback)
 
     def historical_multi_symbols(self,
                                  symbols: List[str],
@@ -230,40 +240,6 @@ class TradingView:
 
         return df
 
-    def get_analysis(self,
-                     symbols: Union[str, List[str]]) -> Union[dict, None]:
-
-        # create tunnel
-        headers = json.dumps({'Origin': 'https://data.tradingview.com'})
-        ws = create_connection(_WS_URL_, headers=headers)
-        sess = _generate_session('cs_')
-
-        # Send messages
-        if self.token:
-            _send_message(ws, 'set_auth_token', [self.token])
-        else:
-            _send_message(ws, 'set_auth_token', ['unauthorized_user_token'])
-
-        # Then send a message through the tunnel
-        _send_message(ws, 'set_data_quality', ['high'])
-        _send_message(ws, 'quote_create_session', [sess])
-
-        return_single = isinstance(symbols, str)
-        _symbols = [symbols] if return_single else symbols
-
-        for i in _symbols:
-            _send_message(ws, 'quote_add_symbols', [sess, i])
-
-        # Start job
-        rst = _parse_or_subscribe_ws(ws, symbols=symbols)
-        analysis = rst[sess]
-
-        if return_single:
-            k = next(iter(analysis.keys()))
-            return analysis[k]
-
-        return analysis
-
     def get_symbol_id(self, pair: str, market: str = ''):
         data = self.search(pair, market)
 
@@ -305,75 +281,6 @@ def _get_auth_token(username, password):
     auth_token = resp.json()['user']['auth_token']
 
     return auth_token
-
-
-def _socket_quote(ws: WebSocket,
-                  symbols: Union[str, List[str]] = None,
-                  callback=None) -> Union[None, Dict[str, Any], Dict[str, Dict[str, Any]]]:
-    resp_cbs = {}
-
-    while True:
-        try:
-            result = ws.recv()
-
-            if 'session_id' in result:
-                continue
-
-            matches = re.findall('^.*?({.*)$', result)
-            res = []
-            for _m in matches:
-                res += re.split('~m~\d+~m~', _m)
-
-            for _r in res:
-                if not _r or 'session_id' in _r or 'quote_completed' in _r:
-                    continue
-
-                resp = json.loads(_r)
-
-                resp_cb = {}
-                if resp['m'] == 'qsd':
-                    n = resp['p'][1]['n']
-                    resp_cb = resp_cbs.get(n, {'symbol': n})
-
-                    resp_cb.update({'price': resp['p'][1]['v'].get('lp', 0.0)})
-                    resp_cb.update({'change': resp['p'][1]['v'].get('ch', 0.0)})
-                    resp_cb.update({'change_pct': resp['p'][1]['v'].get('chp', 0.0)})
-                    resp_cb.update({'timestamp_ts': resp['p'][1]['v'].get('lp_time', 0)})
-                    resp_cb.update({'volume': resp['p'][1]['v'].get('volume', 0)})
-                    resp_cb.update({'country_code': resp['p'][1]['v'].get('country_code')})
-                    resp_cb.update({'logoid': resp['p'][1]['v'].get('logoid')})
-                    resp_cb.update({'short_name': resp['p'][1]['v'].get('short_name')})
-                    resp_cb.update({'pro_name': resp['p'][1]['v'].get('pro_name')})
-                    resp_cb.update({'currency_id': resp['p'][1]['v'].get('currency_id')})
-                    resp_cb.update({'type': resp['p'][1]['v'].get('type')})
-                    resp_cb.update({'source_logoid': resp['p'][1]['v'].get('source-logoid')})
-                    resp_cb.update({'description': resp['p'][1]['v'].get('description')})
-                    resp_cb.update({'current_session': resp['p'][1]['v'].get('current_session')})
-
-                    resp_cb = {k: v for k, v in resp_cb.items() if v is not None}
-
-                    resp_cbs.update({n: resp_cb})
-
-                    if callback:
-                        callback(resp_cb)
-
-                    if symbols is not None:
-                        if isinstance(symbols, str) and \
-                                'price' in resp_cb and 'timestamp_ts' in resp_cb:
-                            return resp_cb
-
-                        elif isinstance(symbols, list) and \
-                                len(symbols) == len(resp_cbs) and \
-                                all(['price' in v and 'timestamp_ts' in v for _, v in resp_cbs.items()]):
-                            return resp_cbs
-
-            if not res:
-                # ping packet
-                _send_ping_packet(ws, result)
-        except KeyboardInterrupt:
-            break
-        except:
-            continue
 
 
 def _parse_bar_charts(ws, interval, series_num=1) -> pd.DataFrame:
@@ -444,11 +351,16 @@ def _parse_bar_charts(ws, interval, series_num=1) -> pd.DataFrame:
             break
 
 
-def _parse_or_subscribe_ws(ws: WebSocket,
-                           symbols: Union[str, List[str]] = None,
-                           realtime=False,
-                           callback: callable = None) -> dict:
+def _socket_quote(ws: WebSocket,
+                  symbols: Union[str, List[str]] = None,
+                  realtime=False,
+                  callback: callable = None) -> Union[None, dict]:
+    '''
+    timeout is 3 seconds per 1 symbols
+    '''
     msg = {}
+    timeout_per_symbol = 3
+    t1 = perf_counter()
 
     while True:
         try:
@@ -472,30 +384,41 @@ def _parse_or_subscribe_ws(ws: WebSocket,
                 if not m:
                     continue
 
-                if m == 'quote_completed':
-                    break
-
                 p = m_data['p']
-                s = p[1]['s']
-                if s != 'ok':
-                    continue
-
-                n = p[1]['n']
-                v = p[1]['v']
-
                 sess = p[0]
-                data = {sess: {n: v}}
+
+                if m == 'quote_completed':
+                    data = {sess: {p[1]: {m: True}}}
+
+                else:
+                    s = p[1]['s']
+                    if s != 'ok':
+                        continue
+
+                    n = p[1]['n']
+                    v = p[1]['v']
+
+                    data = {sess: {n: v}}
+
+                    if callback is not None:
+                        callback({n: v})
 
                 msg = deep_update(msg, data)
 
-                if callback is not None:
-                    callback(data)
-
-            if not realtime and m == 'quote_completed':
+            if not realtime:
                 _symbols = [symbols] if isinstance(symbols, str) else symbols
                 sess = next(iter(msg.keys()))
 
-                if not set(_symbols) - set(msg[sess].keys()):
+                duration = perf_counter() - t1
+                timeout = timeout_per_symbol * len(_symbols)
+                is_timeout = duration > timeout
+                if is_timeout:
+                    raise TimeoutError(f'expect should be done within {timeout} seconds, actually over {duration}')
+
+                quote_completed = all([v.get('quote_completed') for _, v in msg[sess].items()])
+                enough_symbols = not set(_symbols) - set(msg[sess].keys())
+
+                if enough_symbols and quote_completed:
                     break
 
         except KeyboardInterrupt:
