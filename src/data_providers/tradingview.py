@@ -28,11 +28,14 @@ class TradingView(DataProvider):
 
         return self._tv
 
-    def quotes(self, symbols: Union[str, List[str]]) -> Union[Quote, Dict[str, Quote]]:
+    def quotes(self,
+               symbols: Union[str, List[str]],
+               fields: Union[str, List[str]]) -> Union[Quote, Dict[str, Quote]]:
         return_single = isinstance(symbols, str)
 
-        fields = ['lp', 'ch', 'chp', 'volume', 'lp_time',
-                  'country_code', 'logoid', 'short_name', 'pro_name', 'currency_id', 'type', 'source-logoid', 'description', 'current_session']
+        if fields is None:
+            fields = ['lp', 'ch', 'chp', 'volume', 'lp_time',
+                      'country_code', 'logoid', 'short_name', 'pro_name', 'currency_id', 'type', 'source-logoid', 'description', 'current_session']
 
         quotes = self.tv.current_quotes(symbols, fields=fields)
 

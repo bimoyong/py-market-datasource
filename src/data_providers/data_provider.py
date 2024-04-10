@@ -10,7 +10,9 @@ from data_providers.models import Quote
 
 class DataProvider(ABC):
     @abstractmethod
-    def quotes(self, symbols: Union[str, List[str]]) -> Union[Quote, Dict[str, Quote]]:
+    def quotes(self,
+               symbols: Union[str, List[str]],
+               fields: Union[str, List[str]]) -> Union[Quote, Dict[str, Quote]]:
         pass
 
     @abstractmethod
