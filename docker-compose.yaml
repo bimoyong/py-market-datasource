@@ -1,0 +1,16 @@
+version: '3.9'
+
+services:
+  app:
+    image: gcr.io/sails-419108/datasource:latest
+    container_name: datasource
+    command: sh -c 'uvicorn main:app --host $$HOST --port $$PORT --reload'
+    # command: 'tail -f /dev/null' # for test purpose
+    environment:
+      - GCLOUD_PROJECT=${GCLOUD_PROJECT}
+      - GOOGLE_APPLICATION_CREDENTIALS=/root/.config/gcloud/application_default_credentials.json
+    ports:
+      - '8080:8080'
+    volumes:
+      - ~/.config/gcloud/application_default_credentials.json:/root/.config/gcloud/application_default_credentials.json
+      - ./src:/app

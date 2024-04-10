@@ -1,0 +1,13 @@
+steps:
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      - "build"
+      - "-t"
+      - "${_IMAGE}"
+      - "."
+      - "--build-arg"
+      - "PORT=${_PORT}"
+      - "--build-arg"
+      - "GIT_SSH_KEY=${_GIT_SSH_KEY}"
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["push", "${_IMAGE}"]
