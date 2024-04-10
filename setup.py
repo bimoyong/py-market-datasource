@@ -17,7 +17,7 @@ setup(name='py_datasource',
       },
       install_requires=[
           'dependency-injector==4.41.0',
-          'pydantic==1.10.13',
+          'pydantic==2.6.4',
           'websocket-client==1.6.3',
       ],
       zip_safe=False)

@@ -13,7 +13,7 @@ from subprocess import CalledProcessError
 
 import pandas as pd
 from dependency_injector import providers
-from pydantic.utils import deep_update
+from pydantic.v1.utils import deep_update
 
 with suppress(CalledProcessError):
     WORKING_DIR = subprocess.check_output(['git', 'rev-parse', '--show-toplevel']).strip().decode()
