@@ -7,7 +7,7 @@ from google.cloud.logging import Client as LoggingClient
 
 from data_providers import endpoints
 from data_providers.containers import Container
-from data_providers.tradingview import TradingView
+from data_providers.tradingview_provider import TradingViewProvider
 
 client = LoggingClient()
 client.setup_logging(log_level=INFO)
@@ -15,7 +15,7 @@ client.setup_logging(log_level=INFO)
 
 def create_app() -> FastAPI:
     container = Container()
-    container.client.override(providers.Singleton(TradingView))
+    container.client.override(providers.Singleton(TradingViewProvider))
 
     _app = FastAPI()
     _app.container = container

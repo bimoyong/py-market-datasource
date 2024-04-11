@@ -378,6 +378,7 @@ def _socket_quote(ws: WebSocket,
 
             m: str = None
             for i in m_items:
+                data = {}
                 m_data = json.loads(i)
 
                 m = m_data.get('m')
@@ -387,14 +388,13 @@ def _socket_quote(ws: WebSocket,
                 p = m_data['p']
                 sess = p[0]
 
+                if 'error' in m:
+                    raise ConnectionError(f'Client returns error "{m}", detail "{p[1]}"')
+
                 if m == 'quote_completed':
                     data = {sess: {p[1]: {m: True}}}
 
-                else:
-                    s = p[1]['s']
-                    if s != 'ok':
-                        continue
-
+                elif isinstance(p[1], dict) and p[1].get('s') == 'ok':
                     n = p[1]['n']
                     v = p[1]['v']
 
@@ -419,11 +419,15 @@ def _socket_quote(ws: WebSocket,
                 enough_symbols = not set(_symbols) - set(msg[sess].keys())
 
                 if enough_symbols and quote_completed:
+                    _ = [v.pop('quote_completed', None) for _, v in msg[sess].items()]
                     break
 
         except KeyboardInterrupt:
             break
         except Exception as e:
+            if not realtime:
+                raise e
+
             print("=========except", datetime.now(), e)
             if ('closed' in str(e) or 'lost' in str(e)):
                 print("=========try")

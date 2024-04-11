@@ -21,7 +21,7 @@ with suppress(CalledProcessError):
     chdir(WORKING_DIR)
 
 from src.data_providers.containers import Container
-from src.data_providers.tradingview import Quote, TradingView
+from src.data_providers.tradingview_provider import Quote, TradingViewProvider
 
 warnings.filterwarnings('ignore')
 pd.options.display.float_format = '{:,.4f}'.format
@@ -38,7 +38,7 @@ class TestTradingView(unittest.TestCase):
         super().setUp()
 
         self.container = Container()
-        self.container.client.override(providers.Singleton(TradingView))
+        self.container.client.override(providers.Singleton(TradingViewProvider))
         self.client = self.container.client()
 
     def test_get_current_quotes_good_connection(self):
@@ -68,8 +68,9 @@ class TestTradingView(unittest.TestCase):
         symbol = 'NASDAQ:MSFT'
         symbols = ['NASDAQ:MSFT', 'NASDAQ:QQQ']
 
-        quote = self.client.quotes(symbol)
-        quotes = self.client.quotes(symbols)
+        fields = [ 'price', 'change', 'timestamp_ts', 'change_pct', 'volume']
+        quote = self.client.quotes(symbol, fields)
+        quotes = self.client.quotes(symbols, fields)
 
         for q in [quote, *quotes.values()]:
             q: Quote
