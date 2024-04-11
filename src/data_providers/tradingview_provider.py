@@ -33,16 +33,12 @@ class TradingViewProvider(DataProvider):
                fields: List[str] = None) -> Union[Quote, Dict[str, Quote]]:
         return_single = isinstance(symbols, str)
 
-        fields_basic = {k: v.alias or k
-                        for k, v in BaseQuote.model_fields.items()}
-
         if fields is None:
-            fields = [*fields_basic.values(),
-                      'country_code', 'logoid', 'short_name', 'pro_name', 'currency_id', 'type', 'source-logoid', 'description', 'current_session']
+            fields = [*Quote.model_fields.keys()]
         elif '*' in fields:
-            fields = None
-        else:
-            fields = [fields_basic[i] for i in fields if i in fields_basic]
+            fields = []
+
+        fields = [Quote.fields_map().get(i, i) for i in fields or []]
 
         quotes = self.tv.current_quotes(symbols, fields=fields)
 
