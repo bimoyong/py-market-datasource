@@ -4,6 +4,7 @@ services:
   app:
     image: gcr.io/sails-419108/datasource:latest
     container_name: datasource
+    restart: unless-stopped
     command: sh -c 'uvicorn main:app --host $$HOST --port $$PORT --reload'
     # command: 'tail -f /dev/null' # for test purpose
     environment:
