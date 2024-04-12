@@ -24,7 +24,6 @@ fi
 echo "Build Image $IMAGE..."
 gcloud builds submit $SRC \
     --config cloudbuild.yml \
-    --region $REGION \
     --substitutions "_IMAGE=$IMAGE,_PORT=8080,_GIT_SSH_KEY=$GIT_SSH_KEY"
 
 echo "Deploy Cloud Run $RUN_NAME..."
