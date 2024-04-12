@@ -13,7 +13,7 @@ echo "Project Number: $GCLOUD_PROJECT_NUMBER"
 echo "Cloud Run Name: $RUN_NAME"
 read -p "Press enter to continue"
 
-cp -r src/. .python-version Dockerfile Procfile requirements.txt $SRC
+cp -r src/. $SRC
 echo "Copying source to $SRC... done!"
 ls -la $SRC
 
