@@ -1,5 +1,6 @@
 #!/bin/bash
 
+export WORK_DIR=$(dirname $(dirname $0))
 export GCLOUD_PROJECT=$(gcloud config get project)
 export GCLOUD_PROJECT_NUMBER=$(gcloud projects describe $GCLOUD_PROJECT --format="value(projectNumber)")
 export REGION=us-central1
@@ -13,7 +14,7 @@ echo "Project Number: $GCLOUD_PROJECT_NUMBER"
 echo "Cloud Run Name: $RUN_NAME"
 read -p "Press enter to continue"
 
-cp -r src/. .gcloudignore cloudbuild.yml $SRC
+(cd $WORK_DIR && cp -r src/. .gcloudignore cloudbuild.yml $SRC)
 echo "Copying source to $SRC... done!"
 ls -la $SRC
 
