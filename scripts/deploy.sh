@@ -13,7 +13,7 @@ echo "Project Number: $GCLOUD_PROJECT_NUMBER"
 echo "Cloud Run Name: $RUN_NAME"
 read -p "Press enter to continue"
 
-cp -r src/. $SRC
+cp -r src/. .gcloudignore cloudbuild.yml $SRC
 echo "Copying source to $SRC... done!"
 ls -la $SRC
 
@@ -22,9 +22,9 @@ if [ -z "$GIT_SSH_KEY" ]; then
 fi
 
 echo "Build Image $IMAGE..."
-gcloud builds submit $SRC \
+(cd $SRC && gcloud builds submit $SRC \
     --config cloudbuild.yml \
-    --substitutions "_IMAGE=$IMAGE,_PORT=8080,_GIT_SSH_KEY=$GIT_SSH_KEY"
+    --substitutions "_IMAGE=$IMAGE,_PORT=8080,_GIT_SSH_KEY=$GIT_SSH_KEY")
 
 echo "Deploy Cloud Run $RUN_NAME..."
 gcloud run deploy $RUN_NAME \
