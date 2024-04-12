@@ -5,10 +5,10 @@ import pandas as pd
 import pytz
 
 from data_providers.enums import Adjustment
-from data_providers.tradingview import TradingView
+from data_providers.tradingview_provider import TradingViewProvider
 
 
-class Local(TradingView):
+class Local(TradingViewProvider):
     @property
     def filename(self):
         return join('/tmp', f'{hex(id(self))}.h5')
