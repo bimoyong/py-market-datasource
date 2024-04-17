@@ -158,7 +158,7 @@ class TradingView:
             frame.loc[:, 'Symbol'] = symbol
 
         ohlcv = pd.concat(ohlcv_dict.values())
-        ohlcv.loc[:, 'Symbol'] = ohlcv.Symbol.astype(str)
+        ohlcv.loc[:, 'Symbol'] = ohlcv.Symbol.astype('string')
 
         if ohlcv.empty:
             ohlcv = pd.DataFrame(columns=['timestamp_ts', 'Open', 'High', 'Low', 'Close', 'Volume', 'Symbol'])
