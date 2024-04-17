@@ -155,7 +155,7 @@ class TradingView:
         ohlcv_dict = dict(zip(symbols, ohlcv_iter))
 
         for symbol, frame in ohlcv_dict.items():
-            frame[:, 'Symbol'] = symbol
+            frame.loc[:, 'Symbol'] = symbol
 
         ohlcv = pd.concat(ohlcv_dict.values())
         ohlcv.loc[:, 'Symbol'] = ohlcv.Symbol.astype(str)
