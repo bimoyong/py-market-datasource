@@ -12,12 +12,9 @@ from time import perf_counter
 from typing import Any, Dict, Iterator, List, Union
 
 import pandas as pd
-import pytz
 from pydantic.v1.utils import deep_update
 from requests import get, post
 from websocket import WebSocket, create_connection
-
-from tradingview.datetime import set_index_by_timestamp
 
 _GLOBAL_URL_ = 'https://scanner.tradingview.com/global/scan'
 _API_URL_ = 'https://symbol-search.tradingview.com/symbol_search'
@@ -141,8 +138,7 @@ class TradingView:
                                  interval: str,
                                  total_candle: int,
                                  charts: List[str] = None,
-                                 adjustment='dividends',
-                                 tzinfo: pytz.BaseTzInfo = pytz.UTC) -> Union[Iterator, pd.DataFrame]:
+                                 adjustment='dividends') -> Union[Iterator, pd.DataFrame]:
         if charts is None:
             charts = []
 

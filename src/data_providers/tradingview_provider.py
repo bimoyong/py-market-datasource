@@ -71,8 +71,8 @@ class TradingViewProvider(DataProvider):
 
     def ohlcv(self,
               symbols: Union[str, List[str]],
-              interval: str,
-              total_candle: int,
+              freq: str,
+              total_candles: int,
               charts: List[str] = None,
               adjustment=Adjustment.DIVIDENDS,
               tzinfo: Union[str, pytz.BaseTzInfo] = pytz.UTC) -> pd.DataFrame:
@@ -82,11 +82,13 @@ class TradingViewProvider(DataProvider):
         if isinstance(tzinfo, str):
             tzinfo = pytz.timezone(tzinfo)
 
-        ohlcv = self.tv.historical_multi_symbols(symbols,
-                                                 interval,
-                                                 total_candle,
-                                                 charts,
-                                                 adjustment.value)
+        total_candles += 1  # preserve 1 bar because TradingView returns less than 1 bar
+
+        ohlcv = self.tv.historical_multi_symbols(symbols=symbols,
+                                                 interval=freq,
+                                                 total_candle=total_candles,
+                                                 charts=charts,
+                                                 adjustment=adjustment.value)
 
         cols_map = {
             'timestamp': 'Date',

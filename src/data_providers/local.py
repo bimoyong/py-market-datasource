@@ -15,8 +15,8 @@ class Local(TradingViewProvider):
 
     def ohlcv(self,
               symbols: Union[str, List[str]],
-              interval: str,
-              total_candle: int,
+              freq: str,
+              total_candles: int,
               charts: List[str] = None,
               adjustment=Adjustment.DIVIDENDS,
               tzinfo: pytz.BaseTzInfo = pytz.UTC) -> pd.DataFrame:
@@ -29,7 +29,12 @@ class Local(TradingViewProvider):
                 if 'symbol' and 'timestamp' in df:
                     df = df.set_index(['symbol', 'timestamp'])
         else:
-            df = super().ohlcv(symbols, interval, total_candle, charts, adjustment, tzinfo)
+            df = super().ohlcv(symbols,
+                               freq,
+                               total_candles,
+                               charts,
+                               adjustment,
+                               tzinfo)
 
             with pd.HDFStore(self.filename) as store:
                 store.put('ohlcv', df.reset_index())
