@@ -166,14 +166,6 @@ class TradingView:
         if ohlcv.empty:
             ohlcv = pd.DataFrame(columns=['timestamp_ts', 'Open', 'High', 'Low', 'Close', 'Volume', 'Symbol'])
 
-        # TODO: simplify this, no need set index and reset index later on
-        ohlcv = set_index_by_timestamp(ohlcv, tzinfo)
-        ohlcv.reset_index(inplace=True)
-        ohlcv.drop(['timestamp_ts'], axis=1, inplace=True, errors='ignore')
-
-        ohlcv.columns = ['Date', 'Open', 'High', 'Low', 'Close', 'Volume', 'Symbol']
-        ohlcv = ohlcv[['Date', 'Symbol', 'Open', 'High', 'Low', 'Close', 'Volume']]
-
         return ohlcv
 
     def historical_charts(self,

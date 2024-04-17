@@ -82,14 +82,28 @@ class TradingViewProvider(DataProvider):
         if isinstance(tzinfo, str):
             tzinfo = pytz.timezone(tzinfo)
 
-        ohlcv_iter = self.tv.historical_multi_symbols(symbols,
-                                                      interval,
-                                                      total_candle,
-                                                      charts,
-                                                      adjustment.value)
+        ohlcv = self.tv.historical_multi_symbols(symbols,
+                                                 interval,
+                                                 total_candle,
+                                                 charts,
+                                                 adjustment.value)
 
-        ohlcv_ts_index = map(lambda x: set_index_by_timestamp(x, tzinfo), ohlcv_iter)
-        df = pd.concat(ohlcv_ts_index, axis=0, keys=symbols)
-        df.index.names = ['symbol', 'timestamp']
+        cols_map = {
+            'timestamp': 'Date',
+            'open': 'Open',
+            'high': 'High',
+            'low': 'Low',
+            'close': 'Close',
+            'volume': 'Volume',
+        }
 
-        return df
+        set_index_by_timestamp(ohlcv, tzinfo)
+
+        ohlcv.index.name = cols_map.get(ohlcv.index.name, ohlcv.index.name)
+        ohlcv.columns = [cols_map.get(c, c) for c in ohlcv.columns]
+
+        ohlcv = ohlcv \
+            .drop(['timestamp_ts'], axis=1, errors='ignore') \
+            .reset_index().set_index(['Date', 'Symbol'])
+
+        return ohlcv
