@@ -97,7 +97,7 @@ class TradingViewProvider(DataProvider):
             'volume': 'Volume',
         }
 
-        set_index_by_timestamp(ohlcv, tzinfo)
+        ohlcv = set_index_by_timestamp(ohlcv, tzinfo)
 
         ohlcv.index.name = cols_map.get(ohlcv.index.name, ohlcv.index.name)
         ohlcv.columns = [cols_map.get(c, c) for c in ohlcv.columns]
