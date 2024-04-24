@@ -17,7 +17,7 @@ from requests import get, post
 from websocket import WebSocket, create_connection
 
 _GLOBAL_URL_ = 'https://scanner.tradingview.com/global/scan'
-_API_URL_ = 'https://symbol-search.tradingview.com/symbol_search'
+_API_URL_ = 'https://symbol-search.tradingview.com/symbol_search/v3'
 _WS_URL_ = 'wss://prodata.tradingview.com/socket.io/websocket?&type=chart'
 
 _CHARTS_SETTINGS = {
@@ -240,18 +240,21 @@ class TradingView:
         symbol_id = f'{broker.upper()}:{symbol_name.upper()}'
         return symbol_id
 
-    def search(self, query: str, market: str = ''):
-        # type = 'stock' | 'futures' | 'forex' | 'cfd' | 'crypto' | 'index' | 'economic'
-        # query = what you want to search!
+    def search(self, query: str, search_type: str = ''):
+        # text = what you want to search!
+        # search_type = 'stocks' | 'funds' | 'futures' | 'forex' | 'crypto' | 'index' | 'bond' | 'economic' | 'options'
+        # country = 'US'
         # it returns first matching item
-        res = get(_API_URL_, params={
+        params = {
             'text': query,
-            'type': market or self._market,
-        }, timeout=60)
+            'search_type': search_type or None,
+        }
+        headers = headers={'Accept': 'application/json' }
+        res = get(_API_URL_, params=params, headers=headers, timeout=60)
         if res.status_code == 200:
             res = res.json()
-            assert len(res) != 0, 'Nothing Found.'
-            return res[0]
+            assert len(res.get('symbols', [])) != 0, 'Nothing Found.'
+            return res['symbols'][0]
         else:
             print('Network Error!')
 
