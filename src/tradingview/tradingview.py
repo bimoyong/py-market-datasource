@@ -249,7 +249,10 @@ class TradingView:
             'text': query,
             'search_type': search_type or None,
         }
-        headers = headers={'Accept': 'application/json' }
+        headers = headers={
+            'Accept': 'application/json',
+            'Origin': 'https://www.tradingview.com',
+        }
         res = get(_API_URL_, params=params, headers=headers, timeout=60)
         if res.status_code == 200:
             res = res.json()
