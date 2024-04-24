@@ -17,6 +17,7 @@ class TradingViewProvider(DataProvider):
     password: str = ''
     token: str = ''
     market: str = ''
+    workers_no: int = 1
 
     @property
     def tv(self) -> TradingView:
@@ -24,7 +25,8 @@ class TradingViewProvider(DataProvider):
             self._tv = TradingView(self.username,
                                    self.password,
                                    self.token,
-                                   self.market)
+                                   self.market,
+                                   self.workers_no)
 
         return self._tv
 
