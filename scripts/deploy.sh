@@ -33,7 +33,7 @@ gcloud run deploy $RUN_NAME \
     --region $REGION \
     --project $GCLOUD_PROJECT \
     --no-allow-unauthenticated \
-    --memory 128Mi \
+    --memory 256Mi \
     --platform managed \
     --timeout 1m \
     --set-env-vars "GCLOUD_PROJECT=$GCLOUD_PROJECT" \

@@ -1,6 +1,8 @@
-from typing import Any, Dict, List, Union
+from typing import Any, Dict, Union
 
-from pydantic import BaseModel, Field
+from pydantic import Field
+
+from models.base_model import BaseModel
 
 
 class BaseQuote(BaseModel):
@@ -10,25 +12,6 @@ class BaseQuote(BaseModel):
     change_pct: Union[float, None] = Field(serialization_alias='change_pct', alias='chp', default=None)
     volume: Union[int, None] = None
     timestamp_ts: Union[int, None] = Field(serialization_alias='timestamp_ts', alias='lp_time', default=None)
-
-    @classmethod
-    def fields_map(cls) -> Dict[str, str]:
-        '''
-        This method returns dictionary of differences between class fields and provider's fields
-        '''
-        fields_map = {k: v.alias for k, v in cls.model_fields.items()
-                      if v.alias and v.alias != k}
-
-        return fields_map
-
-    @classmethod
-    def non_extra_keys(cls) -> List[str]:
-        '''
-        This method returns list of fields name which is preserved; other fields should be in "extra" attribute
-        '''
-        keys = cls.model_fields.keys()
-        aliases = [v.alias for _, v in cls.model_fields.items() if v.alias]
-        return list(set([*keys, *aliases]))
 
 
 class Quote(BaseQuote):

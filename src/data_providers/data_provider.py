@@ -5,7 +5,7 @@ import pandas as pd
 import pytz
 
 from data_providers.enums import Adjustment
-from data_providers.models import Quote
+from models.data_models import Quote
 
 
 class DataProvider(ABC):

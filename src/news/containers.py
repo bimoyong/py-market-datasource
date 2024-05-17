@@ -1,9 +1,9 @@
 from dependency_injector import containers, providers
 
-from data_providers.data_provider import DataProvider
+from news.provider import NewsProvider
 
 
 class Container(containers.DeclarativeContainer):
     config = providers.Configuration()
 
-    client = providers.AbstractSingleton(DataProvider)
+    client = providers.AbstractSingleton(NewsProvider)

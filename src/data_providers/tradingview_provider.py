@@ -5,7 +5,7 @@ import pytz
 
 from data_providers.data_provider import DataProvider
 from data_providers.enums import Adjustment
-from data_providers.models import BaseQuote, Quote
+from models.data_models import Quote
 from tradingview import TradingView, set_index_by_timestamp
 
 

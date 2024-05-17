@@ -6,11 +6,12 @@ from dependency_injector.wiring import Provide, inject
 from fastapi import APIRouter, Depends, Query
 from fastapi.exceptions import RequestValidationError
 
-from data_providers import DataProvider
+from data_providers import API_VERSION
 from data_providers.containers import Container
-from data_providers.models import Quote
+from data_providers.data_provider import DataProvider
+from models.data_models import Quote
 
-router = APIRouter()
+router = APIRouter(prefix=f'/{API_VERSION}/data')
 
 
 @router.get('/quotes',
