@@ -39,3 +39,18 @@ gcloud run deploy $RUN_NAME \
     --set-env-vars "GCLOUD_PROJECT=$GCLOUD_PROJECT" \
     --set-env-vars "GCLOUD_PROJECT_NUMBER=$GCLOUD_PROJECT_NUMBER" \
     --service-account $SERVICE_ACCOUNT
+
+export SCHEDULER_NAME=$(gcloud scheduler jobs describe $RUN_NAME --location $REGION --format='value(name)')
+
+if [ -z "$SCHEDULER_NAME" ]; then
+    export SERVICE_URL=$(gcloud run services describe $RUN_NAME --platform managed --region $REGION --format 'value(status.url)')
+
+    gcloud scheduler jobs create http $RUN_NAME \
+        --location $REGION \
+        --schedule '0 * * * *' \
+        --time-zone America/Chicago \
+        --uri="$SERVICE_URL/v1/news/crawl-to-db?source=SeekingAlpha" \
+        --http-method GET \
+        --attempt-deadline 30m \
+        --oidc-service-account-email $SERVICE_ACCOUNT
+fi
