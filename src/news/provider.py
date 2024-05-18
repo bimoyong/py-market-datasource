@@ -7,7 +7,7 @@ from google.cloud.bigquery import Client as BigQueryClient
 
 from infra.big_query import credentials, frame_to_big_query
 from models.news_enums import Category
-from models.news_model import MasterData, Paging
+from models.news_model import MasterData, News, Paging
 
 
 class NewsProvider(ABC):
@@ -51,8 +51,9 @@ LIMIT
                     from_date = _df.iloc[-1].loc['timestamp']
 
         paging = self.crawl(category, from_date, to_date, items_per_page)
+        news_ls: List[News] = paging.data
 
-        df = pd.DataFrame(paging.data)
+        df = pd.DataFrame.from_dict([news.model_dump() for news in news_ls])
 
         qr_str_exist = '''
 SELECT

@@ -130,9 +130,7 @@ class SeekingAlpha(NewsProvider):
 
         data = resp.json()
 
-        print('PAGE_NUM', page_number)
         if 'blockScript' in data:
-            print(data)
             raise ConnectionRefusedError('Seeking Alpha refused request')
 
         rst = self._parse_list(data)
