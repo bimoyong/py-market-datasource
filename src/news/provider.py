@@ -23,10 +23,9 @@ class NewsProvider(ABC):
     def crawl_to_db(self,
                     source: str = None,
                     category: Union[Category, List[Category]] = None,
+                    from_date: datetime = None,
+                    to_date: datetime = None,
                     items_per_page: int = 10) -> None:
-        from_date: datetime = None
-        to_date: datetime = None
-
         qr_str_last_timestamp = '''
 SELECT
   `timestamp`
@@ -43,10 +42,12 @@ LIMIT
         qr_str_last_timestamp = qr_str_last_timestamp.format(table_name=self.DB_TABLE,
                                                              source=source)
 
-        with BigQueryClient(credentials=credentials) as bq_client:
-            qr = bq_client.query(qr_str_last_timestamp)
-            _df: pd.DataFrame = qr.result().to_dataframe()
-            from_date = None if _df.empty else _df.iloc[-1].loc['timestamp']
+        if from_date is None:
+            with BigQueryClient(credentials=credentials) as bq_client:
+                qr = bq_client.query(qr_str_last_timestamp)
+                _df: pd.DataFrame = qr.result().to_dataframe()
+                if not _df.empty:
+                    from_date = _df.iloc[-1].loc['timestamp']
 
         paging = self.crawl(category, from_date, to_date, items_per_page)
 

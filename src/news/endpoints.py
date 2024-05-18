@@ -43,12 +43,16 @@ async def master(provider: NewsProvider = Depends(Provide[Container.client]),
 @inject
 async def crawl_to_db(source: str = Query(None),
                       category: Category = Query(Category.ALL),
+                      from_date: datetime = Query(None),
+                      to_date: datetime = Query(None),
                       items_per_page: int = Query(40),
                       selector: ProviderSelector = Depends(Provide[Container.source_selector])):
     provider = selector.sources[source]
 
     provider.crawl_to_db(source=source,
                          category=category,
+                         from_date=from_date,
+                         to_date=to_date,
                          items_per_page=items_per_page)
 
     return None
