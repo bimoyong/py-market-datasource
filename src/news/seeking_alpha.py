@@ -72,6 +72,9 @@ class SeekingAlpha(NewsProvider):
         htmls = list(self.executor.map(self.detail, links, return_htmls))
 
         for i, news in enumerate(news_ls):
+            if not isinstance(htmls[i], str):
+                continue
+
             news.html = htmls[i]
             news.text = self._parse_detail(htmls[i], return_html=False)
 
