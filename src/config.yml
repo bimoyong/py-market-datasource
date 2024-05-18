@@ -6,4 +6,5 @@ NEWS:
   SeekingAlpha:
     WORKERS_NO: 4
     THROTTLING_SECONDS: 2
+    DB_TABLE: "datasource.news"
     BASE_URL: "https://seekingalpha.com"
