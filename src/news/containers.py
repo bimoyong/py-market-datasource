@@ -19,7 +19,7 @@ class Container(containers.DeclarativeContainer):
             SeekingAlpha.__name__: Singleton(SeekingAlpha).add_attributes(
                 WORKERS_NO=config.NEWS.SeekingAlpha.WORKERS_NO,
                 BASE_URL=config.NEWS.SeekingAlpha.BASE_URL,
-                DB_TABLE=config.NEWS.SeekingAlpha.DB_TABLE,
+                DB_TABLE=config.NEWS.DB_TABLE or config.NEWS.SeekingAlpha.DB_TABLE,
             ),
         }),
     )

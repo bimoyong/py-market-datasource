@@ -37,12 +37,29 @@ async def master(provider: NewsProvider = Depends(Provide[Container.client]),
     return resp
 
 
+@router.get('/crawl-to-db',
+            response_model=None,
+            response_model_exclude_none=True)
+@inject
+async def crawl_to_db(source: str = Query(None),
+                      category: Category = Query(Category.ALL),
+                      items_per_page: int = Query(40),
+                      selector: ProviderSelector = Depends(Provide[Container.source_selector])):
+    provider = selector.sources[source]
+
+    provider.crawl_to_db(source=source,
+                         category=category,
+                         items_per_page=items_per_page)
+
+    return None
+
+
 @router.get('/crawl',
             response_model=Paging,
             response_model_exclude_none=True)
 @inject
 async def crawl(source: str = Query(None),
-                category: Category = Query(Category.FINANCIAL),
+                category: Category = Query(Category.ALL),
                 from_date: datetime = Query(None),
                 to_date: datetime = Query(None),
                 items_per_page: int = Query(40),
