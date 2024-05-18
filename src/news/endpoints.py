@@ -4,6 +4,7 @@ from datetime import datetime
 
 from dependency_injector.wiring import Provide, inject
 from fastapi import APIRouter, Depends, Query
+from fastapi.exceptions import RequestValidationError
 from fastapi.responses import HTMLResponse
 
 from models.news_enums import Category
@@ -13,6 +14,15 @@ from news.containers import Container
 from news.provider import NewsProvider, ProviderSelector
 
 router = APIRouter(prefix=f'/{API_VERSION}/news')
+
+
+@inject
+async def validate_source(source: str = Query(None),
+                          selector: ProviderSelector = Depends(Provide[Container.source_selector])):
+    if source is not None and source not in selector.sources:
+        raise RequestValidationError(f'Source "{source}" not found')
+
+    return source
 
 
 @router.get('/master',
@@ -51,7 +61,7 @@ async def crawl(source: str = Query(None),
             response_model=Paging,
             response_model_exclude_none=True)
 @inject
-async def list(source: str = Query(None),
+async def list(source: str = Depends(validate_source),
                category: Category = Query(None),
                from_date: datetime = Query(None),
                to_date: datetime = Query(None),
