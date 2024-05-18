@@ -1,17 +1,16 @@
 """Endpoints module."""
 
 from datetime import datetime
-from typing import List, Union
 
 from dependency_injector.wiring import Provide, inject
 from fastapi import APIRouter, Depends, Query
 from fastapi.responses import HTMLResponse
 
 from models.news_enums import Category
-from models.news_model import MasterData, News, Paging
+from models.news_model import MasterData, Paging
 from news import API_VERSION
 from news.containers import Container
-from news.provider import NewsProvider
+from news.provider import NewsProvider, ProviderSelector
 
 router = APIRouter(prefix=f'/{API_VERSION}/news')
 
@@ -20,8 +19,10 @@ router = APIRouter(prefix=f'/{API_VERSION}/news')
             response_model=MasterData,
             response_model_exclude_none=True)
 @inject
-async def master(provider: NewsProvider = Depends(Provide[Container.client])):
+async def master(provider: NewsProvider = Depends(Provide[Container.client]),
+                 selector: ProviderSelector = Depends(Provide[Container.source_selector])):
     resp = provider.master_data()
+    resp.sources = [i for i in selector.sources.keys()]
 
     return resp
 
@@ -35,7 +36,8 @@ async def crawl(source: str = Query(None),
                 from_date: datetime = Query(None),
                 to_date: datetime = Query(None),
                 items_per_page: int = Query(40),
-                provider: NewsProvider = Depends(Provide[Container.client])):
+                selector: ProviderSelector = Depends(Provide[Container.source_selector])):
+    provider = selector.sources[source]
 
     resp = provider.crawl(category=category,
                           from_date=from_date,
@@ -55,7 +57,8 @@ async def list(source: str = Query(None),
                to_date: datetime = Query(None),
                items_per_page: int = Query(40),
                page_number: int = Query(1),
-               provider: NewsProvider = Depends(Provide[Container.client])):
+               selector: ProviderSelector = Depends(Provide[Container.source_selector])):
+    provider = selector.sources[source]
 
     resp = provider.list(category=category,
                          from_date=from_date,
@@ -72,7 +75,8 @@ async def list(source: str = Query(None),
 async def detail(source: str = Query(None),
                  url: str = Query(None),
                  return_html: bool = Query(True),
-                 provider: NewsProvider = Depends(Provide[Container.client])):
+                 selector: ProviderSelector = Depends(Provide[Container.source_selector])):
+    provider = selector.sources[source]
 
     html = provider.detail(url=url, return_html=return_html)
 

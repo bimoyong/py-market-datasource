@@ -1,0 +1,7 @@
+NEWS:
+  WORKERS_NO: 2
+  DB_TABLE: "datasource.news"
+
+  SeekingAlpha:
+    WORKERS_NO: 4
+    BASE_URL: "https://seekingalpha.com"

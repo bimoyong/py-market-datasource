@@ -1,12 +1,16 @@
 from abc import ABC, abstractmethod
 from datetime import datetime
-from typing import List, Union
+from typing import Dict, List, Union
 
 from models.news_enums import Category
 from models.news_model import MasterData, Paging
 
 
 class NewsProvider(ABC):
+    WORKERS_NO: int = None
+    BASE_URL: str = None
+    DB_TABLE: str = None
+
     def master_data(self) -> MasterData:
         rst = MasterData(categories=map(str.lower, Category._member_names_))
 
@@ -32,3 +36,7 @@ class NewsProvider(ABC):
     @abstractmethod
     def detail(self, url: str, return_html: bool = True) -> str:
         pass
+
+
+class ProviderSelector():
+    sources: Dict[str, NewsProvider] = {}

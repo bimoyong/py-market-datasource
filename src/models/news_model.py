@@ -6,7 +6,9 @@ from models.base_model import BaseModel
 
 
 class MasterData(BaseModel):
+    sources: Union[List[str], None] = None
     categories: Union[List[str], None] = None
+
 
 class News(BaseModel):
     source: Union[str, None] = Field(serialization_alias='source', alias='source', default=None)
