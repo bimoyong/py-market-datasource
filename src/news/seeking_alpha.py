@@ -1,10 +1,11 @@
 import re
+import time
 from concurrent.futures import ThreadPoolExecutor
 from contextlib import suppress
 from datetime import datetime
 from enum import Enum
 from os.path import join
-from typing import Any, Dict, List, Union
+from typing import List, Union
 
 import pandas as pd
 import requests
@@ -51,18 +52,33 @@ class SeekingAlpha(NewsProvider):
         paging_sum = Paging()
         news_ls: List[News] = None
 
-        while news_ls is None or len(news_ls) > 0:
-            paging = self.list(category=category,
-                               from_date=from_date,
-                               to_date=to_date,
-                               items_per_page=items_per_page,
-                               page_number=page_number)
+        while True:
+            if news_ls is not None and len(news_ls) == 0:
+                break
+
+            if paging_sum.metadata is not None and page_number > paging_sum.metadata.total_pages:
+                break
+
+            try:
+                time.sleep(self.THROTTLING_SECONDS)
+
+                paging = self.list(category=category,
+                                   from_date=from_date,
+                                   to_date=to_date,
+                                   items_per_page=items_per_page,
+                                   page_number=page_number)
+            except ConnectionRefusedError:
+                page_number += 1
+                continue
 
             news_ls = paging.data
             paging_sum.data.extend(news_ls)
 
             if not paging_sum.metadata:
                 paging_sum.metadata = paging.metadata
+            else:
+                paging_sum.metadata.timestamp_min = min(paging.metadata.timestamp_min, paging_sum.metadata.timestamp_min)
+                paging_sum.metadata.timestamp_max = max(paging.metadata.timestamp_max, paging_sum.metadata.timestamp_max)
 
             page_number += 1
 

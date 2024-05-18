@@ -12,6 +12,7 @@ from models.news_model import MasterData, Paging
 
 class NewsProvider(ABC):
     WORKERS_NO: int = None
+    THROTTLING_SECONDS: int = None
     BASE_URL: str = None
     DB_TABLE: str = None
 

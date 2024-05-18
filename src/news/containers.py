@@ -11,6 +11,7 @@ class Container(containers.DeclarativeContainer):
 
     client = AbstractSingleton(NewsProvider).add_attributes(
         WORKERS_NO=config.NEWS.WORKERS_NO,
+        THROTTLING_SECONDS=config.NEWS.THROTTLING_SECONDS,
         DB_TABLE=config.NEWS.DB_TABLE,
     )
 
@@ -18,8 +19,9 @@ class Container(containers.DeclarativeContainer):
         sources=Dict({
             SeekingAlpha.__name__: Singleton(SeekingAlpha).add_attributes(
                 WORKERS_NO=config.NEWS.SeekingAlpha.WORKERS_NO,
+                THROTTLING_SECONDS=config.NEWS.SeekingAlpha.THROTTLING_SECONDS or config.NEWS.THROTTLING_SECONDS,
                 BASE_URL=config.NEWS.SeekingAlpha.BASE_URL,
-                DB_TABLE=config.NEWS.DB_TABLE or config.NEWS.SeekingAlpha.DB_TABLE,
+                DB_TABLE=config.NEWS.SeekingAlpha.DB_TABLE or config.NEWS.DB_TABLE,
             ),
         }),
     )
