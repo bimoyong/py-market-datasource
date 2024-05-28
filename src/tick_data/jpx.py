@@ -185,6 +185,7 @@ class JPX(TickDataProvider):
             logger.info('Download file %s done', filename)
 
             _client.close()
+            _sess.close()
 
         if sizes is None:
             _ = list(tqdm(self.executor.map(download_file_to_gcs, filenames), total=len(filenames)))
