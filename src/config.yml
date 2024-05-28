@@ -10,7 +10,7 @@ NEWS:
     BASE_URL: https://seekingalpha.com
 
 TICK_DATA:
-  WORKERS_NO: 1
+  WORKERS_NO: 4
 
   JPX:
     BASE_URL: https://api.jpx-dataservice.com
