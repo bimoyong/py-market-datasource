@@ -17,7 +17,6 @@ from tick_data.provider import TickDataProvider
 
 logger = getLogger(__name__)
 logger.setLevel(INFO)
-logger.addHandler(StreamHandler())
 
 
 class JPX(TickDataProvider):
