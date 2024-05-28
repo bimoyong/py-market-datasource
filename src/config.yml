@@ -1,10 +1,20 @@
 NEWS:
   WORKERS_NO: 2
   THROTTLING_SECONDS: 2
-  DB_TABLE: "datasource.news"
+  DB_TABLE: datasource.news
 
   SeekingAlpha:
     WORKERS_NO: 4
     THROTTLING_SECONDS: 2
-    DB_TABLE: "datasource.news"
-    BASE_URL: "https://seekingalpha.com"
+    DB_TABLE: datasource.news
+    BASE_URL: https://seekingalpha.com
+
+TICK_DATA:
+  WORKERS_NO: 1
+
+  JPX:
+    BASE_URL: https://api.jpx-dataservice.com
+    USERNAME: TSE0071U
+    PASSWORD: T1T5YRXM
+    TOKEN_TTL: 3600
+    GCS_BUCKET_NAME: jpx-tick-data

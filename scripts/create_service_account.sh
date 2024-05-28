@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export GCLOUD_PROJECT=$(gcloud config get project)
-export REGION=us-central1
+export REGION=asia-southeast1
 export SERVICE_ACCOUNT_NAME=trading-strategy
 
 export SERVICE_ACCOUNT=$(gcloud iam service-accounts list \

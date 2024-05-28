@@ -3,7 +3,7 @@
 export WORK_DIR=$(dirname $(dirname $0))
 export GCLOUD_PROJECT=$(gcloud config get project)
 export GCLOUD_PROJECT_NUMBER=$(gcloud projects describe $GCLOUD_PROJECT --format="value(projectNumber)")
-export REGION=us-central1
+export REGION=asia-southeast1
 export SERVICE_ACCOUNT=$(gcloud iam service-accounts list --filter="email ~ ^trading-strategy" --format='value(email)')
 export RUN_NAME=datasource
 export SRC=$(mktemp -d)
@@ -33,7 +33,7 @@ gcloud run deploy $RUN_NAME \
     --region $REGION \
     --project $GCLOUD_PROJECT \
     --no-allow-unauthenticated \
-    --memory 256Mi \
+    --memory 512Mi \
     --platform managed \
     --timeout 60m \
     --set-env-vars "GCLOUD_PROJECT=$GCLOUD_PROJECT" \
@@ -45,11 +45,20 @@ export SCHEDULER_NAME=$(gcloud scheduler jobs describe $RUN_NAME --location $REG
 if [ -z "$SCHEDULER_NAME" ]; then
     export SERVICE_URL=$(gcloud run services describe $RUN_NAME --platform managed --region $REGION --format 'value(status.url)')
 
-    gcloud scheduler jobs create http $RUN_NAME \
+    gcloud scheduler jobs create http $RUN_NAME-news-crawl \
         --location $REGION \
         --schedule '0 * * * *' \
         --time-zone America/Chicago \
         --uri="$SERVICE_URL/v1/news/crawl-to-db?source=SeekingAlpha" \
+        --http-method GET \
+        --attempt-deadline 30m \
+        --oidc-service-account-email $SERVICE_ACCOUNT
+
+    gcloud scheduler jobs create http $RUN_NAME-tick-data-download \
+        --location $REGION \
+        --schedule '0 * * * *' \
+        --time-zone America/Chicago \
+        --uri="$SERVICE_URL/v1/tick_data/download_files_background?workers_no=4" \
         --http-method GET \
         --attempt-deadline 30m \
         --oidc-service-account-email $SERVICE_ACCOUNT
