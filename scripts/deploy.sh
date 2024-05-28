@@ -40,7 +40,7 @@ gcloud run deploy $RUN_NAME \
     --set-env-vars "GCLOUD_PROJECT_NUMBER=$GCLOUD_PROJECT_NUMBER" \
     --service-account $SERVICE_ACCOUNT
 
-export SCHEDULER_NAME=$(gcloud scheduler jobs describe $RUN_NAME --location $REGION --format='value(name)')
+export SCHEDULER_NAME=$(gcloud scheduler jobs describe $RUN_NAME --region $REGION --format='value(name)')
 
 if [ -z "$SCHEDULER_NAME" ]; then
     export SERVICE_URL=$(gcloud run services describe $RUN_NAME --platform managed --region $REGION --format 'value(status.url)')
