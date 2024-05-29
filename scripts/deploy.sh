@@ -40,12 +40,14 @@ gcloud run deploy $RUN_NAME \
     --set-env-vars "GCLOUD_PROJECT_NUMBER=$GCLOUD_PROJECT_NUMBER" \
     --service-account $SERVICE_ACCOUNT
 
-export SCHEDULER_NAME=$(gcloud scheduler jobs describe $RUN_NAME --region $REGION --format='value(name)')
+export SERVICE_URL=$(gcloud run services describe $RUN_NAME --platform managed --region $REGION --format 'value(status.url)')
 
-if [ -z "$SCHEDULER_NAME" ]; then
-    export SERVICE_URL=$(gcloud run services describe $RUN_NAME --platform managed --region $REGION --format 'value(status.url)')
+SCHEDULER_NAME=$RUN_NAME-news-crawl
+echo "Check and create scheduler: $SCHEDULER_NAME..."
 
-    gcloud scheduler jobs create http $RUN_NAME-news-crawl \
+export SCHEDULER_NAME_FULL=$(gcloud scheduler jobs describe $SCHEDULER_NAME --location $REGION --format='value(name)')
+if [ "$SCHEDULER_NAME_FULL" != "projects/$GCLOUD_PROJECT/locations/$REGION/jobs/$SCHEDULER_NAME" ]; then
+    gcloud scheduler jobs create http $SCHEDULER_NAME \
         --location $REGION \
         --schedule '0 * * * *' \
         --time-zone America/Chicago \
@@ -54,7 +56,15 @@ if [ -z "$SCHEDULER_NAME" ]; then
         --attempt-deadline 30m \
         --oidc-service-account-email $SERVICE_ACCOUNT
 
-    gcloud scheduler jobs create http $RUN_NAME-tick-data-download \
+    echo "Created $SCHEDULER_NAME"
+fi
+
+SCHEDULER_NAME=$RUN_NAME-tick-data-download
+echo "Check and create scheduler: $SCHEDULER_NAME..."
+
+export SCHEDULER_NAME_FULL=$(gcloud scheduler jobs describe $SCHEDULER_NAME --location $REGION --format='value(name)')
+if [ "$SCHEDULER_NAME_FULL" != "projects/$GCLOUD_PROJECT/locations/$REGION/jobs/$SCHEDULER_NAME" ]; then
+    gcloud scheduler jobs create http $SCHEDULER_NAME \
         --location $REGION \
         --schedule '0 * * * *' \
         --time-zone America/Chicago \
@@ -62,4 +72,6 @@ if [ -z "$SCHEDULER_NAME" ]; then
         --http-method GET \
         --attempt-deadline 30m \
         --oidc-service-account-email $SERVICE_ACCOUNT
+
+    echo "Created $SCHEDULER_NAME"
 fi
