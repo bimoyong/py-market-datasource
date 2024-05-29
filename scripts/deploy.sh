@@ -33,7 +33,7 @@ gcloud run deploy $RUN_NAME \
     --region $REGION \
     --project $GCLOUD_PROJECT \
     --no-allow-unauthenticated \
-    --memory 2048Mi \
+    --memory 4096Mi \
     --platform managed \
     --timeout 60m \
     --set-env-vars "GCLOUD_PROJECT=$GCLOUD_PROJECT" \
@@ -58,7 +58,7 @@ if [ -z "$SCHEDULER_NAME" ]; then
         --location $REGION \
         --schedule '0 * * * *' \
         --time-zone America/Chicago \
-        --uri="$SERVICE_URL/v1/tick_data/download_files_background?workers_no=4" \
+        --uri="$SERVICE_URL/v1/tick_data/download_files_background?workers_no=8" \
         --http-method GET \
         --attempt-deadline 30m \
         --oidc-service-account-email $SERVICE_ACCOUNT

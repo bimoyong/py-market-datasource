@@ -179,7 +179,8 @@ class JPX(TickDataProvider):
             _sess = Session()
             _resp = _sess.get(url, stream=True)
             _blob.upload_from_string(_resp.content,
-                                     content_type=_resp.headers['Content-Type'])
+                                     content_type=_resp.headers['Content-Type'],
+                                     timeout=600)
 
             logger.info('Download file %s done', filename)
 
