@@ -29,6 +29,7 @@ pd.options.display.float_format = '{:,.4f}'.format
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
+logger.addHandler(StreamHandler())
 
 
 class TestTradingView(unittest.TestCase):

@@ -2,7 +2,7 @@ import json
 from contextlib import suppress
 from datetime import datetime, timedelta
 from logging import INFO, StreamHandler, getLogger
-from typing import Any, Dict, List, Union
+from typing import Any, Dict, List, Tuple, Union
 
 import numpy as np
 import pandas as pd
@@ -17,6 +17,7 @@ from tick_data.provider import TickDataProvider
 
 logger = getLogger(__name__)
 logger.setLevel(INFO)
+logger.addHandler(StreamHandler())
 
 
 class JPX(TickDataProvider):
@@ -114,19 +115,29 @@ class JPX(TickDataProvider):
         df = pd.read_csv('test/fixtures/jpx_list_downloads_20230401_20240531.csv',
                          index_col='index')
 
-        batches = np.array_split(df.index, len(df) / workers_no)
+        df_undone = df.loc[df['gcp_gcs_path'].isnull() & df['error'].isnull()]
+        if df_undone.empty:
+            return 'done'
+
+        batches = np.array_split(df_undone.index, len(df_undone) / workers_no)
         for idxes in tqdm(batches, total=len(batches)):
             _df = df.loc[idxes, ['file_name', 'size_bytes']]
 
             logger.info('Download file index %s', list(_df.index))
 
-            self.download_file(filenames=list(_df['file_name']),
-                               sizes=list(_df['size_bytes']))
+            rst = self.download_file(filenames=list(_df['file_name']),
+                                     sizes=list(_df['size_bytes']))
+
+            df.loc[idxes, ['gcp_gcs_path', 'error']] = pd.DataFrame(rst,
+                                                                    index=_df.index,
+                                                                    columns=['gcp_gcs_path', 'error'])
+
+            df.to_csv('test/fixtures/jpx_list_downloads_20230401_20240531.csv')
 
     def download_file(self,
                       filenames: Union[str, List[str]],
                       sizes: Union[List[int], int] = None,
-                      force=False) -> None:
+                      force=False) -> List[Tuple[str, str]]:
         # because there is concurrency in this function, so token should be initialized
         _ = self.access_token
 
@@ -140,9 +151,9 @@ class JPX(TickDataProvider):
 
         if sizes is not None:
             if len(filenames) != len(sizes):
-                raise ValueError(f'filenames and sizes should have the same length {len(filenames)}!= {len(sizes)}')
+                raise ValueError(f'filenames and sizes should have the same length {len(filenames)} != {len(sizes)}')
 
-        def download_file_to_gcs(filename: str, size: int = None) -> Any:
+        def download_file_to_gcs(filename: str, size: int = None) -> Tuple[str, str]:
             date_path = date_parse(filename.split('_')[0]).strftime('%Y/%m/%d')
             path = f'dataservice-flex-bucket/{date_path}/{filename}'
 
@@ -154,15 +165,14 @@ class JPX(TickDataProvider):
                 _blob = _bucket.get_blob(path)
                 if _blob and (size is None or _blob.size == size):
                     logger.info('Ignore downloading because file %s exists', filename)
-                    return
+                    return _blob.name, None
 
             info: Dict[str, str] = None
-            with suppress(ConnectionRefusedError):
+            try:
                 info = self._get_file(filename=filename)
-
-            if info is None:
-                logger.info('JPX does not allow download this file %s', filename)
-                return
+            except ConnectionRefusedError as error:
+                logger.error('JPX does not allow download this file %s', filename)
+                return None, str(error)
 
             path = info.get('path')
             url = info.get('url')
@@ -172,7 +182,7 @@ class JPX(TickDataProvider):
                 _blob = _bucket.get_blob(path)
                 if _blob and (size is None or _blob.size == size):
                     logger.info('Ignore downloading because file %s exists', filename)
-                    return
+                    return _blob.name, None
 
             _blob = _bucket.blob(path)
 
@@ -187,10 +197,14 @@ class JPX(TickDataProvider):
             _client.close()
             _sess.close()
 
+            return _blob.name, None
+
         if sizes is None:
-            _ = list(tqdm(self.executor.map(download_file_to_gcs, filenames), total=len(filenames)))
+            rst = list(tqdm(self.executor.map(download_file_to_gcs, filenames), total=len(filenames)))
         else:
-            _ = list(tqdm(self.executor.map(download_file_to_gcs, filenames, sizes), total=len(filenames)))
+            rst = list(tqdm(self.executor.map(download_file_to_gcs, filenames, sizes), total=len(filenames)))
+
+        return rst
 
     def _get_file(self, filename: str) -> None:
         url = f'{self.BASE_URL}/flex/download'
