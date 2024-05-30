@@ -1,5 +1,4 @@
 import json
-from contextlib import suppress
 from datetime import datetime, timedelta
 from logging import INFO, StreamHandler, getLogger
 from typing import Any, Dict, List, Tuple, Union
@@ -7,12 +6,11 @@ from typing import Any, Dict, List, Tuple, Union
 import numpy as np
 import pandas as pd
 from dateutil.parser import parse as date_parse
-from google.cloud.bigquery import Client as BigQueryClient
 from google.cloud.storage import Client as StorageClient
 from requests import Session, post
 from tqdm import tqdm
 
-from infra.big_query import credentials, frame_to_big_query
+from infra.big_query import credentials
 from tick_data.provider import TickDataProvider
 
 logger = getLogger(__name__)
@@ -186,16 +184,14 @@ class JPX(TickDataProvider):
 
             _blob = _bucket.blob(path)
 
-            _sess = Session()
-            _resp = _sess.get(url, stream=True)
-            _blob.upload_from_string(_resp.content,
-                                     content_type=_resp.headers['Content-Type'],
-                                     timeout=600)
+            with Session() as _sess:
+                _resp = _sess.get(url, stream=True)
+                _blob.upload_from_string(_resp.content,
+                                        content_type=_resp.headers['Content-Type'])
 
-            logger.info('Download file %s done', filename)
+                logger.info('Download file %s done', filename)
 
-            _client.close()
-            _sess.close()
+                _client.close()
 
             return _blob.name, None
 
