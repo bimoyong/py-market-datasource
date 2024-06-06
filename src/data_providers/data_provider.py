@@ -9,6 +9,8 @@ from models.data_models import Quote
 
 
 class DataProvider(ABC):
+    WORKERS_NO: int = None
+
     @abstractmethod
     def quotes(self,
                symbols: Union[str, List[str]],

@@ -1,9 +1,10 @@
-from dependency_injector import containers, providers
+from dependency_injector.containers import DeclarativeContainer
+from dependency_injector.providers import AbstractSingleton, Configuration
 
 from data_providers.data_provider import DataProvider
 
 
-class Container(containers.DeclarativeContainer):
-    config = providers.Configuration()
+class Container(DeclarativeContainer):
+    config = Configuration(yaml_files=['config.yml'])
 
-    client = providers.AbstractSingleton(DataProvider)
+    client = AbstractSingleton(DataProvider)

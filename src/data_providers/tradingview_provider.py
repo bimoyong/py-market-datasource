@@ -1,4 +1,4 @@
-from typing import Dict, List, Union
+from typing import Any, Dict, List, Union
 
 import pandas as pd
 import pytz
@@ -26,7 +26,7 @@ class TradingViewProvider(DataProvider):
                                    self.password,
                                    self.token,
                                    self.market,
-                                   self.workers_no)
+                                   self.WORKERS_NO)
 
         return self._tv
 
@@ -65,6 +65,18 @@ class TradingViewProvider(DataProvider):
                 quote.source_logo_url = f'{__class__.STORAGE_BASE_URL}/{quote.source_logoid}--big.svg'
 
             rst[symbol] = quote
+
+        ohclv: pd.DataFrame = None
+
+        if set(fields) & set(['change_5d', 'change_5d_pct', 'low_5d', 'high_5d']):
+            ohclv = self.tv.historical_multi_symbols(rst.keys(),
+                                                     interval='1D',
+                                                     total_candle=10)
+
+            perf_dict = self.calc_perf(ohclv, '5D')
+
+            for k, v in perf_dict.items():
+                rst[k] = rst[k].model_copy(update=v)
 
         if return_single:
             return rst[symbols]
@@ -111,3 +123,31 @@ class TradingViewProvider(DataProvider):
             .reset_index().set_index(['Date', 'Symbol'])
 
         return ohlcv
+    
+    def calc_perf(self,
+                  ohclv: pd.DataFrame,
+                  interval: str = '5d') -> Dict[str, Dict[str, Any]]:
+        symbols = ohclv.Symbol.unique()
+        _ohclv = ohclv.set_index(['Symbol', 'timestamp_ts'])
+
+        interval = interval.lower()
+        interval_mapper = {
+            '5d': 5,
+        }
+        interval_num: int = interval_mapper.get(interval, interval)
+
+        for s in symbols:
+            _ohclv.loc[[s], f'change_{interval}'] = _ohclv.loc[[s]].close - _ohclv.loc[[s]].close.shift(interval_num)
+            _ohclv.loc[[s], f'change_{interval}_pct'] = _ohclv.loc[[s], f'change_{interval}'] / _ohclv.loc[[s]].close.shift(interval_num)
+            _ohclv.loc[[s], f'low_{interval}'] = _ohclv.loc[[s]].low.rolling(interval_num).min()
+            _ohclv.loc[[s], f'high_{interval}'] = _ohclv.loc[[s]].high.rolling(interval_num).max()
+
+        cols_included = ['close',
+                         f'change_{interval}',
+                         f'change_{interval}_pct',
+                         f'low_{interval}',
+                         f'high_{interval}']
+
+        perf_dict = _ohclv.groupby('Symbol').last()[cols_included].to_dict('index')
+
+        return perf_dict

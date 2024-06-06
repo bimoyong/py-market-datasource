@@ -23,7 +23,9 @@ client.setup_logging(log_level=INFO)
 def create_app() -> FastAPI:
     data_container_v1 = DataContainerV1()
     data_container_v1.wire(packages=['data_providers'])
-    data_container_v1.client.override(Singleton(TradingViewProvider))
+    data_container_v1.client.override(Singleton(TradingViewProvider).add_attributes(
+        WORKERS_NO=data_container_v1.config.MARKET_DATA.WORKERS_NO,
+    ))
 
     new_container_v1 = NewsContainerV1()
     new_container_v1.wire(packages=['news'])

@@ -28,4 +28,9 @@ class Quote(BaseQuote):
     logo_url: Union[str, None] = None
     source_logo_url: Union[str, None] = None
 
+    change_5d: Union[float, None] = Field(serialization_alias='change_5d', alias='change_5d', default=None)
+    change_5d_pct: Union[float, None] = Field(serialization_alias='change_5d_pct', alias='change_5d_pct', default=None)
+    low_5d: Union[float, None] = Field(serialization_alias='low_5d', alias='low_5d', default=None)
+    high_5d: Union[float, None] = Field(serialization_alias='high_5d', alias='high_5d', default=None)
+
     extra: Dict[str, Any] = None
