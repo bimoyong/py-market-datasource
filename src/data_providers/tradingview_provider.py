@@ -31,11 +31,12 @@ class TradingViewProvider(DataProvider):
         return self._tv
 
     def search(self,
-               symbol: str,
-               params: Dict[str, str] = None) -> Union[None,
-                                                       Dict[str, Any],
-                                                       Dict[str, Union[int, List[Dict[str, Any]]]]]:
-        rst = self.tv.search(symbol, **params)
+               symbols: List[str],
+               params: Dict[str, Any] = None) -> Dict[str, Union[None, Dict[str, Any]]]:
+        if params is None:
+            params = {}
+
+        rst = self.tv.search_multi(queries=symbols, params=params)
 
         return rst
 

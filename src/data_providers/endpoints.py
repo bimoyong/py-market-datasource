@@ -15,23 +15,20 @@ router = APIRouter(prefix=f'/{API_VERSION}/data')
 
 
 @router.get('/search',
-            response_model=Union[None,
-                                 Dict[str, Any],
-                                 Dict[str, Union[int, List[Dict[str, Any]]]]],
+            response_model=Dict[str, Union[None, Dict[str, Any]]],
             response_model_exclude_none=True)
 @inject
 async def search(
-    symbol: str = Query(None),
+    symbols: List[str] = Query(None),
     country: str = Query('US'),
     exchange: str = Query(None),
     search_type: str = Query(None),
     economic_category: str = Query(None),
     start: int = Query(0),
-    exact: bool = Query(True),
     service: DataProvider = Depends(Provide[Container.client]),
 ):
-    if not symbol:
-        raise RequestValidationError('"symbol" query is required')
+    if not symbols:
+        raise RequestValidationError('"symbols" query is required')
 
     params = {
         'country': country,
@@ -39,9 +36,8 @@ async def search(
         'search_type': search_type,
         'economic_category': economic_category,
         'start': start,
-        'exact': exact,
     }
-    resp = service.search(symbol=symbol, params=params)
+    resp = service.search(symbols=symbols, params=params)
 
     return resp
 

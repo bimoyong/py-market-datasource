@@ -7,7 +7,7 @@ import string
 import time
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime
-from itertools import islice
+from itertools import islice, repeat
 from time import perf_counter
 from typing import Any, Dict, Iterator, List, Union
 
@@ -229,14 +229,28 @@ class TradingView:
 
         return df
 
+    def search_multi(self,
+                     queries: List[str],
+                     params: Dict[str, Any]) -> Dict[str, Union[None, Dict[str, Any]]]:
+        search_iter = self._executor.map(self.search,
+                                         queries,
+                                         repeat(params.get('country', 'US')),
+                                         repeat(params.get('exchange', '')),
+                                         repeat(params.get('search_type', '')),
+                                         repeat(params.get('economic_category', '')),
+                                         repeat(params.get('start', 0)))
+
+        resp = dict(zip(queries, search_iter))
+
+        return resp
+
     def search(self,
                query: str,
                country: str = 'US',
                exchange: str = '',
                search_type: str = '',
                economic_category: str = '',
-               start: int = 0,
-               exact=True) -> Union[None,
+               start: int = 0) -> Union[None,
                                     Dict[str, Any],
                                     Dict[str, Union[int, List[Dict[str, Any]]]]]:
         # text = what you want to search!
@@ -261,8 +275,6 @@ class TradingView:
             raise ConnectionError(f'Client returns error "{res.status_code} {res.content}"')
 
         res = res.json()
-        if not exact:
-            return res
 
         if not res.get('symbols'):
             return None

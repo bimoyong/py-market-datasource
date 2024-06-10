@@ -13,10 +13,8 @@ class DataProvider(ABC):
 
     @abstractmethod
     def search(self,
-               symbol: str,
-               params: Dict[str, str] = None) -> Union[None,
-                                                       Dict[str, Any],
-                                                       Dict[str, Union[int, List[Dict[str, Any]]]]]:
+               symbols: List[str],
+               params: Dict[str, Any] = None) -> Dict[str, Union[None, Dict[str, Any]]]:
         pass
 
     @abstractmethod
