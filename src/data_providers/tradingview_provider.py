@@ -30,6 +30,15 @@ class TradingViewProvider(DataProvider):
 
         return self._tv
 
+    def search(self,
+               symbol: str,
+               params: Dict[str, str] = None) -> Union[None,
+                                                       Dict[str, Any],
+                                                       Dict[str, Union[int, List[Dict[str, Any]]]]]:
+        rst = self.tv.search(symbol, **params)
+
+        return rst
+
     def quotes(self,
                symbols: Union[str, List[str]],
                fields: List[str] = None) -> Union[Quote, Dict[str, Quote]]:
@@ -123,7 +132,7 @@ class TradingViewProvider(DataProvider):
             .reset_index().set_index(['Date', 'Symbol'])
 
         return ohlcv
-    
+
     def calc_perf(self,
                   ohclv: pd.DataFrame,
                   interval: str = '5d') -> Dict[str, Dict[str, Any]]:

@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import Dict, List, Union
+from typing import Any, Dict, List, Union
 
 import pandas as pd
 import pytz
@@ -10,6 +10,14 @@ from models.data_models import Quote
 
 class DataProvider(ABC):
     WORKERS_NO: int = None
+
+    @abstractmethod
+    def search(self,
+               symbol: str,
+               params: Dict[str, str] = None) -> Union[None,
+                                                       Dict[str, Any],
+                                                       Dict[str, Union[int, List[Dict[str, Any]]]]]:
+        pass
 
     @abstractmethod
     def quotes(self,

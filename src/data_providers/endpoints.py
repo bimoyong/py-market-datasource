@@ -1,6 +1,6 @@
 """Endpoints module."""
 
-from typing import Dict, List, Union
+from typing import Any, Dict, List, Union
 
 from dependency_injector.wiring import Provide, inject
 from fastapi import APIRouter, Depends, Query
@@ -12,6 +12,38 @@ from data_providers.data_provider import DataProvider
 from models.data_models import Quote
 
 router = APIRouter(prefix=f'/{API_VERSION}/data')
+
+
+@router.get('/search',
+            response_model=Union[None,
+                                 Dict[str, Any],
+                                 Dict[str, Union[int, List[Dict[str, Any]]]]],
+            response_model_exclude_none=True)
+@inject
+async def search(
+    symbol: str = Query(None),
+    country: str = Query('US'),
+    exchange: str = Query(None),
+    search_type: str = Query(None),
+    economic_category: str = Query(None),
+    start: int = Query(0),
+    exact: bool = Query(True),
+    service: DataProvider = Depends(Provide[Container.client]),
+):
+    if not symbol:
+        raise RequestValidationError('"symbol" query is required')
+
+    params = {
+        'country': country,
+        'exchange': exchange,
+        'search_type': search_type,
+        'economic_category': economic_category,
+        'start': start,
+        'exact': exact,
+    }
+    resp = service.search(symbol=symbol, params=params)
+
+    return resp
 
 
 @router.get('/quotes',

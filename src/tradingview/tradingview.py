@@ -229,37 +229,48 @@ class TradingView:
 
         return df
 
-    def get_symbol_id(self, pair: str, market: str = ''):
-        data = self.search(pair, market)
-
-        symbol_name = data['symbol']
-        if data['type'] == 'futures':
-            symbol_name = data['contracts'][0]['symbol']
-
-        broker = data['exchange']
-        symbol_id = f'{broker.upper()}:{symbol_name.upper()}'
-        return symbol_id
-
-    def search(self, query: str, search_type: str = ''):
+    def search(self,
+               query: str,
+               country: str = 'US',
+               exchange: str = '',
+               search_type: str = '',
+               economic_category: str = '',
+               start: int = 0,
+               exact=True) -> Union[None,
+                                    Dict[str, Any],
+                                    Dict[str, Union[int, List[Dict[str, Any]]]]]:
         # text = what you want to search!
         # search_type = 'stocks' | 'funds' | 'futures' | 'forex' | 'crypto' | 'index' | 'bond' | 'economic' | 'options'
         # country = 'US'
         # it returns first matching item
         params = {
             'text': query,
-            'search_type': search_type or None,
+            'country': country.upper(),
+            'exchange': exchange,
+            'search_type': search_type,
+            'economic_category': economic_category,
+            'start': start,
         }
-        headers = headers={
+        headers = headers = {
             'Accept': 'application/json',
             'Origin': 'https://www.tradingview.com',
         }
+
         res = get(_API_URL_, params=params, headers=headers, timeout=60)
-        if res.status_code == 200:
-            res = res.json()
-            assert len(res.get('symbols', [])) != 0, 'Nothing Found.'
+        if res.status_code != 200:
+            raise ConnectionError(f'Client returns error "{res.status_code} {res.content}"')
+
+        res = res.json()
+        if not exact:
+            return res
+
+        if not res.get('symbols'):
+            return None
+
+        if res['symbols'][0].get('symbol') == query:
             return res['symbols'][0]
-        else:
-            print('Network Error!')
+
+        return res
 
 
 def _get_auth_token(username, password):
