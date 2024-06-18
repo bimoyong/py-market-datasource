@@ -18,6 +18,7 @@ from websocket import WebSocket, create_connection
 
 _GLOBAL_URL_ = 'https://scanner.tradingview.com/global/scan'
 _API_URL_ = 'https://symbol-search.tradingview.com/symbol_search/v3'
+_ECONOMIC_URL = 'https://economic-calendar.tradingview.com'
 _WS_URL_ = 'wss://prodata.tradingview.com/socket.io/websocket?&type=chart'
 
 _CHARTS_SETTINGS = {
@@ -283,6 +284,74 @@ class TradingView:
             return res['symbols'][0]
 
         return res
+
+    def economic_calendar(self,
+                          from_date: str = None,
+                          to_date: str = None,
+                          countries: List[str] = None,
+                          fetch_related_events=False) -> List[Dict[str, Any]]:
+        url = f'{_ECONOMIC_URL}/events'
+
+        headers = {
+            'origin': 'https://www.tradingview.com'
+        }
+
+        params = {
+            'from': from_date,
+            'to': to_date,
+        }
+
+        if isinstance(countries, list):
+            params['countries'] = ','.join(countries)
+
+        resp = get(url, params=params, headers=headers, timeout=5)
+
+        if resp.status_code != 200:
+            raise ConnectionError(f'Client returns error "{resp.status_code} {resp.content}"')
+
+        data = resp.json()
+        status = data.get('status')
+
+        if status != 'ok':
+            raise ConnectionError(f'Client returns error "{status} {data.get("errmsg")}"')
+
+        result = data.get('result')
+
+        if fetch_related_events:
+            event_ids = [i.get('id') for i in result]
+            events_ls = list(self._executor.map(self.economic_calendar_related_events, event_ids))
+
+            for i, _ in enumerate(result):
+                result[i]['events'] = events_ls[i]
+
+        return result
+
+    def economic_calendar_related_events(self, event_id: str) -> List[Dict[str, Any]]:
+        url = f'{_ECONOMIC_URL}/related_events'
+
+        headers = {
+            'origin': 'https://www.tradingview.com'
+        }
+
+        params = {
+            'eventId': event_id,
+            'countback': 8,
+        }
+
+        resp = get(url, params=params, headers=headers)
+
+        if resp.status_code != 200:
+            raise ConnectionError(f'Client returns error "{resp.status_code} {resp.content}"')
+
+        data = resp.json()
+        status = data.get('status')
+
+        if status != 'ok':
+            return []
+
+        result = data.get('result')
+
+        return result
 
 
 def _get_auth_token(username, password):

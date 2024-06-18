@@ -1,3 +1,4 @@
+from datetime import datetime
 from typing import Any, Dict, List, Union
 
 import pandas as pd
@@ -133,6 +134,27 @@ class TradingViewProvider(DataProvider):
             .reset_index().set_index(['Date', 'Symbol'])
 
         return ohlcv
+
+    def economic_calendar(self,
+                          from_date: Union[str, datetime],
+                          to_date: Union[str, datetime],
+                          countries: List[str] = None,
+                          fetch_related_events=False) -> List[Dict[str, Any]]:
+        if isinstance(from_date, datetime):
+            from_date = from_date.strftime('%Y-%m-%dT%H:%M:%S.000Z')
+
+        if isinstance(to_date, datetime):
+            to_date = to_date.strftime('%Y-%m-%dT%H:%M:%S.000Z')
+
+        if countries is None:
+            countries = ['US']
+
+        rst = self.tv.economic_calendar(from_date,
+                                        to_date,
+                                        countries,
+                                        fetch_related_events)
+
+        return rst
 
     def calc_perf(self,
                   ohclv: pd.DataFrame,

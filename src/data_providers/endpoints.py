@@ -57,3 +57,22 @@ async def quotes(
     resp = service.quotes(symbols=symbols, fields=fields)
 
     return resp
+
+
+@router.get('/economic_calendar',
+            response_model=List[Dict[str, Any]],
+            response_model_exclude_none=True)
+@inject
+async def economic_calendar(
+    from_date: str = Query(None),
+    to_date: str = Query(None),
+    countries: List[str] = Query(None),
+    fetch_related_events: bool = Query(False),
+    service: DataProvider = Depends(Provide[Container.client]),
+):
+    resp = service.economic_calendar(from_date=from_date,
+                                     to_date=to_date,
+                                     countries=countries,
+                                     fetch_related_events=fetch_related_events)
+
+    return resp

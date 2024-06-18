@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from datetime import datetime
 from typing import Any, Dict, List, Union
 
 import pandas as pd
@@ -31,4 +32,12 @@ class DataProvider(ABC):
               charts: List[str] = None,
               adjustment=Adjustment.DIVIDENDS,
               tzinfo: pytz.BaseTzInfo = pytz.UTC) -> pd.DataFrame:
+        pass
+
+    @abstractmethod
+    def economic_calendar(self,
+                          from_date: Union[str, datetime],
+                          to_date: Union[str, datetime],
+                          countries: List[str] = None,
+                          fetch_related_events=False) -> List[Dict[str, Any]]:
         pass
