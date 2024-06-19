@@ -33,4 +33,19 @@ class Quote(BaseQuote):
     low_5d: Union[float, None] = Field(serialization_alias='low_5d', alias='low_5d', default=None)
     high_5d: Union[float, None] = Field(serialization_alias='high_5d', alias='high_5d', default=None)
 
+    change_1m: Union[float, None] = Field(serialization_alias='change_1m', alias='change_1m', default=None)
+    change_1m_pct: Union[float, None] = Field(serialization_alias='change_1m_pct', alias='change_1m_pct', default=None)
+    low_1m: Union[float, None] = Field(serialization_alias='low_1m', alias='low_1m', default=None)
+    high_1m: Union[float, None] = Field(serialization_alias='high_1m', alias='high_1m', default=None)
+
+    change_mtd: Union[float, None] = Field(serialization_alias='change_mtd', alias='change_mtd', default=None)
+    change_mtd_pct: Union[float, None] = Field(serialization_alias='change_mtd_pct', alias='change_mtd_pct', default=None)
+    low_mtd: Union[float, None] = Field(serialization_alias='low_mtd', alias='low_mtd', default=None)
+    high_mtd: Union[float, None] = Field(serialization_alias='high_mtd', alias='high_mtd', default=None)
+
+    change_ytd: Union[float, None] = Field(serialization_alias='change_ytd', alias='change_ytd', default=None)
+    change_ytd_pct: Union[float, None] = Field(serialization_alias='change_ytd_pct', alias='change_ytd_pct', default=None)
+    low_ytd: Union[float, None] = Field(serialization_alias='low_ytd', alias='low_ytd', default=None)
+    high_ytd: Union[float, None] = Field(serialization_alias='high_ytd', alias='high_ytd', default=None)
+
     extra: Dict[str, Any] = None

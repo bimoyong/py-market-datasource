@@ -151,20 +151,20 @@ class TradingView:
             [adjustment] * len(symbols),
         ]
 
-        ohlcv_iter = self._executor.map(self.historical_charts, *args)
+        ohclv_iter = self._executor.map(self.historical_charts, *args)
 
-        ohlcv_dict = dict(zip(symbols, ohlcv_iter))
+        ohclv_dict = dict(zip(symbols, ohclv_iter))
 
-        for symbol, frame in ohlcv_dict.items():
+        for symbol, frame in ohclv_dict.items():
             frame.loc[:, 'Symbol'] = symbol
 
-        ohlcv = pd.concat(ohlcv_dict.values())
-        ohlcv.loc[:, 'Symbol'] = ohlcv.Symbol.astype('string')
+        ohclv = pd.concat(ohclv_dict.values())
+        ohclv.loc[:, 'Symbol'] = ohclv.Symbol.astype('string')
 
-        if ohlcv.empty:
-            ohlcv = pd.DataFrame(columns=['timestamp_ts', 'Open', 'High', 'Low', 'Close', 'Volume', 'Symbol'])
+        if ohclv.empty:
+            ohclv = pd.DataFrame(columns=['timestamp_ts', 'Open', 'High', 'Low', 'Close', 'Volume', 'Symbol'])
 
-        return ohlcv
+        return ohclv
 
     def historical_charts(self,
                           symbol: str,
@@ -219,11 +219,11 @@ class TradingView:
         _send_message(ws, 'set_data_quality', ['high'])
         _send_message(ws, 'chart_create_session', [sess, ''])
         _send_message(ws, 'resolve_symbol', [sess, 'sds_sym_1', "={\"adjustment\":\"" + adjustment + "\",\"currency-id\":\"USD\",\"symbol\":\"" + symbol + "\"}"])
-        _send_message(ws, 'create_series', [sess, 's_ohlcv', 's1', 'sds_sym_1', str(interval), total_candle, ""])
+        _send_message(ws, 'create_series', [sess, 's_ohclv', 's1', 'sds_sym_1', str(interval), total_candle, ""])
 
         for chart in charts:
             chart_setting = _CHARTS_SETTINGS[chart]
-            _send_message(ws, 'create_study', [sess, f's_{chart}', 'st1', 's_ohlcv', *chart_setting])
+            _send_message(ws, 'create_study', [sess, f's_{chart}', 'st1', 's_ohclv', *chart_setting])
 
         # Start job
         df = _parse_bar_charts(ws, interval, series_num=1 + len(charts))
@@ -406,7 +406,7 @@ def _parse_bar_charts(ws, interval, series_num=1) -> pd.DataFrame:
                     if timestamp not in data:
                         data[timestamp] = {}
 
-                    if k == 's_ohlcv':
+                    if k == 's_ohclv':
                         cols = ['timestamp_ts', 'open', 'high', 'low', 'close', 'volume']
                         data[timestamp].update(dict(zip(cols, bar)))
                         if 'volume' not in data[timestamp]:

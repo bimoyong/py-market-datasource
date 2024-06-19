@@ -25,10 +25,10 @@ class DataProvider(ABC):
         pass
 
     @abstractmethod
-    def ohlcv(self,
+    def ohclv(self,
               symbols: Union[str, List[str]],
-              interval: str,
-              total_candle: int,
+              freq: str,
+              total_candles: int,
               charts: List[str] = None,
               adjustment=Adjustment.DIVIDENDS,
               tzinfo: pytz.BaseTzInfo = pytz.UTC) -> pd.DataFrame:
