@@ -189,7 +189,7 @@ class TradingViewProvider(DataProvider):
         freq = freq.lower()
         freq_mapper = {
             '5d': 5,
-            '1m': 22,
+            '1m': 21,
             'mtd': 'M',
             'ytd': 'Y',
         }
