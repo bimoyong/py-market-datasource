@@ -13,6 +13,7 @@ setup(name='py_datasource',
       ],
       package_dir={
           'data_providers': 'src/data_providers',
+          'model': 'src/model',
           'tradingview': 'src/tradingview',
       },
       install_requires=[
