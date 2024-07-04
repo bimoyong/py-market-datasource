@@ -42,7 +42,7 @@ class TradingView:
         self._password = password
         self._market = market
         self._token = token
-        self._executor = ThreadPoolExecutor(max_workers=workers_no)
+        self._executor = ThreadPoolExecutor(max_workers=workers_no or 1)
 
     @property
     def username(self) -> str:
