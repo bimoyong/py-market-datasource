@@ -153,12 +153,13 @@ class TradingView:
 
         ohclv_iter = self._executor.map(self.historical_charts, *args)
 
-        ohclv_dict = dict(zip(symbols, ohclv_iter))
+        for symbol, frame in zip(symbols, ohclv_iter):
+            if frame.empty:
+                continue
 
-        for symbol, frame in ohclv_dict.items():
             frame.loc[:, 'Symbol'] = symbol
 
-        ohclv = pd.concat(ohclv_dict.values())
+        ohclv = pd.concat(ohclv_iter, axis=0)
         ohclv.loc[:, 'Symbol'] = ohclv.Symbol.astype('string')
 
         if ohclv.empty:
