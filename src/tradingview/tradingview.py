@@ -151,7 +151,7 @@ class TradingView:
             [adjustment] * len(symbols),
         ]
 
-        ohclv_iter = self._executor.map(self.historical_charts, *args)
+        ohclv_iter = list(self._executor.map(self.historical_charts, *args))
 
         for symbol, frame in zip(symbols, ohclv_iter):
             if frame.empty:
