@@ -16,16 +16,15 @@ class TradingViewProvider(DataProvider):
     _tv: TradingView = None
     username: str = ''
     password: str = ''
-    token: str = ''
+    TOKEN: str = ''
     market: str = ''
-    workers_no: int = 1
 
     @property
     def tv(self) -> TradingView:
         if not self._tv:
             self._tv = TradingView(self.username,
                                    self.password,
-                                   self.token,
+                                   self.TOKEN,
                                    self.market,
                                    self.WORKERS_NO)
 
