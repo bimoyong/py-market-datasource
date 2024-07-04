@@ -9,6 +9,7 @@ setup(name='py_datasource',
       license='MIT',
       packages=[
           'data_providers',
+          'model': 'src/model',
           'tradingview',
       ],
       package_dir={
