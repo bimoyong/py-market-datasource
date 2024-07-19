@@ -1,3 +1,4 @@
+from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime
 from typing import Any, Dict, List, Union
 
@@ -31,6 +32,10 @@ class TradingViewProvider(DataProvider):
 
         return self._tv
 
+    @property
+    def executor(self) -> ThreadPoolExecutor:
+        return self.tv.executor
+
     def search(self,
                symbols: List[str],
                params: Dict[str, Any] = None) -> Dict[str, Union[None, Dict[str, Any]]]:
@@ -40,7 +45,6 @@ class TradingViewProvider(DataProvider):
         rst = self.tv.search_multi(queries=symbols, params=params)
 
         return rst
-
 
     @retry(wait=wait_exponential(multiplier=1, min=4, max=10), stop=stop_after_attempt(3))
     def quotes(self,
@@ -55,7 +59,30 @@ class TradingViewProvider(DataProvider):
 
         fields = [Quote.fields_map().get(i, i) for i in fields or []]
 
-        quotes = self.tv.current_quotes(symbols, fields=fields)
+        is_get_change_5d = len(set(fields) & set(['change_5d', 'change_5d_pct', 'low_5d', 'high_5d'])) > 0
+        is_get_change_1m = len(set(fields) & set(['change_1m', 'change_1m_pct', 'low_1m', 'high_1m'])) > 0
+        is_get_change_mtd = len(set(fields) & set(['change_mtd', 'change_mtd_pct', 'low_mtd', 'high_mtd'])) > 0
+        is_get_change_ytd = len(set(fields) & set(['change_ytd', 'change_ytd_pct', 'low_ytd', 'high_ytd'])) > 0
+
+        if True in [is_get_change_5d, is_get_change_1m, is_get_change_mtd, is_get_change_ytd]:
+            def _get_quotes_or_ohclv(fn: str):
+                if fn == 'current_quotes':
+                    return self.tv.current_quotes(symbols, fields=fields)
+                elif fn == 'ohclv':
+                    _ohclv = self.ohclv(symbols=symbols,
+                                        freq='1D',
+                                        total_candles=252,
+                                        tzinfo='America/Chicago').reset_index()
+
+                    _ohclv['Date'] = _ohclv['Date'].dt.tz_localize(None)
+
+                    return _ohclv
+
+                return
+
+            quotes, ohclv = self.executor.map(_get_quotes_or_ohclv, ['current_quotes', 'ohclv'])
+        else:
+            quotes = self.tv.current_quotes(symbols, fields=fields)
 
         if return_single:
             quotes = {symbols: quotes}
@@ -79,41 +106,29 @@ class TradingViewProvider(DataProvider):
 
             rst[symbol] = quote
 
-        ohclv: pd.DataFrame = None
-        def _get_ohclv(ohclv: pd.DataFrame) -> pd.DataFrame:
-            if ohclv is None:
-                ohclv = self.ohclv(rst.keys(),
-                                   freq='1D',
-                                   total_candles=252).reset_index()
-            return ohclv
-
-        if set(fields) & set(['change_5d', 'change_5d_pct', 'low_5d', 'high_5d']):
-            ohclv = _get_ohclv(ohclv)
+        if is_get_change_5d:
             perf_dict = self.calc_perf(ohclv, '5D')
 
             for k, v in perf_dict.items():
                 rst[k] = rst[k].model_copy(update={_k: _v for _k, _v in v.items() if _k in fields})
 
-        if set(fields) & set(['change_1m', 'change_1m_pct', 'low_1m', 'high_1m']):
-            ohclv = _get_ohclv(ohclv)
+        if is_get_change_1m:
             perf_dict = self.calc_perf(ohclv, '1M')
 
             for k, v in perf_dict.items():
                 rst[k] = rst[k].model_copy(update={_k: _v for _k, _v in v.items() if _k in fields})
 
-        if set(fields) & set(['change_mtd', 'change_mtd_pct', 'low_mtd', 'high_mtd']):
-            ohclv = _get_ohclv(ohclv)
+        if is_get_change_mtd:
             perf_dict = self.calc_perf(ohclv, 'MTD')
 
             for k, v in perf_dict.items():
                 rst[k] = rst[k].model_copy(update={_k: _v for _k, _v in v.items() if _k in fields})
 
-        if set(fields) & set(['change_ytd', 'change_ytd_pct', 'low_ytd', 'high_ytd']):
-            ohclv = _get_ohclv(ohclv)
+        if is_get_change_ytd:
             perf_dict = self.calc_perf(ohclv, 'YTD')
 
             for k, v in perf_dict.items():
-                rst[k] = rst[k].model_copy(update=v)
+                rst[k] = rst[k].model_copy(update={_k: _v for _k, _v in v.items() if _k in fields})
 
         if return_single:
             return rst[symbols]

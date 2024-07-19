@@ -62,6 +62,10 @@ class TradingView:
             self._token = _get_auth_token(self.username, self.password)
         return self._token
 
+    @property
+    def executor(self) -> ThreadPoolExecutor:
+        return self._executor
+
     def current_quotes(self,
                        symbols: Union[str, List[str]],
                        fields: List[str] = None) -> Union[Dict[str, Any], Dict[str, Dict[str, Any]]]:
