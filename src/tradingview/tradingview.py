@@ -305,7 +305,7 @@ class TradingView:
         if isinstance(countries, list):
             params['countries'] = ','.join(countries)
 
-        resp = get(url, params=params, headers=headers, timeout=5)
+        resp = get(url, params=params, headers=headers, timeout=60)
 
         if resp.status_code != 200:
             raise ConnectionError(f'Client returns error "{resp.status_code} {resp.content}"')
@@ -339,7 +339,7 @@ class TradingView:
             'countback': 8,
         }
 
-        resp = get(url, params=params, headers=headers)
+        resp = get(url, params=params, headers=headers, timeout=60)
 
         if resp.status_code != 200:
             raise ConnectionError(f'Client returns error "{resp.status_code} {resp.content}"')

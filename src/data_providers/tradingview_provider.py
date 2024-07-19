@@ -3,6 +3,7 @@ from typing import Any, Dict, List, Union
 
 import pandas as pd
 import pytz
+from tenacity import retry, stop_after_attempt, wait_exponential
 
 from data_providers.data_provider import DataProvider
 from data_providers.enums import Adjustment
@@ -40,6 +41,8 @@ class TradingViewProvider(DataProvider):
 
         return rst
 
+
+    @retry(wait=wait_exponential(multiplier=1, min=4, max=10), stop=stop_after_attempt(3))
     def quotes(self,
                symbols: Union[str, List[str]],
                fields: List[str] = None) -> Union[Quote, Dict[str, Quote]]:
