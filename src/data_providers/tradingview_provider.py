@@ -59,12 +59,17 @@ class TradingViewProvider(DataProvider):
 
         fields = [Quote.fields_map().get(i, i) for i in fields or []]
 
+        is_get_change_24h = len(set(fields) & set(['change_24h', 'change_24h_pct', 'low_24h', 'high_24h'])) > 0
         is_get_change_5d = len(set(fields) & set(['change_5d', 'change_5d_pct', 'low_5d', 'high_5d'])) > 0
         is_get_change_1m = len(set(fields) & set(['change_1m', 'change_1m_pct', 'low_1m', 'high_1m'])) > 0
         is_get_change_mtd = len(set(fields) & set(['change_mtd', 'change_mtd_pct', 'low_mtd', 'high_mtd'])) > 0
         is_get_change_ytd = len(set(fields) & set(['change_ytd', 'change_ytd_pct', 'low_ytd', 'high_ytd'])) > 0
 
-        if True in [is_get_change_5d, is_get_change_1m, is_get_change_mtd, is_get_change_ytd]:
+        if True in [is_get_change_24h,
+                    is_get_change_5d,
+                    is_get_change_1m,
+                    is_get_change_mtd,
+                    is_get_change_ytd]:
             def _get_quotes_or_ohclv(fn: str):
                 if fn == 'current_quotes':
                     return self.tv.current_quotes(symbols, fields=fields)
@@ -105,6 +110,12 @@ class TradingViewProvider(DataProvider):
                 quote.source_logo_url = f'{__class__.STORAGE_BASE_URL}/{quote.source_logoid}--big.svg'
 
             rst[symbol] = quote
+
+        if is_get_change_24h:
+            perf_dict = self.calc_perf(ohclv, '24H')
+
+            for k, v in perf_dict.items():
+                rst[k] = rst[k].model_copy(update={_k: _v for _k, _v in v.items() if _k in fields})
 
         if is_get_change_5d:
             perf_dict = self.calc_perf(ohclv, '5D')
@@ -205,6 +216,7 @@ class TradingViewProvider(DataProvider):
 
         freq = freq.lower()
         freq_mapper = {
+            '24h': '24H',
             '5d': 5,
             '1m': 21,
             'mtd': 'M',
