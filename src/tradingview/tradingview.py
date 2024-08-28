@@ -396,7 +396,6 @@ def _parse_bar_charts(ws, sess_completed: Dict[str, Dict[str, bool]]) -> pd.Data
     symbol_dict: Dict[str, pd.DataFrame] = {}
     s_dict: Dict[str, pd.DataFrame] = {}
     st_dict: Dict[str, pd.DataFrame] = {}
-    aaa = {}
 
     while True:
         try:
@@ -424,7 +423,7 @@ def _parse_bar_charts(ws, sess_completed: Dict[str, Dict[str, bool]]) -> pd.Data
                     continue
 
                 if 'error' in m:
-                    raise ConnectionError(f'Client returns error "{m}", detail "{p[1]}"')
+                    raise ConnectionError(f'Client returns error "{m}", detail "{_segment_data}"')
 
                 p = _segment_data['p']
                 sess = p[0]
@@ -449,10 +448,6 @@ def _parse_bar_charts(ws, sess_completed: Dict[str, Dict[str, bool]]) -> pd.Data
                         s_dict[sess] = pd.concat([s_dict.get(sess), _df], axis=_axis)
 
                     if st is not None:
-                        if sess not in aaa:
-                            aaa[sess] = [_parse_study(st, series)]
-                        else:
-                            aaa[sess].append(_parse_study(st, series))
                         _df = _parse_study(st, name=series)
                         _df_exist = st_dict.get(sess, pd.DataFrame())
                         # concat by 'index' or 'columns'
