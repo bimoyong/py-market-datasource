@@ -3,15 +3,14 @@
 export WORK_DIR=$(dirname $(dirname $0))
 export GCLOUD_PROJECT=$(gcloud config get project)
 export GCLOUD_PROJECT_NUMBER=$(gcloud projects describe $GCLOUD_PROJECT --format="value(projectNumber)")
-export REGION=asia-southeast1
 export SERVICE_ACCOUNT=$(gcloud iam service-accounts list --filter="email ~ ^trading-strategy" --format='value(email)')
-export RUN_NAME=datasource
 export SRC=$(mktemp -d)
 export IMAGE=gcr.io/$GCLOUD_PROJECT/$RUN_NAME
 
 echo "Project ID: $GCLOUD_PROJECT"
 echo "Project Number: $GCLOUD_PROJECT_NUMBER"
 echo "Cloud Run Name: $RUN_NAME"
+
 read -p "Press enter to continue"
 
 (cd $WORK_DIR && cp -r src/. .gcloudignore cloudbuild.yml $SRC)
@@ -24,13 +23,14 @@ fi
 
 echo "Build Image $IMAGE..."
 (cd $SRC && gcloud builds submit $SRC \
+    --region $GCLOUD_REGION \
     --config cloudbuild.yml \
     --substitutions "_IMAGE=$IMAGE,_PORT=8080,_GIT_SSH_KEY=$GIT_SSH_KEY")
 
 echo "Deploy Cloud Run $RUN_NAME..."
 gcloud run deploy $RUN_NAME \
     --image $IMAGE \
-    --region $REGION \
+    --region $GCLOUD_REGION \
     --project $GCLOUD_PROJECT \
     --no-allow-unauthenticated \
     --memory 4096Mi \
@@ -40,15 +40,22 @@ gcloud run deploy $RUN_NAME \
     --set-env-vars "GCLOUD_PROJECT_NUMBER=$GCLOUD_PROJECT_NUMBER" \
     --service-account $SERVICE_ACCOUNT
 
-export SERVICE_URL=$(gcloud run services describe $RUN_NAME --platform managed --region $REGION --format 'value(status.url)')
+export SERVICE_URL=$(gcloud run services describe $RUN_NAME --platform managed --region $GCLOUD_REGION --format 'value(status.url)')
 
 SCHEDULER_NAME=$RUN_NAME-news-crawl
-echo "Check and create scheduler: $SCHEDULER_NAME..."
+if gcloud scheduler jobs update http $SCHEDULER_NAME \
+    --location $GCLOUD_REGION \
+    --schedule '0 * * * *' \
+    --time-zone America/Chicago \
+    --uri="$SERVICE_URL/v1/news/crawl-to-db?source=SeekingAlpha" \
+    --http-method GET \
+    --attempt-deadline 30m \
+    --oidc-service-account-email $SERVICE_ACCOUNT; then
 
-export SCHEDULER_NAME_FULL=$(gcloud scheduler jobs describe $SCHEDULER_NAME --location $REGION --format='value(name)')
-if [ "$SCHEDULER_NAME_FULL" != "projects/$GCLOUD_PROJECT/locations/$REGION/jobs/$SCHEDULER_NAME" ]; then
+    echo "Updated Scheduler $SCHEDULER_NAME successfully."
+else
     gcloud scheduler jobs create http $SCHEDULER_NAME \
-        --location $REGION \
+        --location $GCLOUD_REGION \
         --schedule '0 * * * *' \
         --time-zone America/Chicago \
         --uri="$SERVICE_URL/v1/news/crawl-to-db?source=SeekingAlpha" \
@@ -56,16 +63,23 @@ if [ "$SCHEDULER_NAME_FULL" != "projects/$GCLOUD_PROJECT/locations/$REGION/jobs/
         --attempt-deadline 30m \
         --oidc-service-account-email $SERVICE_ACCOUNT
 
-    echo "Created $SCHEDULER_NAME"
+    echo "Scheduler $JOB_NAME does not exist. Creating a new Scheduler..."
 fi
 
 SCHEDULER_NAME=$RUN_NAME-tick-data-download
-echo "Check and create scheduler: $SCHEDULER_NAME..."
+if gcloud scheduler jobs update http $SCHEDULER_NAME \
+    --location $GCLOUD_REGION \
+    --schedule '0 * * * *' \
+    --time-zone America/Chicago \
+    --uri="$SERVICE_URL/v1/tick_data/download_files_background?workers_no=8" \
+    --http-method GET \
+    --attempt-deadline 30m \
+    --oidc-service-account-email $SERVICE_ACCOUNT; then
 
-export SCHEDULER_NAME_FULL=$(gcloud scheduler jobs describe $SCHEDULER_NAME --location $REGION --format='value(name)')
-if [ "$SCHEDULER_NAME_FULL" != "projects/$GCLOUD_PROJECT/locations/$REGION/jobs/$SCHEDULER_NAME" ]; then
+    echo "Updated Scheduler $SCHEDULER_NAME successfully."
+else
     gcloud scheduler jobs create http $SCHEDULER_NAME \
-        --location $REGION \
+        --location $GCLOUD_REGION \
         --schedule '0 * * * *' \
         --time-zone America/Chicago \
         --uri="$SERVICE_URL/v1/tick_data/download_files_background?workers_no=8" \
@@ -73,5 +87,5 @@ if [ "$SCHEDULER_NAME_FULL" != "projects/$GCLOUD_PROJECT/locations/$REGION/jobs/
         --attempt-deadline 30m \
         --oidc-service-account-email $SERVICE_ACCOUNT
 
-    echo "Created $SCHEDULER_NAME"
+    echo "Scheduler $JOB_NAME does not exist. Creating a new Scheduler..."
 fi

@@ -2,16 +2,17 @@ version: '3.9'
 
 services:
   app:
-    image: gcr.io/${GCLOUD_PROJECT}/datasource:latest
-    container_name: datasource
+    image: gcr.io/${GCLOUD_PROJECT}/${RUN_NAME}:latest
+    container_name: ${RUN_NAME}
     restart: unless-stopped
     command: sh -c 'uvicorn main:app --host $$HOST --port $$PORT --reload'
     # command: 'tail -f /dev/null' # for test purpose
+    env_file: .env
     environment:
       - GCLOUD_PROJECT=${GCLOUD_PROJECT}
       - GOOGLE_APPLICATION_CREDENTIALS=/root/.config/gcloud/application_default_credentials.json
     ports:
       - '8080:8080'
     volumes:
-      - ~/.config/gcloud/application_default_credentials.json:/root/.config/gcloud/application_default_credentials.json
+      - ./service_accounts/service_account.json:/root/.config/gcloud/application_default_credentials.json
       - ./src:/app

@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='py_datasource',
-      version='1.0.8',
+      version='1.0.9',
       description='Interface with data from many data sources',
       url='https://github.com/TsevenSG/py-datasource',
       author='Trung',
