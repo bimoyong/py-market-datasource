@@ -155,19 +155,11 @@ class TradingView:
             [adjustment] * len(symbols),
         ]
 
-        ohclv_iter = list(self._executor.map(self.historical_charts, *args))
-
-        for symbol, frame in zip(symbols, ohclv_iter):
-            if frame.empty:
-                continue
-
-            frame.loc[:, 'Symbol'] = symbol
-
+        ohclv_iter = self._executor.map(self.historical_charts, *args)
         ohclv = pd.concat(ohclv_iter, axis=0)
-        ohclv.loc[:, 'Symbol'] = ohclv.Symbol.astype('string')
 
         if ohclv.empty:
-            ohclv = pd.DataFrame(columns=['timestamp_ts', 'Open', 'High', 'Low', 'Close', 'Volume', 'Symbol'])
+            ohclv = pd.DataFrame(columns=['Open', 'High', 'Low', 'Close', 'Volume'])
 
         return ohclv
 
@@ -191,28 +183,47 @@ class TradingView:
 
         df = pd.DataFrame()
         for i in batched(charts, 3):
-            data = self.historical_charts_chunk(symbol=symbol, interval=interval, total_candle=total_candle, charts=i, adjustment=adjustment)
+            data = self.ohclv(symbols=[symbol],
+                              freq=interval,
+                              total_candles=total_candle,
+                              charts=i,
+                              adjustment=adjustment)
             if df.empty:
                 df = data
             else:
                 df = pd.concat([df, data], axis=1).T.drop_duplicates().T
 
         if df.empty:
-            df = self.historical_charts_chunk(symbol=symbol, interval=interval, total_candle=total_candle, charts=[], adjustment=adjustment)
+            df = self.ohclv(symbols=[symbol],
+                            freq=interval,
+                            total_candles=total_candle,
+                            adjustment=adjustment)
 
         if df is None:
-            return pd.DataFrame()
+            return pd.DataFrame(columns=['Open', 'High', 'Low', 'Close', 'Volume'])
 
-        df['timestamp_ts'] = df['timestamp_ts'].astype(int)
-        df['volume'] = df['volume'].astype(int)
+        df.index.rename(inplace=True, names={'symbol': 'Symbol'})
+        df.rename(axis=1, inplace=True, mapper={'open': 'Open',
+                                                'high': 'High',
+                                                'low': 'Low',
+                                                'close': 'Close',
+                                                'volume': 'Volume'})
 
         return df
 
-    def historical_charts_chunk(self, symbol: str, interval: str, total_candle: int, charts: List[str], adjustment='dividends') -> pd.DataFrame:
+    def ohclv(self,
+              symbols: Union[str, List[str]],
+              freq: str,
+              total_candles: int,
+              charts: List[str] = None,
+              adjustment='dividends') -> pd.DataFrame:
+        symbols = [symbols] if isinstance(symbols, str) else symbols
+        total_candles += 1  # preserve 1 bar because TradingView returns less than 1 bar
+        charts = charts or []
+
         # create tunnel
         headers = json.dumps({'Origin': 'https://data.tradingview.com'})
         ws = create_connection(_WS_URL_, headers=headers)
-        sess = _generate_session('cs_')
 
         # Send messages
         if self.token:
@@ -220,18 +231,24 @@ class TradingView:
         else:
             _send_message(ws, 'set_auth_token', ['unauthorized_user_token'])
 
+        sess_ls = [_generate_session('cs_') for _ in symbols]
+        sess_completed = {i: [] for i in sess_ls}
+
         # Then send a message through the tunnel
         _send_message(ws, 'set_data_quality', ['high'])
-        _send_message(ws, 'chart_create_session', [sess, ''])
-        _send_message(ws, 'resolve_symbol', [sess, 'sds_sym_1', "={\"adjustment\":\"" + adjustment + "\",\"currency-id\":\"USD\",\"symbol\":\"" + symbol + "\"}"])
-        _send_message(ws, 'create_series', [sess, 's_ohclv', 's1', 'sds_sym_1', str(interval), total_candle, ""])
+        for i, (_symbol, _sess) in enumerate(zip(symbols, sess_ls)):
+            _send_message(ws, 'chart_create_session', [_sess, ''])
+            _send_message(ws, 'resolve_symbol', [_sess, f'sds_sym_{i}', "={\"adjustment\":\"" + adjustment + "\",\"currency-id\":\"USD\",\"symbol\":\"" + _symbol + "\"}"])
+            _send_message(ws, 'create_series', [_sess, f's_ohclv{i}', f's{i}', f'sds_sym_{i}', str(freq), total_candles, ""])
+            sess_completed = deep_update(sess_completed, {_sess: {f's_ohclv{i}': False}})
 
-        for chart in charts:
-            chart_setting = _CHARTS_SETTINGS[chart]
-            _send_message(ws, 'create_study', [sess, f's_{chart}', 'st1', 's_ohclv', *chart_setting])
+            for chart in charts:
+                chart_setting = _CHARTS_SETTINGS[chart]
+                _send_message(ws, 'create_study', [_sess, f's_{chart}', 'st1', f's_ohclv{i}', *chart_setting])
+                sess_completed = deep_update(sess_completed, {_sess: {f's_{chart}': False}})
 
         # Start job
-        df = _parse_bar_charts(ws, interval, series_num=1 + len(charts))
+        df = _parse_bar_charts(ws, sess_completed=sess_completed)
 
         return df
 
@@ -257,8 +274,8 @@ class TradingView:
                search_type: str = '',
                economic_category: str = '',
                start: int = 0) -> Union[None,
-                                    Dict[str, Any],
-                                    Dict[str, Union[int, List[Dict[str, Any]]]]]:
+                                        Dict[str, Any],
+                                        Dict[str, Union[int, List[Dict[str, Any]]]]]:
         # text = what you want to search!
         # search_type = 'stocks' | 'funds' | 'futures' | 'forex' | 'crypto' | 'index' | 'bond' | 'economic' | 'options'
         # country = 'US'
@@ -375,64 +392,86 @@ def _get_auth_token(username, password):
     return auth_token
 
 
-def _parse_bar_charts(ws, interval, series_num=1) -> pd.DataFrame:
-    data = {}
-    series_all = {}
+def _parse_bar_charts(ws, sess_completed: Dict[str, Dict[str, bool]]) -> pd.DataFrame:
+    symbol_dict: Dict[str, pd.DataFrame] = {}
+    s_dict: Dict[str, pd.DataFrame] = {}
+    st_dict: Dict[str, pd.DataFrame] = {}
+    aaa = {}
 
     while True:
         try:
-            result = ws.recv()
-            if not result or '"quote_completed"' in result or '"session_id"' in result:
+            msgs = ws.recv()
+
+            if re.findall(r'~m~\d+~m~~h~\d+', msgs):
+                _send_ping_packet(ws, msgs)
                 continue
 
-            # TODO: fix this tech dept, when send ping packet not right way
-            out = re.search('"s[_a-z0-9]*":\[(.+?)\}\]', result)
-            if not out:
-                continue
-            # TODO: fix this tech dept, when send ping packet not right way
-            out = out.group(1)
-            items = out.split(',{\"')
-            if len(items) == 0:
-                _send_ping_packet(ws, result)
+            if not msgs or '"session_id"' in msgs:
                 continue
 
-            series = find_series(result)
-            if not series:
-                continue
+            segments = filter(None, re.split(r'~m~\d+~m~', msgs))
 
-            series_all.update(series)
-            if len(series_all) < series_num:
-                continue
+            for segment in segments:
+                _segment_data: Dict[str, Any]
 
-            for k, v in series_all.items():
-                for i, bar in enumerate(v):
-                    timestamp, *_ = bar
+                try:
+                    _segment_data = json.loads(segment)
+                except json.JSONDecodeError:
+                    continue
 
-                    if timestamp not in data:
-                        data[timestamp] = {}
+                m = _segment_data.get('m')
+                if m is None:
+                    continue
 
-                    if k == 's_ohclv':
-                        cols = ['timestamp_ts', 'open', 'high', 'low', 'close', 'volume']
-                        data[timestamp].update(dict(zip(cols, bar)))
-                        if 'volume' not in data[timestamp]:
-                            data[timestamp]['volume'] = 0
-                    else:
-                        if k == 's_bbands20':  # TODO: remove this hard coding
-                            k_bbands = k.strip('s_')
-                            cols = ['timestamp_ts', f'{k_bbands}_middle', f'{k_bbands}_upper', f'{k_bbands}_lower']
+                if 'error' in m:
+                    raise ConnectionError(f'Client returns error "{m}", detail "{p[1]}"')
+
+                p = _segment_data['p']
+                sess = p[0]
+
+                if m == 'symbol_resolved':
+                    symbol_dict[sess] = p[2].get('pro_name')
+
+                if m in ['series_completed', 'study_completed']:
+                    sess_completed = deep_update(sess_completed, {sess: {p[1]: True}})
+
+                if isinstance(p[1], dict):
+                    series = list(p[1].keys())[0]
+
+                    s = p[1][series].get('s')
+                    st = p[1][series].get('st')
+
+                    if s is not None:
+                        _df = _parse_series(s)
+                        _df_exist = s_dict.get(sess, pd.DataFrame())
+                        # concat by 'index' or 'columns'
+                        _axis = {True: 1, False: 0}[bool(set(_df.columns) - set(_df_exist.columns))]
+                        s_dict[sess] = pd.concat([s_dict.get(sess), _df], axis=_axis)
+
+                    if st is not None:
+                        if sess not in aaa:
+                            aaa[sess] = [_parse_study(st, series)]
                         else:
-                            cols = ['timestamp_ts', k.strip('s_')]
-                        data[timestamp].update(dict(zip(cols, bar)))
+                            aaa[sess].append(_parse_study(st, series))
+                        _df = _parse_study(st, name=series)
+                        _df_exist = st_dict.get(sess, pd.DataFrame())
+                        # concat by 'index' or 'columns'
+                        _axis = {True: 1, False: 0}[bool(set(_df.columns) - set(_df_exist.columns))]
+                        st_dict[sess] = pd.concat([st_dict.get(sess), _df], axis=_axis)
 
-            df = pd.DataFrame(data.values())
+            if all([all(v.values()) for v in sess_completed.values()]):
+                dfs: List[pd.DataFrame] = []
+                for _sess, _symbol in symbol_dict.items():
+                    s = s_dict.get(_sess)
+                    st = st_dict.get(_sess)
+                    _df = pd.concat([s, st], axis=1)
+                    _df['symbol'] = _symbol
+                    _df = _df.reset_index().set_index(['timestamp', 'symbol'])
+                    dfs.append(_df)
 
-            for i in df.columns:
-                df[i] = df[i].astype(float)
+                df = pd.concat(dfs, axis=0)
 
-            df['timestamp_ts'] = df['timestamp_ts'].astype(int)
-            df['volume'] = df['volume'].astype(int)
-
-            return df
+                return df
         except KeyboardInterrupt:
             break
         except Exception as e:
@@ -597,3 +636,24 @@ def find_series_prefixes(pattern: str, string: str, s: slice) -> List[str]:
     '''
     prefixes = [i.group()[s] for i in re.finditer(f'{pattern}', string)]
     return prefixes
+
+
+def _parse_series(data: List[Dict[str, Union[int, List[float]]]]) -> pd.DataFrame:
+    data_filter = filter(lambda x: x.get('i') > 0, data)
+    data = list(map(lambda x: x.get('v'), data_filter))
+    df = pd.DataFrame(data).set_index(0).rename_axis('timestamp', axis=0)
+    df.index = pd.to_datetime(df.index, unit='s', utc=True)
+    df.columns = ['open', 'high', 'low', 'close', 'volume']
+    return df
+
+
+def _parse_study(data: List[Dict[str, Union[int, List[float]]]], name: str) -> pd.DataFrame:
+    data_filter = filter(lambda x: x.get('i') > 0, data)
+    data = list(map(lambda x: x.get('v'), data_filter))
+    df = pd.DataFrame(data).set_index(0).rename_axis('timestamp', axis=0)
+    df.index = pd.to_datetime(df.index, unit='s', utc=True)
+    df.columns = {
+        True: [f'{name.removeprefix("s_")}_{i}' for i in df.columns],
+        False:  [f'{name.removeprefix("s_")}' for i in df.columns],
+    }[len(df.columns) > 1]
+    return df

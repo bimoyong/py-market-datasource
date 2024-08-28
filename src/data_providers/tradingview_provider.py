@@ -159,31 +159,20 @@ class TradingViewProvider(DataProvider):
         if isinstance(tzinfo, str):
             tzinfo = pytz.timezone(tzinfo)
 
-        total_candles += 1  # preserve 1 bar because TradingView returns less than 1 bar
-
-        ohclv = self.tv.historical_multi_symbols(symbols=symbols,
-                                                 interval=freq,
-                                                 total_candle=total_candles,
-                                                 charts=charts,
-                                                 adjustment=adjustment.value)
-
-        cols_map = {
-            'timestamp': 'Date',
-            'open': 'Open',
-            'high': 'High',
-            'low': 'Low',
-            'close': 'Close',
-            'volume': 'Volume',
-        }
+        ohclv = self.tv.ohclv(symbols=symbols,
+                              freq=freq,
+                              total_candles=total_candles,
+                              charts=charts,
+                              adjustment=adjustment.value)
 
         ohclv = set_index_by_timestamp(ohclv, tzinfo)
-
-        ohclv.index.name = cols_map.get(ohclv.index.name, ohclv.index.name)
-        ohclv.columns = [cols_map.get(c, c) for c in ohclv.columns]
-
-        ohclv = ohclv \
-            .drop(['timestamp_ts'], axis=1, errors='ignore') \
-            .reset_index().set_index(['Date', 'Symbol'])
+        ohclv.index.rename(inplace=True, names={'timestamp': 'Date',
+                                                'symbol': 'Symbol'})
+        ohclv.rename(axis=1, inplace=True, mapper={'open': 'Open',
+                                                   'high': 'High',
+                                                   'low': 'Low',
+                                                   'close': 'Close',
+                                                   'volume': 'Volume'})
 
         return ohclv
 
