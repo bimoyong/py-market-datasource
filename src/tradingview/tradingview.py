@@ -643,7 +643,7 @@ def _parse_series(data: List[Dict[str, Union[int, List[float]]]]) -> pd.DataFram
     data = list(map(lambda x: x.get('v'), data_filter))
     df = pd.DataFrame(data).set_index(0).rename_axis('timestamp', axis=0)
     df.index = pd.to_datetime(df.index, unit='s', utc=True)
-    df.columns = ['open', 'high', 'low', 'close', 'volume']
+    df.columns = ['open', 'high', 'low', 'close', 'volume'][:len(df.columns)]
     return df
 
 
