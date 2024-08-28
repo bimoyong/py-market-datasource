@@ -465,7 +465,8 @@ def _parse_bar_charts(ws, sess_completed: Dict[str, Dict[str, bool]]) -> pd.Data
                     s = s_dict.get(_sess)
                     st = st_dict.get(_sess)
                     _df = pd.concat([s, st], axis=1)
-                    _df['symbol'] = pd.Series([_symbol] * len(_df), dtype='string')
+                    _df['symbol'] = [_symbol] * len(_df)
+                    _df['symbol'] = _df['symbol'].astype('string')
                     _df = _df.reset_index().set_index(['timestamp', 'symbol'])
                     dfs.append(_df)
 
