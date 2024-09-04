@@ -44,6 +44,7 @@ class SeekingAlpha(NewsProvider):
         return self._executor
 
     def crawl(self,
+              symbol: str = None,
               category: Union[BaseCategory, List[BaseCategory]] = None,
               from_date: datetime = None,
               to_date: datetime = None,
@@ -62,7 +63,8 @@ class SeekingAlpha(NewsProvider):
             try:
                 time.sleep(self.THROTTLING_SECONDS)
 
-                paging = self.list(category=category,
+                paging = self.list(symbol=symbol,
+                                   category=category,
                                    from_date=from_date,
                                    to_date=to_date,
                                    items_per_page=items_per_page,
@@ -97,6 +99,7 @@ class SeekingAlpha(NewsProvider):
         return paging_sum
 
     def list(self,
+             symbol: str = None,
              category: Union[BaseCategory, List[BaseCategory]] = None,
              from_date: datetime = None,
              to_date: datetime = None,
@@ -241,13 +244,16 @@ class SeekingAlpha(NewsProvider):
             return None
 
         if return_html:
-            html = soup_article.prettify()
+            html = str(soup_article)
 
             return html
 
         for img in (imgs := soup_article.find_all('img', {'src': re.compile('.png')})):
             img.replace_with(f"{img.get('src')}\n")
 
-        txt = soup_article.get_text()
+        for img in (imgs := soup_article.find_all('img', {'src': re.compile('.jpeg')})):
+            img.replace_with(f"{img.get('src')}\n")
+
+        txt = soup_article.get_text(separator='\n')
 
         return txt

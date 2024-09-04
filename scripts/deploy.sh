@@ -1,6 +1,10 @@
 #!/bin/bash
 
-export WORK_DIR=$(dirname $(dirname $0))
+export WORK_DIR=$(dirname $(dirname $(realpath $0)))
+
+[ -f $WORK_DIR/.env ] && source $WORK_DIR/.env
+echo "Ingest environment variables done!"
+
 export GCLOUD_PROJECT=$(gcloud config get project)
 export GCLOUD_PROJECT_NUMBER=$(gcloud projects describe $GCLOUD_PROJECT --format="value(projectNumber)")
 export SERVICE_ACCOUNT=$(gcloud iam service-accounts list --filter="email ~ ^trading-strategy" --format='value(email)')
@@ -13,7 +17,11 @@ echo "Cloud Run Name: $RUN_NAME"
 
 read -p "Press enter to continue"
 
-(cd $WORK_DIR && cp -r src/. .gcloudignore cloudbuild.yml $SRC)
+(cd $WORK_DIR && cp -r \
+    src/. \
+    .gcloudignore \
+    cloudbuild.yml \
+    $SRC)
 echo "Copying source to $SRC... done!"
 ls -la $SRC
 

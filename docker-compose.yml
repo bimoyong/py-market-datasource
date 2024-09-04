@@ -1,5 +1,3 @@
-version: '3.9'
-
 services:
   app:
     image: gcr.io/${GCLOUD_PROJECT}/${RUN_NAME}:latest
@@ -9,7 +7,6 @@ services:
     # command: 'tail -f /dev/null' # for test purpose
     env_file: .env
     environment:
-      - GCLOUD_PROJECT=${GCLOUD_PROJECT}
       - GOOGLE_APPLICATION_CREDENTIALS=/root/.config/gcloud/application_default_credentials.json
     ports:
       - '8080:8080'

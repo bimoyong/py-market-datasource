@@ -63,6 +63,7 @@ async def crawl_to_db(source: str = Query(None),
             response_model_exclude_none=True)
 @inject
 async def crawl(source: str = Query(None),
+                symbol: str = Query(None),
                 category: Category = Query(Category.ALL),
                 from_date: datetime = Query(None),
                 to_date: datetime = Query(None),
@@ -70,7 +71,8 @@ async def crawl(source: str = Query(None),
                 selector: ProviderSelector = Depends(Provide[Container.source_selector])):
     provider = selector.sources[source]
 
-    resp = provider.crawl(category=category,
+    resp = provider.crawl(symbol=symbol,
+                          category=category,
                           from_date=from_date,
                           to_date=to_date,
                           items_per_page=items_per_page)
@@ -83,6 +85,7 @@ async def crawl(source: str = Query(None),
             response_model_exclude_none=True)
 @inject
 async def list(source: str = Depends(validate_source),
+               symbol: str = Query(None),
                category: Category = Query(None),
                from_date: datetime = Query(None),
                to_date: datetime = Query(None),
@@ -91,7 +94,8 @@ async def list(source: str = Depends(validate_source),
                selector: ProviderSelector = Depends(Provide[Container.source_selector])):
     provider = selector.sources[source]
 
-    resp = provider.list(category=category,
+    resp = provider.list(symbol=symbol,
+                         category=category,
                          from_date=from_date,
                          to_date=to_date,
                          items_per_page=items_per_page,

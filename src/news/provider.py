@@ -81,6 +81,7 @@ WHERE
 
     @abstractmethod
     def crawl(self,
+              symbol: str = None,
               category: Union[Category, List[Category]] = None,
               from_date: datetime = None,
               to_date: datetime = None,
@@ -89,6 +90,7 @@ WHERE
 
     @abstractmethod
     def list(self,
+             symbol: str = None,
              category: Union[Category, List[Category]] = None,
              from_date: datetime = None,
              to_date: datetime = None,

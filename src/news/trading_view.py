@@ -1,3 +1,4 @@
+import re
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime
 from os.path import join
@@ -28,40 +29,44 @@ class TradingView(NewsProvider):
         return self._executor
 
     def crawl(self,
+              symbol: str = None,
               category: Union[BaseCategory, List[BaseCategory]] = None,
               from_date: datetime = None,
               to_date: datetime = None,
               items_per_page: int = 10) -> Paging:
 
-        paging = self.list(category=category,
+        paging = self.list(symbol=symbol,
+                           category=category,
                            from_date=from_date,
                            to_date=to_date,
                            items_per_page=items_per_page)
 
         news_ls: List[News] = paging.data
-        links = [i.source_id for i in news_ls]
-        details = list(self.executor.map(self._detail, links))
+        ids = [i.source_id for i in news_ls]
+        links = [i.link for i in news_ls]
+        details = list(self.executor.map(self._detail, ids))
+        htmls = list(self.executor.map(self.detail, links))
 
         for i, news in enumerate(news_ls):
             if not isinstance(details[i], dict):
                 continue
 
-            news.description = details[i].get('shortDescription')
+            if not isinstance(htmls[i], str):
+                continue
 
-            html = self._json_to_html(details[i].get('astDescription'))
-            news.html = self._parse_detail(html)
-            news.text = self._parse_detail(html, return_html=False)
+            news.description = details[i].get('shortDescription')
+            news.html = htmls[i]
+            news.text = self._parse_detail(htmls[i], return_html=False)
 
         return paging
 
     def list(self,
+             symbol: str = None,
              category: Union[BaseCategory, List[BaseCategory]] = None,
              from_date: datetime = None,
              to_date: datetime = None,
              items_per_page: int = 10,
              page_number: int = 1) -> Paging:
-        symbol = category
-
         url = join(self.BASE_URL, 'v2/headlines')
 
         params = {
@@ -74,8 +79,8 @@ class TradingView(NewsProvider):
             **self.HEADERS,
         }
 
-        resp = requests.request('GET', url, params=params, headers=headers,
-                                timeout=self.TIMEOUT)
+        resp = requests.get(url, params=params, headers=headers,
+                            timeout=self.TIMEOUT)
 
         data: Dict[str, Union[Dict[str, Any], Any]] = resp.json()
 
@@ -89,11 +94,9 @@ class TradingView(NewsProvider):
     def detail(self,
                url: str,
                return_html: bool = True) -> str:
-        url_path = url.removeprefix(f'{self.BASE_URL_WEB}/news/')
+        resp = requests.get(url, headers=self.HEADERS, timeout=self.TIMEOUT)
 
-        data = self._detail(url_path[:url_path.find('-')])
-
-        html = self._json_to_html(data.get('astDescription', {}))
+        html = resp.text
 
         rst = self._parse_detail(html=html, return_html=return_html)
 
@@ -111,8 +114,8 @@ class TradingView(NewsProvider):
             'lang': 'en',
         }
 
-        resp = requests.request('GET', url, headers=headers, params=params,
-                                timeout=self.TIMEOUT)
+        resp = requests.get(url, params=params, headers=headers,
+                            timeout=self.TIMEOUT)
 
         data: Dict[str, Union[Dict[str, Any], Any]] = resp.json()
 
@@ -135,10 +138,9 @@ class TradingView(NewsProvider):
 
             news_ls.append(news)
 
-        metadata = data.get('meta', {}).get('page', {})
-        size = metadata.get('size')
-        total_pages = metadata.get('totalPages')
-        total = metadata.get('total')
+        size = len(news_ls)
+        total_pages = 1
+        total = len(news_ls)
 
         timestamp_min: datetime = None
         timestamp_max: datetime = None
@@ -159,56 +161,21 @@ class TradingView(NewsProvider):
                       return_html: bool = True) -> str:
         soup = BeautifulSoup(html, 'html.parser')
 
+        soup_article = soup.find('article')
+        if not soup_article:
+            return None
+
         if return_html:
-            return soup.prettify()
-
-        txt = soup.get_text(separator='\n')
-
-        return txt
-
-    def _json_to_html(self, json_data: Dict[str, Union[Dict[str, Any], Any]]):
-        '''
-        Function to convert JSON to HTML using custom mapping
-        '''
-
-        # Custom mapping from JSON types to HTML tags
-        type_to_tag = {
-            'root': 'div',           # Use a 'div' or a different container element
-            'p': 'p',
-            'table': 'table',
-            'table-body': 'tbody',
-            'table-row': 'tr',
-            'table-data-cell': 'td',
-            'text': None,            # Handle text nodes separately
-        }
-
-        def convert_node(node):
-            if isinstance(node, str):
-                return node
-
-            # Get the tag based on the type
-            # Default to 'div' if type is unknown
-            tag = type_to_tag.get(node['type'], 'html')
-
-            # Handle text nodes (no wrapping tag)
-            if node['type'] == 'text':
-                return node.get('text', '')
-
-            # Start the HTML tag
-            if tag:
-                html = f'<{tag}>'
-            else:
-                html = ''
-
-            # Process children nodes recursively
-            if 'children' in node:
-                for child in node['children']:
-                    html += convert_node(child)
-
-            # Close the HTML tag if necessary
-            if tag:
-                html += f'</{tag}>'
+            html = str(soup_article)
 
             return html
 
-        return convert_node(json_data)
+        for img in (imgs := soup_article.find_all('img', {'src': re.compile('.png')})):
+            img.replace_with(f"{img.get('src')}\n")
+
+        for img in (imgs := soup_article.find_all('img', {'src': re.compile('.jpeg')})):
+            img.replace_with(f"{img.get('src')}\n")
+
+        txt = soup_article.get_text(separator='\n')
+
+        return txt
