@@ -1,0 +1,788 @@
+{
+    "shortDescription": "The following table shows rates for Asian currencies against the dollar at 0203 GMT.",
+    "astDescription": {
+        "type": "root",
+        "children": [
+            {
+                "type": "p",
+                "children": [
+                    "The following table shows rates for Asian currencies against the dollar at 0203 GMT."
+                ]
+            },
+            {
+                "type": "table",
+                "children": [
+                    {
+                        "type": "table-body",
+                        "children": [
+                            {
+                                "type": "table-row",
+                                "children": [
+                                    {
+                                        "type": "table-data-cell",
+                                        "params": { "colspan": 2 },
+                                        "children": [
+                                            {
+                                                "type": "p",
+                                                "children": ["CURRENCIES VS U.S. DOLLAR"]
+                                            }
+                                        ]
+                                    },
+                                    { "type": "table-data-cell", "children": [] },
+                                    { "type": "table-data-cell", "children": [] },
+                                    {
+                                        "type": "table-data-cell",
+                                        "params": { "hidden": true }
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "table-row",
+                                "children": [
+                                    {
+                                        "type": "table-data-cell",
+                                        "params": { "colspan": 2 }
+                                    },
+                                    { "type": "table-data-cell", "children": [] },
+                                    { "type": "table-data-cell", "children": [] },
+                                    {
+                                        "type": "table-data-cell",
+                                        "params": { "hidden": true }
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "table-row",
+                                "children": [
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["Currency"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["Latest bid"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["Previous day"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["Pct Move"] }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "table-row",
+                                "children": [
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["Japan yen"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["145.390"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["145.47"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["+0.06"] }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "table-row",
+                                "children": [
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["Sing dlr"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["1.307"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["1.3071"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["-0.02"] }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "table-row",
+                                "children": [
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["Taiwan dlr"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["32.141"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["32.062"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["-0.25"] }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "table-row",
+                                "children": [
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["Korean won"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["1341.600"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["1345.4"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["+0.28"] }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "table-row",
+                                "children": [
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["Baht"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["34.275"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["34.26"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["-0.04"] }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "table-row",
+                                "children": [
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["Peso"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["56.600"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["56.5"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["-0.18"] }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "table-row",
+                                "children": [
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["Rupiah"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["15530.000"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["15520"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["-0.06"] }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "table-row",
+                                "children": [
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["Rupee"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["83.968"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["83.9675"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["0.00"] }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "table-row",
+                                "children": [
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["Ringgit"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["4.350"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["4.365"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["+0.34"] }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "table-row",
+                                "children": [
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["Yuan"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["7.116"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["7.1204"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["+0.06"] }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "table-row",
+                                "children": [
+                                    {
+                                        "type": "table-data-cell",
+                                        "params": { "colspan": 2 },
+                                        "children": [
+                                            {
+                                                "type": "p",
+                                                "children": ["Change so far in 2024"]
+                                            }
+                                        ]
+                                    },
+                                    { "type": "table-data-cell", "children": [] },
+                                    { "type": "table-data-cell", "children": [] },
+                                    {
+                                        "type": "table-data-cell",
+                                        "params": { "hidden": true }
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "table-row",
+                                "children": [
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["Currency"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["Latest bid"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["End 2023"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["Pct Move"] }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "table-row",
+                                "children": [
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["Japan yen"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["145.390"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["141.060"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["-2.98"] }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "table-row",
+                                "children": [
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["Sing dlr"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["1.307"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["1.319"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["+0.90"] }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "table-row",
+                                "children": [
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["Taiwan dlr"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["32.141"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["30.735"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["-4.37"] }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "table-row",
+                                "children": [
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["Korean won"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["1341.600"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["1288.000"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["-4.00"] }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "table-row",
+                                "children": [
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["Baht"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["34.275"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["34.165"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["-0.32"] }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "table-row",
+                                "children": [
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["Peso"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["56.600"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["55.388"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["-2.14"] }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "table-row",
+                                "children": [
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["Rupiah"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["15530.000"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["15395.000"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["-0.87"] }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "table-row",
+                                "children": [
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["Rupee"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["83.968"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["83.208"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["-0.91"] }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "table-row",
+                                "children": [
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["Ringgit"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["4.350"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["4.590"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["+5.52"] }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "table-row",
+                                "children": [
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["Yuan"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["7.116"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["7.098"] }
+                                        ]
+                                    },
+                                    {
+                                        "type": "table-data-cell",
+                                        "children": [
+                                            { "type": "p", "children": ["-0.25"] }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "language": "en",
+    "tags": [
+        { "title": "Indices", "args": [{ "id": "category", "value": "index" }] },
+        {
+            "title": "Markets today",
+            "args": [{ "id": "section", "value": "markets_today" }]
+        },
+        { "title": "Reuters", "args": [{ "id": "provider", "value": "reuters" }] }
+    ],
+    "copyright": "Copyright Thomson Reuters 2024. Click For Restrictions - https://agency.reuters.com/en/copyright.html",
+    "id": "tag:reuters.com,2024:newsml_L1N3KM01T:0",
+    "title": "Malaysian ringgit, South Korean won gain among mixed Asian currencies",
+    "provider": "reuters",
+    "sourceLogoId": "reuters",
+    "published": 1725415610,
+    "source": "Reuters",
+    "urgency": 2,
+    "permission": "preview",
+    "relatedSymbols": [
+        {
+            "symbol": "FX_IDC:USDIDR",
+            "currency-logoid": "country/ID",
+            "base-currency-logoid": "country/US"
+        },
+        { "symbol": "HOSE:VNINDEX", "logoid": "indices/vietnam-index" },
+        { "symbol": "ICEUS:DXY", "logoid": "indices/u-s-dollar-index" },
+        {
+            "symbol": "FX_IDC:USDINR",
+            "currency-logoid": "country/IN",
+            "base-currency-logoid": "country/US"
+        },
+        { "symbol": "KRX:KOSPI", "logoid": "indices/korea-composite-index" },
+        {
+            "symbol": "FX_IDC:USDKRW",
+            "currency-logoid": "country/KR",
+            "base-currency-logoid": "country/US"
+        },
+        { "symbol": "FTSEMYX:FBMKLCI", "logoid": "indices/ftse-bursa-malaysia" },
+        { "symbol": "PSE:PSEI" },
+        { "symbol": "FTSEST:STI", "logoid": "indices/sti-index" },
+        {
+            "symbol": "FX_IDC:USDMYR",
+            "currency-logoid": "country/MY",
+            "base-currency-logoid": "country/US"
+        },
+        {
+            "symbol": "FX_IDC:USDPHP",
+            "currency-logoid": "country/PH",
+            "base-currency-logoid": "country/US"
+        },
+        {
+            "symbol": "FX_IDC:USDSGD",
+            "currency-logoid": "country/SG",
+            "base-currency-logoid": "country/US"
+        },
+        {
+            "symbol": "FX_IDC:USDTHB",
+            "currency-logoid": "country/TH",
+            "base-currency-logoid": "country/US"
+        },
+        {
+            "symbol": "FX_IDC:USDVND",
+            "currency-logoid": "country/VN",
+            "base-currency-logoid": "country/US"
+        },
+        { "symbol": "IDX:COMPOSITE", "logoid": "indices/jakarta-composite-index" },
+        { "symbol": "SET:SET", "logoid": "indices/set" }
+    ],
+    "storyPath": "/news/reuters.com,2024:newsml_L1N3KM01T:0-malaysian-ringgit-south-korean-won-gain-among-mixed-asian-currencies/"
+}

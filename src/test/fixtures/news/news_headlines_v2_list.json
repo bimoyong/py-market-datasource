@@ -1,0 +1,4092 @@
+{
+    "items": [
+        {
+            "id": "tag:reuters.com,2024:newsml_L8N3KM0BA:0",
+            "title": "Prices slip on steady Norway gas flows, full storage",
+            "provider": "reuters",
+            "sourceLogoId": "reuters",
+            "published": 1725437788,
+            "source": "Reuters",
+            "urgency": 2,
+            "permission": "preview",
+            "relatedSymbols": [
+                {
+                    "symbol": "ALOR:GAZP",
+                    "logoid": "gazprom"
+                }
+            ],
+            "storyPath": "/news/reuters.com,2024:newsml_L8N3KM0BA:0-prices-slip-on-steady-norway-gas-flows-full-storage/"
+        },
+        {
+            "id": "DJN_DN20240904001676:0",
+            "title": "China Banks' Retail Loan Books Likely to Remain Under Pressure — Market Talk",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725437760,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "SSE:601988",
+                    "logoid": "bank-of-china"
+                },
+                {
+                    "symbol": "SSE:601398",
+                    "logoid": "industrial-and-commercial-bank-of-china"
+                },
+                {
+                    "symbol": "SSE:601328",
+                    "logoid": "bank-of-communications"
+                },
+                {
+                    "symbol": "SSE:601939",
+                    "logoid": "china-construction-bank"
+                },
+                {
+                    "symbol": "SSE:601288",
+                    "logoid": "agricultural-bank-of-china"
+                }
+            ],
+            "storyPath": "/news/DJN_DN20240904001676:0/"
+        },
+        {
+            "id": "tag:reuters.com,2024:newsml_L8N3KM0DV:0",
+            "title": "Ugly open for Europe",
+            "provider": "reuters",
+            "sourceLogoId": "reuters",
+            "published": 1725437734,
+            "source": "Reuters",
+            "urgency": 2,
+            "permission": "preview",
+            "relatedSymbols": [
+                {
+                    "symbol": "EURONEXT:ASML",
+                    "logoid": "asml"
+                },
+                {
+                    "symbol": "NASDAQ:NVDA",
+                    "logoid": "nvidia"
+                },
+                {
+                    "symbol": "LSE:AZN",
+                    "logoid": "astrazeneca"
+                },
+                {
+                    "symbol": "TVC:SXXP",
+                    "logoid": "indices/stoxx-600"
+                },
+                {
+                    "symbol": "XETR:DAX",
+                    "logoid": "indices/dax"
+                },
+                {
+                    "symbol": "EURONEXT:PX1",
+                    "logoid": "indices/cac-40"
+                },
+                {
+                    "symbol": "TVC:VIX",
+                    "logoid": "country/US"
+                },
+                {
+                    "symbol": "TVC:SX5E",
+                    "logoid": "indices/euro-stoxx-50"
+                },
+                {
+                    "symbol": "CURRENCYCOM:UK100",
+                    "logoid": "indices/uk-100"
+                }
+            ],
+            "storyPath": "/news/reuters.com,2024:newsml_L8N3KM0DV:0-ugly-open-for-europe/"
+        },
+        {
+            "id": "DJN_DN20240904001672:0",
+            "title": "Barratt Gives Peers a Head Start Pending Acquisition's Regulatory Approval — Market Talk",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725437700,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "LSE:BDEV",
+                    "logoid": "barratt-developments"
+                }
+            ],
+            "storyPath": "/news/DJN_DN20240904001672:0/"
+        },
+        {
+            "id": "DJN_DN20240904001664:0",
+            "title": "Telia's Restructuring Plan Could Slightly Improve Financial Resilience — Market Talk",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725437580,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "OMXSTO:TELIA",
+                    "logoid": "telia-company-ab"
+                }
+            ],
+            "storyPath": "/news/DJN_DN20240904001664:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2410104:0",
+            "title": "Italian Private Sector Growth Continues in August Despite Service Sector Slowdown",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725437566,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "TVC:SXXP",
+                    "logoid": "indices/stoxx-600"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2410104:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2410105:0",
+            "title": "LFE Mulls Private Placement of Shares",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725437558,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "MYX:LFECORP"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2410105:0/"
+        },
+        {
+            "id": "tag:reuters.com,2024:newsml_L1N3KM05L:0",
+            "title": "Stocks tumble as market leaders turn losers",
+            "provider": "reuters",
+            "sourceLogoId": "reuters",
+            "published": 1725437481,
+            "source": "Reuters",
+            "urgency": 2,
+            "permission": "preview",
+            "relatedSymbols": [
+                {
+                    "symbol": "TVC:NI225",
+                    "logoid": "indices/nikkei-225"
+                },
+                {
+                    "symbol": "KRX:KOSPI",
+                    "logoid": "indices/korea-composite-index"
+                },
+                {
+                    "symbol": "TWSE:TAIEX",
+                    "logoid": "indices/taiex"
+                },
+                {
+                    "symbol": "XETR:DB1",
+                    "logoid": "deutsche-boerse-na-o-n"
+                },
+                {
+                    "symbol": "ASX:XJO",
+                    "logoid": "indices/asx-200"
+                },
+                {
+                    "symbol": "CURRENCYCOM:UK100",
+                    "logoid": "indices/uk-100"
+                },
+                {
+                    "symbol": "HSI:HSI",
+                    "logoid": "indices/hang-seng"
+                }
+            ],
+            "storyPath": "/news/reuters.com,2024:newsml_L1N3KM05L:0-stocks-tumble-as-market-leaders-turn-losers/"
+        },
+        {
+            "id": "DJN_DN20240904001652:0",
+            "title": "Base Metals Fall; Copper Leads Slump After Analysts Trim Demand Expectations — Market Talk",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725437460,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "COMEX:HG1!",
+                    "logoid": "metal/copper"
+                },
+                {
+                    "symbol": "CAPITALCOM:COPPER",
+                    "logoid": "metal/copper"
+                },
+                {
+                    "symbol": "MCX:COPPER1!",
+                    "logoid": "metal/copper"
+                }
+            ],
+            "storyPath": "/news/DJN_DN20240904001652:0/"
+        },
+        {
+            "id": "DJN_DN20240904001651:0",
+            "title": "Gold Futures Slip in Wider Market Selloff — Market Talk",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725437460,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "storyPath": "/news/DJN_DN20240904001651:0/"
+        },
+        {
+            "id": "DJN_DN20240904001634:0",
+            "title": "Heard on the Street Recap: September Swoon — WSJ",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725437340,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "storyPath": "/news/DJN_DN20240904001634:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2410109:0",
+            "title": "Careium Names New Chief Technology Officer",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725437309,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "OMXSTO:CARE"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2410109:0/"
+        },
+        {
+            "id": "DJN_DN20240904001619:0",
+            "title": "Barratt's Return to Growth Might Take Another Year — Market Talk",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725437280,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "LSE:BDEV",
+                    "logoid": "barratt-developments"
+                }
+            ],
+            "storyPath": "/news/DJN_DN20240904001619:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2410103:0",
+            "title": "ST Group Food Industries Buys Back More Shares",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725437252,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "SGX:DRX"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2410103:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2410099:0",
+            "title": "Wellcall to Buy Three Industrial Land Plots for MYR32 Million",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725437225,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "MYX:WELLCAL",
+                    "logoid": "wellcall-bhd"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2410099:0/"
+        },
+        {
+            "id": "tag:reuters.com,2024:newsml_L1N3KM03A:0",
+            "title": "Dalian iron ore closes at lowest in more than a year on weak Chinese steel outlook",
+            "provider": "reuters",
+            "sourceLogoId": "reuters",
+            "published": 1725437124,
+            "source": "Reuters",
+            "urgency": 2,
+            "permission": "preview",
+            "relatedSymbols": [
+                {
+                    "symbol": "COMEX:TIO1!",
+                    "logoid": "metal/iron"
+                },
+                {
+                    "symbol": "SGX:RBF1!",
+                    "logoid": "metal/steel"
+                },
+                {
+                    "symbol": "COMEX:EHR1!",
+                    "logoid": "metal/steel"
+                },
+                {
+                    "symbol": "COMEX:HRC1!",
+                    "logoid": "commodity/ferrous"
+                },
+                {
+                    "symbol": "NYMEX:ACT1!"
+                }
+            ],
+            "storyPath": "/news/reuters.com,2024:newsml_L1N3KM03A:0-dalian-iron-ore-closes-at-lowest-in-more-than-a-year-on-weak-chinese-steel-outlook/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2410095:0",
+            "title": "South Korean Shares Plunge on Overnight Wall Street Losses; Samsung Loses 3%, SK Hynix 8%",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725437007,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "relatedSymbols": [
+                {
+                    "symbol": "KRX:005930",
+                    "logoid": "samsung"
+                },
+                {
+                    "symbol": "KRX:000660",
+                    "logoid": "sk-telecom"
+                },
+                {
+                    "symbol": "KRX:005490",
+                    "logoid": "posco"
+                },
+                {
+                    "symbol": "SZSE:300435",
+                    "logoid": "hangzhou-zhongtai"
+                },
+                {
+                    "symbol": "KRX:KOSPI",
+                    "logoid": "indices/korea-composite-index"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2410095:0-south-korean-shares-plunge-on-overnight-wall-street-losses-samsung-loses-3-sk-hynix-8/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2410096:0",
+            "title": "Yung Chi Paint & Varnish Faces NT$2 Million Fine Over Environmental Violations",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725436847,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "TWSE:1726"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2410096:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2410090:0",
+            "title": "Arab Sea Information Systems Lands SAR14 Million Deal for IT Services",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725436787,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "TADAWUL:7201",
+                    "logoid": "arab-sea-information-system-co"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2410090:0/"
+        },
+        {
+            "id": "moneycontrol:85be56cb3094b:0",
+            "title": "UPL stock rises as firm to explore unlocking value in Advanta by raising funds",
+            "provider": "moneycontrol",
+            "sourceLogoId": "moneycontrol",
+            "published": 1725436706,
+            "source": "Moneycontrol",
+            "urgency": 2,
+            "link": "https://www.moneycontrol.com/news/business/markets/upl-stock-rises-as-firm-to-explore-unlocking-value-in-advanta-by-raising-funds-12814216.html",
+            "relatedSymbols": [
+                {
+                    "symbol": "NSE:UPL",
+                    "logoid": "upl"
+                }
+            ],
+            "storyPath": "/news/moneycontrol:85be56cb3094b:0-upl-stock-rises-as-firm-to-explore-unlocking-value-in-advanta-by-raising-funds/"
+        },
+        {
+            "id": "tag:reuters.com,2024:newsml_B9N3I902E:0",
+            "title": "SK Hynix says HBM3E 12-layer chips to start mass production this month",
+            "provider": "reuters",
+            "sourceLogoId": "reuters",
+            "published": 1725436563,
+            "source": "Reuters",
+            "urgency": 1,
+            "permission": "preview",
+            "relatedSymbols": [
+                {
+                    "symbol": "KRX:000660",
+                    "logoid": "sk-telecom"
+                }
+            ],
+            "storyPath": "/news/reuters.com,2024:newsml_B9N3I902E:0-sk-hynix-says-hbm3e-12-layer-chips-to-start-mass-production-this-month/"
+        },
+        {
+            "id": "DJN_DN20240904001538:0",
+            "title": "Europe's Gas Prices Extend Losses as Ample Storage, Weak Demand Offset Supply Risks — Market Talk",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725436500,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "storyPath": "/news/DJN_DN20240904001538:0/"
+        },
+        {
+            "id": "DJN_DN20240904001531:0",
+            "title": "France's New Government Has Unenviable Task, Business Leader Says — Market Talk",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725436260,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "storyPath": "/news/DJN_DN20240904001531:0/"
+        },
+        {
+            "id": "barchart:d66ad534f094b:0",
+            "title": "Is Regeneron Pharmaceuticals Stock Outperforming the S&P 500?",
+            "provider": "barchart",
+            "sourceLogoId": "barchart",
+            "published": 1725436168,
+            "source": "Barchart",
+            "urgency": 2,
+            "link": "https://www.barchart.com/story/news/28354700/is-regeneron-pharmaceuticals-stock-outperforming-the-s-p-500?utm_source=rss&utm_medium=feed&utm_campaign=tradingview",
+            "relatedSymbols": [
+                {
+                    "symbol": "NASDAQ:REGN",
+                    "logoid": "regeneron-pharmaceuticals"
+                },
+                {
+                    "symbol": "NASDAQ:BGNE",
+                    "logoid": "beigene-ltd"
+                }
+            ],
+            "storyPath": "/news/barchart:d66ad534f094b:0-is-regeneron-pharmaceuticals-stock-outperforming-the-s-p-500/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:A3215366:0",
+            "title": "Cemex Acquires Majority Stake in Recycling Firm RC-Baustoffe Berlin",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725436162,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "BMV:CEMEX/A",
+                    "logoid": "cemex"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:A3215366:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2410064:0",
+            "title": "S&P: UAE's Business Outlook Improves as Non-oil Private Sector Rebounds in August",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725436094,
+            "source": "MT Newswires",
+            "urgency": 1,
+            "permission": "provider",
+            "storyPath": "/news/mtnewswires.com:20240904:G2410064:0/"
+        },
+        {
+            "id": "DJN_DN20240904001517:0",
+            "title": "Global Equities Roundup: Market Talk",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725436080,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "storyPath": "/news/DJN_DN20240904001517:0/"
+        },
+        {
+            "id": "DJN_DN20240904001514:0",
+            "title": "Hilton Food Delivers Incremental Progress in 1H — Market Talk",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725436080,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "LSE:HFG",
+                    "logoid": "hilton-food-plc"
+                }
+            ],
+            "storyPath": "/news/DJN_DN20240904001514:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2410078:0",
+            "title": "Noxopharm Evaluates Potential Brain Cancer Medications",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725436059,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "ASX:NOX"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2410078:0/"
+        },
+        {
+            "id": "DJN_DN20240904001505:0",
+            "title": "Commerzbank Faces Overhang Risk Amid Germany's Planned Stake Sale — Market Talk",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725435960,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "XETR:CBK",
+                    "logoid": "commerzbank"
+                }
+            ],
+            "storyPath": "/news/DJN_DN20240904001505:0/"
+        },
+        {
+            "id": "cointelegraph:6bf99ea90094b:0",
+            "title": "Crypto scams involving Bitcoin ATMs explode by 1,000% since 2020 — FTC",
+            "provider": "cointelegraph",
+            "sourceLogoId": "cointelegraph-en",
+            "published": 1725435914,
+            "source": "Cointelegraph",
+            "urgency": 2,
+            "link": "https://cointelegraph.com/news/bitcoin-atm-scams-rise-10x-ftc-warns?utm_source=rss_feed&utm_medium=rss-trading-view&utm_campaign=rss_partner_inbound",
+            "relatedSymbols": [
+                {
+                    "symbol": "BINANCE:BTCUSD",
+                    "currency-logoid": "country/US",
+                    "base-currency-logoid": "crypto/XTVCBTC"
+                },
+                {
+                    "symbol": "BITSTAMP:BTCUSDT",
+                    "currency-logoid": "crypto/XTVCUSDT",
+                    "base-currency-logoid": "crypto/XTVCBTC"
+                }
+            ],
+            "storyPath": "/news/cointelegraph:6bf99ea90094b:0-crypto-scams-involving-bitcoin-atms-explode-by-1-000-since-2020-ftc/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2410087:0",
+            "title": "Market Chatter: Cathay Pacific Cancels 20 More Flights to Correct Engine Issue with A350 Planes",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725435914,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "HKEX:293",
+                    "logoid": "cathay-pacific"
+                },
+                {
+                    "symbol": "HSI:HSI",
+                    "logoid": "indices/hang-seng"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2410087:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2410084:0",
+            "title": "Spanish Private Sector Growth Edges Up in August",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725435882,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "TVC:SXXP",
+                    "logoid": "indices/stoxx-600"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2410084:0/"
+        },
+        {
+            "id": "tag:reuters.com,2024:newsml_L4N3KM0KJ:0",
+            "title": "Indian shares fall tracking global markets; IT leads losses",
+            "provider": "reuters",
+            "sourceLogoId": "reuters",
+            "published": 1725435738,
+            "source": "Reuters",
+            "urgency": 2,
+            "permission": "preview",
+            "relatedSymbols": [
+                {
+                    "symbol": "NSE:NIFTY",
+                    "logoid": "indices/nifty-50"
+                },
+                {
+                    "symbol": "BSE:SENSEX",
+                    "logoid": "indices/bse-sensex"
+                },
+                {
+                    "symbol": "NSE:CNXIT",
+                    "logoid": "sector/technology"
+                },
+                {
+                    "symbol": "NSE:INFY1!",
+                    "logoid": "infosys"
+                },
+                {
+                    "symbol": "NSE:TCS",
+                    "logoid": "tata"
+                },
+                {
+                    "symbol": "NSE:BPCL",
+                    "logoid": "bharat-petroleum"
+                },
+                {
+                    "symbol": "NSE:HINDPETRO",
+                    "logoid": "hindustan-petroleum"
+                },
+                {
+                    "symbol": "NSE:IOC",
+                    "logoid": "indian-oil"
+                }
+            ],
+            "storyPath": "/news/reuters.com,2024:newsml_L4N3KM0KJ:0-indian-shares-fall-tracking-global-markets-it-leads-losses/"
+        },
+        {
+            "id": "DJN_DN20240904001488:0",
+            "title": "Oil Extends Slump on Oversupply Fears, Libyan Truce Prospects — Market Talk",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725435720,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "NYMEX:CL1!",
+                    "logoid": "crude-oil"
+                }
+            ],
+            "storyPath": "/news/DJN_DN20240904001488:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2410085:0",
+            "title": "Al Ashghal Al Moysra Secures Classification Certificate from Saudi Housing Ministry",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725435681,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "TADAWUL:9608"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2410085:0/"
+        },
+        {
+            "id": "DJN_DN20240904001485:0",
+            "title": "Sandoz Is Keen to Tap Into Generic Weight-Loss Market — Market Talk",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725435660,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "SIX:SDZ",
+                    "logoid": "sandoz-ag"
+                }
+            ],
+            "storyPath": "/news/DJN_DN20240904001485:0/"
+        },
+        {
+            "id": "DJN_DN20240904001482:0",
+            "title": "Barratt's Acquisition Might Give It Significant Firepower Once Conditions Improve — Market Talk",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725435600,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "LSE:BDEV",
+                    "logoid": "barratt-developments"
+                }
+            ],
+            "storyPath": "/news/DJN_DN20240904001482:0/"
+        },
+        {
+            "id": "DJN_DN20240904001479:0",
+            "title": "Gilt Yields Edge Lower After Weak U.S. ISM Manufacturing Index Data — Market Talk",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725435540,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "storyPath": "/news/DJN_DN20240904001479:0/"
+        },
+        {
+            "id": "DJN_DN20240904001481:0",
+            "title": "Global Forex and Fixed Income Roundup: Market Talk",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725435540,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "storyPath": "/news/DJN_DN20240904001481:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2410082:0",
+            "title": "SM Auto Stamping Extends Corporate Guarantee for Financial Assisstance to Associate Company",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725435514,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "BSE:SMAUTO",
+                    "logoid": "sm-auto-stamping-limited"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2410082:0/"
+        },
+        {
+            "id": "barchart:daa0b3c1d094b:0",
+            "title": "How Is Medtronic's Stock Performance Compared to Other Medical Devices Stocks?",
+            "provider": "barchart",
+            "sourceLogoId": "barchart",
+            "published": 1725435455,
+            "source": "Barchart",
+            "urgency": 2,
+            "link": "https://www.barchart.com/story/news/28354611/how-is-medtronic-s-stock-performance-compared-to-other-medical-devices-stocks?utm_source=rss&utm_medium=feed&utm_campaign=tradingview",
+            "relatedSymbols": [
+                {
+                    "symbol": "NYSE:MDT",
+                    "logoid": "medtronic"
+                },
+                {
+                    "symbol": "AMEX:IHI",
+                    "logoid": "ishares"
+                },
+                {
+                    "symbol": "NYSE:SYK",
+                    "logoid": "stryker"
+                }
+            ],
+            "storyPath": "/news/barchart:daa0b3c1d094b:0-how-is-medtronic-s-stock-performance-compared-to-other-medical-devices-stocks/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2410081:0",
+            "title": "Market Chatter: Foreign Firms Pledge NT$46 Billion Investment in Taiwan",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725435395,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "storyPath": "/news/mtnewswires.com:20240904:G2410081:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2410080:0",
+            "title": "Wihlborgs Fastigheter Leases Space in Sweden to Chip Design Company Arm",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725435383,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "OMXSTO:WIHL",
+                    "logoid": "wihlborgs-fastigheter-ab"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2410080:0/"
+        },
+        {
+            "id": "coindesk:0e3f1070b094b:0",
+            "title": "Solana's SOL Gets First Implied Volatility Index on Volmex",
+            "provider": "coindesk",
+            "sourceLogoId": "coindesk",
+            "published": 1725435367,
+            "source": "CoinDesk",
+            "urgency": 2,
+            "relatedSymbols": [
+                {
+                    "symbol": "BITSTAMP:SOLUSD",
+                    "currency-logoid": "country/US",
+                    "base-currency-logoid": "crypto/XTVCSOL"
+                }
+            ],
+            "storyPath": "/news/coindesk:0e3f1070b094b:0-solana-s-sol-gets-first-implied-volatility-index-on-volmex/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2410070:0",
+            "title": "Market Chatter: Pinduoduo to Crack Down on Fake, Substandard Products",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725435233,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "SSE:000001",
+                    "logoid": "indices/sse-composite"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2410070:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2410072:0",
+            "title": "China Stocks Drops Over Services Activity Slowdown, Trade Tensions; Tech-Bank Food Slumps 5%",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725435109,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "relatedSymbols": [
+                {
+                    "symbol": "SZSE:002124"
+                },
+                {
+                    "symbol": "SSE:000001",
+                    "logoid": "indices/sse-composite"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2410072:0-china-stocks-drops-over-services-activity-slowdown-trade-tensions-tech-bank-food-slumps-5/"
+        },
+        {
+            "id": "tradingview:255e71049094b:0",
+            "title": "EUR/USD: Dollar Gains Ground Against Euro as Global Markets Enter Jittery September",
+            "provider": "tradingview",
+            "sourceLogoId": "tradingview-snaps",
+            "published": 1725435058,
+            "source": "TradingView",
+            "urgency": 1,
+            "link": "https://www.tradingview.com",
+            "relatedSymbols": [
+                {
+                    "symbol": "FX:EURUSD",
+                    "currency-logoid": "country/US",
+                    "base-currency-logoid": "country/EU"
+                }
+            ],
+            "previewImage": {
+                "id": "tradingview:255e71049094b-596b3e8427aa69fc4a6a926041569e36",
+                "copyright": "Illustration by TradingView",
+                "source-width": 1200,
+                "source-height": 600
+            },
+            "isExclusive": true,
+            "storyPath": "/news/tradingview:255e71049094b:0-eur-usd-dollar-gains-ground-against-euro-as-global-markets-enter-jittery-september/"
+        },
+        {
+            "id": "tag:reuters.com,2024:newsml_L8N3KM07S:0",
+            "title": "Kenyan shilling gains ground against the dollar - LSEG data",
+            "provider": "reuters",
+            "sourceLogoId": "reuters",
+            "published": 1725434989,
+            "source": "Reuters",
+            "urgency": 2,
+            "permission": "preview",
+            "relatedSymbols": [
+                {
+                    "symbol": "FX_IDC:USDKES",
+                    "currency-logoid": "country/KE",
+                    "base-currency-logoid": "country/US"
+                }
+            ],
+            "storyPath": "/news/reuters.com,2024:newsml_L8N3KM07S:0-kenyan-shilling-gains-ground-against-the-dollar-lseg-data/"
+        },
+        {
+            "id": "DJN_DN20240904001456:0",
+            "title": "Chinese Shares End Lower as Energy, Real-Estate Stocks Weigh — Market Talk",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725434940,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "storyPath": "/news/DJN_DN20240904001456:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2410067:0",
+            "title": "Market Chatter: Hong Kong Hotel Owners Lower Asking Price by 40%",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725434797,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "HSI:HSI",
+                    "logoid": "indices/hang-seng"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2410067:0/"
+        },
+        {
+            "id": "tag:reuters.com,2024:newsml_L4N3KM0K6:0",
+            "title": "Taiwan, S.Korea stocks slump on Wall Street rout, economic slowdown fears",
+            "provider": "reuters",
+            "sourceLogoId": "reuters",
+            "published": 1725434770,
+            "source": "Reuters",
+            "urgency": 2,
+            "permission": "preview",
+            "relatedSymbols": [
+                {
+                    "symbol": "TWSE:2330",
+                    "logoid": "taiwan-semiconductor"
+                },
+                {
+                    "symbol": "KRX:KOSPI",
+                    "logoid": "indices/korea-composite-index"
+                },
+                {
+                    "symbol": "KRX:000660",
+                    "logoid": "sk-telecom"
+                },
+                {
+                    "symbol": "NASDAQ:NVDA",
+                    "logoid": "nvidia"
+                },
+                {
+                    "symbol": "MYX:BURSA",
+                    "logoid": "bursa-malaysia-bhd"
+                },
+                {
+                    "symbol": "PSE:PSEI"
+                },
+                {
+                    "symbol": "SET:SET",
+                    "logoid": "indices/set"
+                },
+                {
+                    "symbol": "TVC:STI",
+                    "logoid": "indices/straits-times-index"
+                },
+                {
+                    "symbol": "FX_IDC:USDMYR",
+                    "currency-logoid": "country/MY",
+                    "base-currency-logoid": "country/US"
+                },
+                {
+                    "symbol": "FX_IDC:USDKRW",
+                    "currency-logoid": "country/KR",
+                    "base-currency-logoid": "country/US"
+                },
+                {
+                    "symbol": "FX_IDC:USDIDR",
+                    "currency-logoid": "country/ID",
+                    "base-currency-logoid": "country/US"
+                },
+                {
+                    "symbol": "FX_IDC:USDTWD",
+                    "currency-logoid": "country/TW",
+                    "base-currency-logoid": "country/US"
+                },
+                {
+                    "symbol": "FX_IDC:USDJPY",
+                    "currency-logoid": "country/JP",
+                    "base-currency-logoid": "country/US"
+                },
+                {
+                    "symbol": "TVC:NI225",
+                    "logoid": "indices/nikkei-225"
+                },
+                {
+                    "symbol": "FX_IDC:USDCNY",
+                    "currency-logoid": "country/CN",
+                    "base-currency-logoid": "country/US"
+                },
+                {
+                    "symbol": "SSE:000001",
+                    "logoid": "indices/sse-composite"
+                },
+                {
+                    "symbol": "FX_IDC:USDINR",
+                    "currency-logoid": "country/IN",
+                    "base-currency-logoid": "country/US"
+                },
+                {
+                    "symbol": "NSE:NIFTY",
+                    "logoid": "indices/nifty-50"
+                },
+                {
+                    "symbol": "IDX:COMPOSITE",
+                    "logoid": "indices/jakarta-composite-index"
+                },
+                {
+                    "symbol": "FX_IDC:USDPHP",
+                    "currency-logoid": "country/PH",
+                    "base-currency-logoid": "country/US"
+                },
+                {
+                    "symbol": "FX_IDC:USDSGD",
+                    "currency-logoid": "country/SG",
+                    "base-currency-logoid": "country/US"
+                },
+                {
+                    "symbol": "FX_IDC:USDTHB",
+                    "currency-logoid": "country/TH",
+                    "base-currency-logoid": "country/US"
+                },
+                {
+                    "symbol": "FX_IDC:USDVND",
+                    "currency-logoid": "country/VN",
+                    "base-currency-logoid": "country/US"
+                },
+                {
+                    "symbol": "HOSE:VNINDEX",
+                    "logoid": "indices/vietnam-index"
+                }
+            ],
+            "storyPath": "/news/reuters.com,2024:newsml_L4N3KM0K6:0-taiwan-s-korea-stocks-slump-on-wall-street-rout-economic-slowdown-fears/"
+        },
+        {
+            "id": "tradingview:198115bac094b:0",
+            "title": "DJI: Dow Jones Slides 600 Points as Wall Street Sells Off on Slowdown Scares",
+            "provider": "tradingview",
+            "sourceLogoId": "tradingview-snaps",
+            "published": 1725434734,
+            "source": "TradingView",
+            "urgency": 1,
+            "link": "https://www.tradingview.com",
+            "relatedSymbols": [
+                {
+                    "symbol": "TVC:DJI",
+                    "logoid": "indices/dow-30"
+                },
+                {
+                    "symbol": "NASDAQ:NVDA",
+                    "logoid": "nvidia"
+                },
+                {
+                    "symbol": "NASDAQ:GOOGL",
+                    "logoid": "alphabet"
+                },
+                {
+                    "symbol": "NASDAQ:NFLX",
+                    "logoid": "netflix"
+                },
+                {
+                    "symbol": "NASDAQ:AAPL",
+                    "logoid": "apple"
+                },
+                {
+                    "symbol": "NASDAQ:META",
+                    "logoid": "meta-platforms"
+                },
+                {
+                    "symbol": "NASDAQ:MSFT",
+                    "logoid": "microsoft"
+                }
+            ],
+            "previewImage": {
+                "id": "tradingview:198115bac094b-0c824162984da94051cac033b83729e4",
+                "copyright": "Illustration by TradingView",
+                "source-width": 1200,
+                "source-height": 600
+            },
+            "isExclusive": true,
+            "storyPath": "/news/tradingview:198115bac094b:0-dji-dow-jones-slides-600-points-as-wall-street-sells-off-on-slowdown-scares/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2410068:0",
+            "title": "Auris Minerals Hits Manganese at Morck Well Project",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725434713,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "ASX:AUR"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2410068:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2410065:0",
+            "title": "MIS Wins Microsoft Supply Contract from Saudi Arabia's Sabic",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725434619,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "NASDAQ:MSFT",
+                    "logoid": "microsoft"
+                },
+                {
+                    "symbol": "TADAWUL:2010",
+                    "logoid": "saudi-basic"
+                },
+                {
+                    "symbol": "TADAWUL:7200",
+                    "logoid": "al-moammar-information-systems-co"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2410065:0/"
+        },
+        {
+            "id": "DJN_DN20240904001437:0",
+            "title": "Hilton Food's Strong Progress Reflects Robust Core Performance — Market Talk",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725434580,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "LSE:HFG",
+                    "logoid": "hilton-food-plc"
+                }
+            ],
+            "storyPath": "/news/DJN_DN20240904001437:0/"
+        },
+        {
+            "id": "DJN_DN20240904001433:0",
+            "title": "M&G's Upgraded Targets Stand Out — Market Talk",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725434520,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "LSE:MNG",
+                    "logoid": "m-and-g-plc-ord-5"
+                }
+            ],
+            "storyPath": "/news/DJN_DN20240904001433:0/"
+        },
+        {
+            "id": "tag:reuters.com,2024:newsml_L4N3KK0L2:0",
+            "title": "Foreigners retreat from Asian equities on doubt over tech valuations",
+            "provider": "reuters",
+            "sourceLogoId": "reuters",
+            "published": 1725434506,
+            "source": "Reuters",
+            "urgency": 2,
+            "permission": "preview",
+            "storyPath": "/news/reuters.com,2024:newsml_L4N3KK0L2:0-foreigners-retreat-from-asian-equities-on-doubt-over-tech-valuations/"
+        },
+        {
+            "id": "cryptobriefing:387a34fc2094b:0",
+            "title": "Ripple will soon debut its RLUSD stablecoin, says Brad Garlinghouse",
+            "provider": "cryptobriefing",
+            "sourceLogoId": "crypto-briefing",
+            "published": 1725434459,
+            "source": "Crypto Briefing",
+            "urgency": 2,
+            "link": "https://cryptobriefing.com/ripple-stablecoin-launch-soon/",
+            "storyPath": "/news/cryptobriefing:387a34fc2094b:0-ripple-will-soon-debut-its-rlusd-stablecoin-says-brad-garlinghouse/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2410069:0",
+            "title": "International Financial Advisors Resumes Trading on Dubai Bourse",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725434432,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "KSE:IFA",
+                    "logoid": "international-financial-advisors"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2410069:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2410060:0",
+            "title": "Pandox to Pay GBP49 Million for Hotel Purchase in Scotland",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725434396,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "OMXSTO:PNDX_B",
+                    "logoid": "pandox-ab-ser-b"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2410060:0/"
+        },
+        {
+            "id": "financemagnates:cf8b8ac63094b:0",
+            "title": "FXSpotStream Reports Record $96.8 Billion Daily Volume in August",
+            "provider": "financemagnates",
+            "sourceLogoId": "financemagnates",
+            "published": 1725434247,
+            "source": "Finance Magnates",
+            "urgency": 2,
+            "link": "https://www.financemagnates.com/institutional-forex/fxspotstream-reports-record-968-billion-daily-volume-in-august/",
+            "storyPath": "/news/financemagnates:cf8b8ac63094b:0-fxspotstream-reports-record-96-8-billion-daily-volume-in-august/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2410056:0",
+            "title": "Market Chatter: Chinese Digital Platform Qifa Postpones Moscow IPO Due to Interest Rate Impact",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725434191,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "SSE:000001",
+                    "logoid": "indices/sse-composite"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2410056:0/"
+        },
+        {
+            "id": "tradingview:5f0f2ed51094b:0",
+            "title": "NVDA: Nvidia Stock Sheds Record $279 Billion to Become World’s Biggest Loser, Ever",
+            "provider": "tradingview",
+            "sourceLogoId": "tradingview-snaps",
+            "published": 1725434155,
+            "source": "TradingView",
+            "urgency": 1,
+            "link": "https://www.tradingview.com",
+            "relatedSymbols": [
+                {
+                    "symbol": "NASDAQ:NVDA",
+                    "logoid": "nvidia"
+                }
+            ],
+            "previewImage": {
+                "id": "tradingview:5f0f2ed51094b-02d45ef29b3e3440711123d1fd23008b",
+                "copyright": "Illustration by TradingView",
+                "source-width": 1200,
+                "source-height": 600
+            },
+            "isExclusive": true,
+            "storyPath": "/news/tradingview:5f0f2ed51094b:0-nvda-nvidia-stock-sheds-record-279-billion-to-become-world-s-biggest-loser-ever/"
+        },
+        {
+            "id": "DJN_DN20240904001420:0",
+            "title": "German 15-Year Bunds Appeal Vs 10-, 30-Year Peers Ahead of Auction — Market Talk",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725434100,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "storyPath": "/news/DJN_DN20240904001420:0/"
+        },
+        {
+            "id": "tag:reuters.com,2024:newsml_L4N3KM0J7:0",
+            "title": "India's Jubilant Ingrevia jumps to nearly 3-yr high after Equirus' St-high PT",
+            "provider": "reuters",
+            "sourceLogoId": "reuters",
+            "published": 1725434088,
+            "source": "Reuters",
+            "urgency": 2,
+            "permission": "preview",
+            "relatedSymbols": [
+                {
+                    "symbol": "NSE:JUBLINGREA",
+                    "logoid": "jubilant-ingrevia-ltd"
+                }
+            ],
+            "storyPath": "/news/reuters.com,2024:newsml_L4N3KM0J7:0-india-s-jubilant-ingrevia-jumps-to-nearly-3-yr-high-after-equirus-st-high-pt/"
+        },
+        {
+            "id": "benzinga:66aa88bf5094b:0",
+            "title": "Dow Tumbles Over 600 Points, Nasdaq Dips 3% Amid Plunge In Nvidia: Fear Index Remains In 'Greed' Zone",
+            "provider": "benzinga",
+            "sourceLogoId": "benzinga",
+            "published": 1725434025,
+            "source": "Benzinga",
+            "urgency": 2,
+            "link": "https://www.benzinga.com/news/earnings/24/09/40700996/dow-tumbles-over-600-points-nasdaq-dips-3-amid-plunge-in-nvidia-fear-index-remains-in-greed-zone",
+            "permission": "preview",
+            "relatedSymbols": [
+                {
+                    "symbol": "NASDAQ:NVDA",
+                    "logoid": "nvidia"
+                },
+                {
+                    "symbol": "NASDAQ:SGRP",
+                    "logoid": "spar-group"
+                },
+                {
+                    "symbol": "NASDAQ:DLTR",
+                    "logoid": "dollar-tree"
+                },
+                {
+                    "symbol": "NYSE:DKS",
+                    "logoid": "dicks-sporting-goods"
+                },
+                {
+                    "symbol": "NYSE:HPE",
+                    "logoid": "hewlett-packard-enterprise"
+                }
+            ],
+            "storyPath": "/news/benzinga:66aa88bf5094b:0-dow-tumbles-over-600-points-nasdaq-dips-3-amid-plunge-in-nvidia-fear-index-remains-in-greed-zone/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2410054:0",
+            "title": "Abu Dhabi National Energy Closes Sustainable Water Solutions Purchase",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725434024,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "ADX:TAQA",
+                    "logoid": "abu-dhabi-national-energy-company"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2410054:0/"
+        },
+        {
+            "id": "DJN_DN20240904001404:0",
+            "title": "Direct Line's Motor Weakness Mitigated by Strength Elsewhere — Market Talk",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725433980,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "LSE:DLG",
+                    "logoid": "direct-line-group"
+                }
+            ],
+            "storyPath": "/news/DJN_DN20240904001404:0/"
+        },
+        {
+            "id": "DJN_DN20240904001391:0",
+            "title": "Dollar Falls Ahead of U.S. Jobs Data — Market Talk",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725433740,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "ICEUS:DXY",
+                    "logoid": "indices/u-s-dollar-index"
+                }
+            ],
+            "storyPath": "/news/DJN_DN20240904001391:0/"
+        },
+        {
+            "id": "DJN_DN20240904001383:0",
+            "title": "Taiwan Inflation Likely Cooled in August, WSJ Poll Shows — Market Talk",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725433680,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "storyPath": "/news/DJN_DN20240904001383:0/"
+        },
+        {
+            "id": "DJN_DN20240904001360:0",
+            "title": "BofA Cuts China's GDP Growth Forecast for 2024 to 4.8% — Market Talk",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725433560,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "storyPath": "/news/DJN_DN20240904001360:0/"
+        },
+        {
+            "id": "tag:reuters.com,2024:newsml_L4N3KM0IQ:0",
+            "title": "Airtel Africa, Serica Energy, Volkswagen",
+            "provider": "reuters",
+            "sourceLogoId": "reuters",
+            "published": 1725433370,
+            "source": "Reuters",
+            "urgency": 2,
+            "permission": "preview",
+            "relatedSymbols": [
+                {
+                    "symbol": "LSE:AAF",
+                    "logoid": "airtel-africa-plc-ord-usd0-50"
+                },
+                {
+                    "symbol": "TURQUOISE:SQZL",
+                    "logoid": "serica-energy-plc"
+                },
+                {
+                    "symbol": "XETR:VOW",
+                    "logoid": "volkswagen"
+                },
+                {
+                    "symbol": "XETR:AIXA",
+                    "logoid": "aixtron"
+                },
+                {
+                    "symbol": "EURONEXT:ARG",
+                    "logoid": "argan"
+                },
+                {
+                    "symbol": "EURONEXT:ASRNL",
+                    "logoid": "asr-nederland"
+                },
+                {
+                    "symbol": "SIX:BARN",
+                    "logoid": "barry-callebaut-n"
+                },
+                {
+                    "symbol": "LSE:BCPT"
+                },
+                {
+                    "symbol": "SIX:BOSN",
+                    "logoid": "bossard-n"
+                },
+                {
+                    "symbol": "EURONEXT:ALCAR",
+                    "logoid": "carmat"
+                },
+                {
+                    "symbol": "LSE:CNA",
+                    "logoid": "centrica"
+                },
+                {
+                    "symbol": "EURONEXT:CTPNV",
+                    "logoid": "ctp-nv"
+                },
+                {
+                    "symbol": "EURONEXT:DEME",
+                    "logoid": "deme"
+                },
+                {
+                    "symbol": "OMXSTO:EKTA_B",
+                    "logoid": "elekta-ab-ser-b"
+                },
+                {
+                    "symbol": "LSE:ENQ",
+                    "logoid": "enquest-plc"
+                },
+                {
+                    "symbol": "BME:ITX",
+                    "logoid": "inditex"
+                },
+                {
+                    "symbol": "TURQUOISE:JSGL",
+                    "logoid": "johnson-service-plc"
+                },
+                {
+                    "symbol": "XETR:JST",
+                    "logoid": "jost-werke-ag"
+                },
+                {
+                    "symbol": "SIX:LISN",
+                    "logoid": "lindt-n"
+                },
+                {
+                    "symbol": "EURONEXT:MRN",
+                    "logoid": "mersen-ex-carbon-lorraine"
+                },
+                {
+                    "symbol": "LSE:MCG",
+                    "logoid": "national-express-plc"
+                },
+                {
+                    "symbol": "LSE:ONT",
+                    "logoid": "oxford-nanopore-technologies-plc-ord-gbp0-0001"
+                },
+                {
+                    "symbol": "EURONEXT:RECT",
+                    "logoid": "recticel"
+                },
+                {
+                    "symbol": "EURONEXT:SOP",
+                    "logoid": "sopra-steria-group"
+                },
+                {
+                    "symbol": "OMXCOP:VWS",
+                    "logoid": "vestas"
+                },
+                {
+                    "symbol": "EURONEXT:WDP",
+                    "logoid": "warehouses-de-pauw"
+                }
+            ],
+            "storyPath": "/news/reuters.com,2024:newsml_L4N3KM0IQ:0-airtel-africa-serica-energy-volkswagen/"
+        },
+        {
+            "id": "DJN_DN20240904001270:0",
+            "title": "India's Service Sector Upturn Gathers Pace — Market Talk",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725433140,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "storyPath": "/news/DJN_DN20240904001270:0/"
+        },
+        {
+            "id": "benzinga:f60a0e230094b:0",
+            "title": "Boeing Starliner Return: Sunita Williams And Butch Wilmore Prepare Spacecraft For Uncrewed Journey Back To Earth",
+            "provider": "benzinga",
+            "sourceLogoId": "benzinga",
+            "published": 1725432989,
+            "source": "Benzinga",
+            "urgency": 2,
+            "link": "https://www.benzinga.com/news/24/09/40700719/boeing-starliner-return-sunita-williams-and-butch-wilmore-prepare-spacecraft-for-uncrewed-journey-ba",
+            "permission": "preview",
+            "relatedSymbols": [
+                {
+                    "symbol": "NYSE:BA",
+                    "logoid": "boeing"
+                }
+            ],
+            "storyPath": "/news/benzinga:f60a0e230094b:0-boeing-starliner-return-sunita-williams-and-butch-wilmore-prepare-spacecraft-for-uncrewed-journey-back-to-earth/"
+        },
+        {
+            "id": "tag:reuters.com,2024:newsml_L8N3KM07B:0",
+            "title": "Berenberg starts Jost Werke with 'buy' as down-cycle ends",
+            "provider": "reuters",
+            "sourceLogoId": "reuters",
+            "published": 1725432861,
+            "source": "Reuters",
+            "urgency": 2,
+            "permission": "preview",
+            "relatedSymbols": [
+                {
+                    "symbol": "XETR:JST",
+                    "logoid": "jost-werke-ag"
+                }
+            ],
+            "storyPath": "/news/reuters.com,2024:newsml_L8N3KM07B:0-berenberg-starts-jost-werke-with-buy-as-down-cycle-ends/"
+        },
+        {
+            "id": "DJN_DN20240904001247:0",
+            "title": "Investors Need to Be Mindful of Rise in Extremist Politics — Market Talk",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725432720,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "storyPath": "/news/DJN_DN20240904001247:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2410042:0",
+            "title": "Asia File Repurchases Shares",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725432619,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "MYX:ASIAFLE"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2410042:0/"
+        },
+        {
+            "id": "DJN_DN20240904001238:0",
+            "title": "South Korea's Kospi Falls 3.1%, Dragged by Chip, Internet Stocks — Market Talk",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725432540,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "FX_IDC:USDKRW",
+                    "currency-logoid": "country/KR",
+                    "base-currency-logoid": "country/US"
+                }
+            ],
+            "storyPath": "/news/DJN_DN20240904001238:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2410034:0",
+            "title": "Australian Shares Fall to Nearly Three-Week Low Amid Lower-than-Expected Q2 GDP Growth",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725432467,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "relatedSymbols": [
+                {
+                    "symbol": "ASX:STO",
+                    "logoid": "santos"
+                },
+                {
+                    "symbol": "ASX:ORA",
+                    "logoid": "orora-limited"
+                },
+                {
+                    "symbol": "ASX:XJO",
+                    "logoid": "indices/asx-200"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2410034:0-australian-shares-fall-to-nearly-three-week-low-amid-lower-than-expected-q2-gdp-growth/"
+        },
+        {
+            "id": "DJN_DN20240904001222:0",
+            "title": "Direct Line's Encouraging Results Should Be Well-Received — Market Talk",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725432420,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "LSE:DLG",
+                    "logoid": "direct-line-group"
+                }
+            ],
+            "storyPath": "/news/DJN_DN20240904001222:0/"
+        },
+        {
+            "id": "DJN_DN20240904001198:0",
+            "title": "FTSE 100 Seen Opening Lower After Losses in U.S., Asia — Market Talk",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725432000,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "FTSE:UKX",
+                    "logoid": "country/GB"
+                }
+            ],
+            "storyPath": "/news/DJN_DN20240904001198:0/"
+        },
+        {
+            "id": "financemagnates:4062e8083094b:0",
+            "title": "Alpha Group Posts 16% Revenue Jump In H1 2024 as Client Base Expands",
+            "provider": "financemagnates",
+            "sourceLogoId": "financemagnates",
+            "published": 1725431933,
+            "source": "Finance Magnates",
+            "urgency": 2,
+            "link": "https://www.financemagnates.com/institutional-forex/alpha-group-posts-16-revenue-jump-in-h1-2024-as-client-base-expands/",
+            "storyPath": "/news/financemagnates:4062e8083094b:0-alpha-group-posts-16-revenue-jump-in-h1-2024-as-client-base-expands/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2410032:0",
+            "title": "Telia Unveils Restructuring Plan",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725431848,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "OMXSTO:TELIA",
+                    "logoid": "telia-company-ab"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2410032:0/"
+        },
+        {
+            "id": "DJN_DN20240904001191:0",
+            "title": "Nikkei Closes 4.2% Lower; Tech Stocks Weigh — Market Talk",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725431760,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "storyPath": "/news/DJN_DN20240904001191:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2410023:0",
+            "title": "ITCONS E-Solutions Bags Order Worth INR2.4 Million from Wipro; ITCONS Shares Jump 5%",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725431666,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "BSE:ITCONS",
+                    "logoid": "itcons-e-solutions-limited"
+                },
+                {
+                    "symbol": "NSE:WIPRO",
+                    "logoid": "wipro"
+                },
+                {
+                    "symbol": "NSE:ICICIBANK",
+                    "logoid": "icici-bank"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2410023:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2410024:0",
+            "title": "Relicab Cable Bags INR9.7 Million Contract",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725431603,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "BSE:RELICAB",
+                    "logoid": "relicab-cable-manufacturing-li"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2410024:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2410026:0",
+            "title": "Pivotal Metals Extends Mineralization at Honden Lake Project",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725431511,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "ASX:PVT"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2410026:0/"
+        },
+        {
+            "id": "DJN_DN20240904001129:0",
+            "title": "Chinese Airlines Downtrend in Passenger Yields May Persist — Market Talk",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725431460,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "SSE:600029",
+                    "logoid": "china-southern-airlines"
+                },
+                {
+                    "symbol": "SSE:601111",
+                    "logoid": "air-china-limited"
+                },
+                {
+                    "symbol": "SSE:600115",
+                    "logoid": "china-eastern-airlines"
+                }
+            ],
+            "storyPath": "/news/DJN_DN20240904001129:0/"
+        },
+        {
+            "id": "benzinga:618d093e7094b:0",
+            "title": "OpenAI CEO Sam Altman's AI Infrastructure Plan Worth 'Tens Of Billions Of Dollars' To Include Investors From UAE, Canada, Korea, And Japan: Report",
+            "provider": "benzinga",
+            "sourceLogoId": "benzinga",
+            "published": 1725431377,
+            "source": "Benzinga",
+            "urgency": 2,
+            "link": "https://www.benzinga.com/news/24/09/40700567/openai-ceo-sam-altmans-ai-infrastructure-plan-worth-tens-of-billions-of-dollars-to-include-investors",
+            "permission": "preview",
+            "relatedSymbols": [
+                {
+                    "symbol": "NASDAQ:MSFT",
+                    "logoid": "microsoft"
+                }
+            ],
+            "storyPath": "/news/benzinga:618d093e7094b:0-openai-ceo-sam-altman-s-ai-infrastructure-plan-worth-tens-of-billions-of-dollars-to-include-investors-from-uae-canada-korea-and-japan-report/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2410015:0",
+            "title": "Road King Infrastructure's Subsidiary to Sell Stakes in Joint Venture for GBP12 Million",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725431334,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "HKEX:1098",
+                    "logoid": "road-king-infrastructure-ltd"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2410015:0/"
+        },
+        {
+            "id": "moneycontrol:0bd520a8b094b:0",
+            "title": "Nifty IT index slips into red as US slowdown worries weigh; Wipro, Mphasis stocks fall over 3%",
+            "provider": "moneycontrol",
+            "sourceLogoId": "moneycontrol",
+            "published": 1725431226,
+            "source": "Moneycontrol",
+            "urgency": 2,
+            "link": "https://www.moneycontrol.com/news/business/markets/nifty-it-index-slips-into-red-as-us-slowdown-woes-weigh-wipro-mphasis-fall-over-3-12814017.html",
+            "relatedSymbols": [
+                {
+                    "symbol": "NSE:INFY1!",
+                    "logoid": "infosys"
+                },
+                {
+                    "symbol": "NSE:WIPRO",
+                    "logoid": "wipro"
+                },
+                {
+                    "symbol": "NSE:TCS",
+                    "logoid": "tata"
+                }
+            ],
+            "storyPath": "/news/moneycontrol:0bd520a8b094b:0-nifty-it-index-slips-into-red-as-us-slowdown-worries-weigh-wipro-mphasis-stocks-fall-over-3/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2410006:0",
+            "title": "Al-Baha Investment Plans Capital Reduction to Trim Losses",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725431222,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "TADAWUL:4130",
+                    "logoid": "al-baha-investment-and-development-co"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2410006:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2409987:0",
+            "title": "Huali Industries to Buy 51% of Suzhou Shangyuan Intelligent Technology for 358 Million Yuan; Shares Rise 4%",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725431154,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "SSE:603038",
+                    "logoid": "dongguan-huali-industries-coltd"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2409987:0/"
+        },
+        {
+            "id": "moneycontrol:ba49ea2b1094b:0",
+            "title": "Buy IndusInd Bank; target of Rs 1750: Sharekhan",
+            "provider": "moneycontrol",
+            "sourceLogoId": "moneycontrol",
+            "published": 1725431097,
+            "source": "Moneycontrol",
+            "urgency": 2,
+            "link": "https://www.moneycontrol.com/news/business/stocks/buy-indusind-bank-target-of-rs-1750-sharekhan-2-12814115.html",
+            "relatedSymbols": [
+                {
+                    "symbol": "NSE:INDUSINDBK",
+                    "logoid": "indusind-bank"
+                }
+            ],
+            "storyPath": "/news/moneycontrol:ba49ea2b1094b:0-buy-indusind-bank-target-of-rs-1750-sharekhan/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2410014:0",
+            "title": "Rama Steel Tubes Partners with Onix Renewable for Green Energy Sector; Shares Jump 13%",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725431080,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "NSE:RAMASTEEL",
+                    "logoid": "rama-steel-tubes"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2410014:0/"
+        },
+        {
+            "id": "moneycontrol:548740b52094b:0",
+            "title": "Heavy Industries Minister backs 12 percent import tariff on Chinese steel",
+            "provider": "moneycontrol",
+            "sourceLogoId": "moneycontrol",
+            "published": 1725430933,
+            "source": "Moneycontrol",
+            "urgency": 2,
+            "link": "https://www.moneycontrol.com/news/business/heavy-industries-minister-advocates-raising-tariffs-on-chinese-steel-imports-12814140.html",
+            "relatedSymbols": [
+                {
+                    "symbol": "NSE:JSWSTEEL",
+                    "logoid": "jsw"
+                },
+                {
+                    "symbol": "NSE:TATASTEEL",
+                    "logoid": "tata"
+                }
+            ],
+            "storyPath": "/news/moneycontrol:548740b52094b:0-heavy-industries-minister-backs-12-percent-import-tariff-on-chinese-steel/"
+        },
+        {
+            "id": "DJN_DN20240904001057:0",
+            "title": "Asian Buyout Firm Likely to Sell Malaysia Hospital to IHH Healthcare — Update",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725430920,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "MYX:IHH",
+                    "logoid": "ihh"
+                }
+            ],
+            "isExclusive": true,
+            "storyPath": "/news/DJN_DN20240904001057:0/"
+        },
+        {
+            "id": "DJN_DN20240904001058:0",
+            "title": "German Government to Begin Exit From Commerzbank",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725430920,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "relatedSymbols": [
+                {
+                    "symbol": "XETR:CBK",
+                    "logoid": "commerzbank"
+                }
+            ],
+            "storyPath": "/news/DJN_DN20240904001058:0-german-government-to-begin-exit-from-commerzbank/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2410002:0",
+            "title": "EuroSports Global Repurchases 45,000 Shares",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725430804,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "SGX:5G1"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2410002:0/"
+        },
+        {
+            "id": "cointelegraph:de1217935094b:0",
+            "title": "Maker, now Sky’s, stablecoin freeze process could be decided by decentralized court",
+            "provider": "cointelegraph",
+            "sourceLogoId": "cointelegraph-en",
+            "published": 1725430585,
+            "source": "Cointelegraph",
+            "urgency": 2,
+            "link": "https://cointelegraph.com/news/makerdao-sky-usds-stablecoin-freeze-decentralized-court?utm_source=rss_feed&utm_medium=rss-trading-view&utm_campaign=rss_partner_inbound",
+            "relatedSymbols": [
+                {
+                    "symbol": "BITSTAMP:DAIUSD",
+                    "currency-logoid": "country/US",
+                    "base-currency-logoid": "crypto/XTVCDAI"
+                }
+            ],
+            "storyPath": "/news/cointelegraph:de1217935094b:0-maker-now-sky-s-stablecoin-freeze-process-could-be-decided-by-decentralized-court/"
+        },
+        {
+            "id": "marketindex:8aee403b9094b:0",
+            "title": "ASX 200 suffers worst day since early August selloff",
+            "provider": "marketindex",
+            "sourceLogoId": "marketindex",
+            "published": 1725430575,
+            "source": "Market Index",
+            "urgency": 2,
+            "link": "https://www.marketindex.com.au/news/asx-200-suffers-worst-day-since-early-august-selloff",
+            "relatedSymbols": [
+                {
+                    "symbol": "ASX:FMG",
+                    "logoid": "fortescue-metals-group"
+                },
+                {
+                    "symbol": "ASX:SFR",
+                    "logoid": "sandfire-resources-limited"
+                },
+                {
+                    "symbol": "ASX:WDS",
+                    "logoid": "woodside-petroleum"
+                },
+                {
+                    "symbol": "ASX:KAR",
+                    "logoid": "karoon-gas-australia-ltd"
+                },
+                {
+                    "symbol": "ASX:BPT",
+                    "logoid": "beach-energy"
+                },
+                {
+                    "symbol": "ASX:WTC",
+                    "logoid": "wisetech-global"
+                },
+                {
+                    "symbol": "ASX:XRO",
+                    "logoid": "xero"
+                },
+                {
+                    "symbol": "ASX:NXT",
+                    "logoid": "nextdc"
+                }
+            ],
+            "storyPath": "/news/marketindex:8aee403b9094b:0-asx-200-suffers-worst-day-since-early-august-selloff/"
+        },
+        {
+            "id": "DJN_DN20240904001043:0",
+            "title": "Australia Shares Lose 1.9% as Global Equities Tumble — Market Talk",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725430560,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "storyPath": "/news/DJN_DN20240904001043:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2409978:0",
+            "title": "Shenzhen Clou Electronics Wins Bid for Smart Energy Meters for 115 Million Yuan",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725430515,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "SZSE:002121"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2409978:0/"
+        },
+        {
+            "id": "benzinga:c55b3fef1094b:0",
+            "title": "Pro-Bitcoin Attorney John Deaton All Set To Go Head To Head With Skeptic Elizabeth Warren: Crypto Community Cheers His Candidacy",
+            "provider": "benzinga",
+            "sourceLogoId": "benzinga",
+            "published": 1725430322,
+            "source": "Benzinga",
+            "urgency": 2,
+            "link": "https://www.benzinga.com/markets/cryptocurrency/24/09/40700516/pro-bitcoin-attorney-john-deaton-all-set-to-go-head-to-head-with-skeptic-elizabeth-warren-",
+            "permission": "preview",
+            "storyPath": "/news/benzinga:c55b3fef1094b:0-pro-bitcoin-attorney-john-deaton-all-set-to-go-head-to-head-with-skeptic-elizabeth-warren-crypto-community-cheers-his-candidacy/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2409999:0",
+            "title": "Japanese Shares Plunge as Nvidia Tumbles 10% Amid AI Enthusiasm Fade",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725430308,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "relatedSymbols": [
+                {
+                    "symbol": "TSE:4651"
+                },
+                {
+                    "symbol": "TSE:6560"
+                },
+                {
+                    "symbol": "TVC:NI225",
+                    "logoid": "indices/nikkei-225"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2409999:0-japanese-shares-plunge-as-nvidia-tumbles-10-amid-ai-enthusiasm-fade/"
+        },
+        {
+            "id": "DJN_DN20240904001008:0",
+            "title": "Safe Haven Demand Expected to Support U.S. Treasurys — Market Talk",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725430260,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "storyPath": "/news/DJN_DN20240904001008:0/"
+        },
+        {
+            "id": "DJN_DN20240904001004:0",
+            "title": "LX Semicon's Market Share Could Decline Due to Competition — Market Talk",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725430200,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "KRX:108320"
+                }
+            ],
+            "storyPath": "/news/DJN_DN20240904001004:0/"
+        },
+        {
+            "id": "cointelegraph:fe559d9be094b:0",
+            "title": "Japan’s finance regulator calls for lower crypto taxes in 2025",
+            "provider": "cointelegraph",
+            "sourceLogoId": "cointelegraph-en",
+            "published": 1725430172,
+            "source": "Cointelegraph",
+            "urgency": 2,
+            "link": "https://cointelegraph.com/news/japan-lower-crypto-taxes-2025-financial-services-agency-tax-overhaul?utm_source=rss_feed&utm_medium=rss-trading-view&utm_campaign=rss_partner_inbound",
+            "relatedSymbols": [
+                {
+                    "symbol": "BITSTAMP:BTCUSDT",
+                    "currency-logoid": "crypto/XTVCUSDT",
+                    "base-currency-logoid": "crypto/XTVCBTC"
+                }
+            ],
+            "storyPath": "/news/cointelegraph:fe559d9be094b:0-japan-s-finance-regulator-calls-for-lower-crypto-taxes-in-2025/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2409982:0",
+            "title": "Saudi Fisheries Names New Chairman",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725430146,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "TADAWUL:6050",
+                    "logoid": "saudi-fisheries-co"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2409982:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2409981:0",
+            "title": "Oxley Holdings Buys Back 100,000 Shares",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725430063,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "SGX:C06"
+                },
+                {
+                    "symbol": "SGX:5UX",
+                    "logoid": "oxley"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2409981:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2409983:0",
+            "title": "Cinderson Tech (Suzhou) Secures 10-Year Water Valve Motors Deal Worth 100 Million Yuan",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725429997,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "SSE:603344"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2409983:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2409979:0",
+            "title": "Seatrium Buys Back More Shares",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725429887,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "SGX:5E2",
+                    "logoid": "sembcorp-ind"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2409979:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2409980:0",
+            "title": "Great Wall Enterprise Affiliate Buys About $18 Million Stake in Amy Food",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725429872,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "TWSE:1210"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2409980:0/"
+        },
+        {
+            "id": "DJN_DN20240904000913:0",
+            "title": "Denmark's November 2033 Government Bond Looks Attractive Ahead of Auction — Market Talk",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725429780,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "storyPath": "/news/DJN_DN20240904000913:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2409975:0",
+            "title": "Al-Baha Investment Aborts Plans to List Subsidiary on Saudi Bourse's Nomu Market",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725429673,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "TADAWUL:4130",
+                    "logoid": "al-baha-investment-and-development-co"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2409975:0/"
+        },
+        {
+            "id": "tag:reuters.com,2024:newsml_L1N3KL12O:0",
+            "title": "US LNG export dominance tested as Europe's demand wilts: Maguire",
+            "provider": "reuters",
+            "sourceLogoId": "reuters",
+            "published": 1725429600,
+            "source": "Reuters",
+            "urgency": 2,
+            "permission": "preview",
+            "storyPath": "/news/reuters.com,2024:newsml_L1N3KL12O:0-us-lng-export-dominance-tested-as-europe-s-demand-wilts-maguire/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2409977:0",
+            "title": "ITCONS E-Solutions Bags Order Worth Ove INR1 Million; Shares Jump 5%",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725429594,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "BSE:ITCONS",
+                    "logoid": "itcons-e-solutions-limited"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2409977:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2409976:0",
+            "title": "Wilton Resources Sees Production Boost as Cyanide Supply Normalizes; Shares Surge 11%",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725429568,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "SGX:5F7"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2409976:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2409974:0",
+            "title": "New Zealand Shares Flat Despite US Tech Tumble; MOVE Logistics Group Names Interim CEO",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725429550,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "relatedSymbols": [
+                {
+                    "symbol": "NZX:MOV",
+                    "logoid": "move-logistics-gp-npv"
+                },
+                {
+                    "symbol": "NZX:PLP"
+                },
+                {
+                    "symbol": "NZX:NZ50G",
+                    "logoid": "indices/s-and-p-nzx-50-index-gross"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2409974:0-new-zealand-shares-flat-despite-us-tech-tumble-move-logistics-group-names-interim-ceo/"
+        },
+        {
+            "id": "DJN_DN20240904000708:0",
+            "title": "Asian Buyout Firm Likely to Sell Malaysia Hospital to IHH Healthcare",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725429540,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "MYX:IHH",
+                    "logoid": "ihh"
+                }
+            ],
+            "isExclusive": true,
+            "storyPath": "/news/DJN_DN20240904000708:0/"
+        },
+        {
+            "id": "cointelegraph:86552f979094b:0",
+            "title": "Bitcoin’s price shows ‘no clear direction’ amid active address decline",
+            "provider": "cointelegraph",
+            "sourceLogoId": "cointelegraph-en",
+            "published": 1725429378,
+            "source": "Cointelegraph",
+            "urgency": 2,
+            "link": "https://cointelegraph.com/news/bitcoin-price-no-clear-direction-active-address-metric-decline-cryptoquant?utm_source=rss_feed&utm_medium=rss-trading-view&utm_campaign=rss_partner_inbound",
+            "relatedSymbols": [
+                {
+                    "symbol": "BINANCE:BTCUSD",
+                    "currency-logoid": "country/US",
+                    "base-currency-logoid": "crypto/XTVCBTC"
+                },
+                {
+                    "symbol": "BITSTAMP:BTCUSDT",
+                    "currency-logoid": "crypto/XTVCUSDT",
+                    "base-currency-logoid": "crypto/XTVCBTC"
+                }
+            ],
+            "storyPath": "/news/cointelegraph:86552f979094b:0-bitcoin-s-price-shows-no-clear-direction-amid-active-address-decline/"
+        },
+        {
+            "id": "DJN_DN20240904000730:0",
+            "title": "China Consumer Confidence Stagnates Amid Property Slump — Market Talk",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725429180,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "storyPath": "/news/DJN_DN20240904000730:0/"
+        },
+        {
+            "id": "benzinga:8275266ba094b:0",
+            "title": "Dollar Tree, Dick's Sporting Goods And 3 Stocks To Watch Heading Into Wednesday",
+            "provider": "benzinga",
+            "sourceLogoId": "benzinga",
+            "published": 1725429157,
+            "source": "Benzinga",
+            "urgency": 2,
+            "link": "https://www.benzinga.com/24/09/40700380/dollar-tree-dicks-sporting-goods-and-3-stocks-to-watch-heading-into-wednesday",
+            "permission": "preview",
+            "relatedSymbols": [
+                {
+                    "symbol": "NASDAQ:DLTR",
+                    "logoid": "dollar-tree"
+                },
+                {
+                    "symbol": "NYSE:PD",
+                    "logoid": "pagerduty"
+                },
+                {
+                    "symbol": "NYSE:DKS",
+                    "logoid": "dicks-sporting-goods"
+                },
+                {
+                    "symbol": "NYSE:ASAN",
+                    "logoid": "asana"
+                },
+                {
+                    "symbol": "NYSE:HPE",
+                    "logoid": "hewlett-packard-enterprise"
+                }
+            ],
+            "storyPath": "/news/benzinga:8275266ba094b:0-dollar-tree-dick-s-sporting-goods-and-3-stocks-to-watch-heading-into-wednesday/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2409967:0",
+            "title": "Ferretti Group's Chief Commercial Officer to Depart",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725428466,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "storyPath": "/news/mtnewswires.com:20240904:G2409967:0/"
+        },
+        {
+            "id": "tag:reuters.com,2024:newsml_L4N3KM0E0:0",
+            "title": "Stocks in Taiwan, South Korea slump after Nvidia rout, growth concerns rise",
+            "provider": "reuters",
+            "sourceLogoId": "reuters",
+            "published": 1725428325,
+            "source": "Reuters",
+            "urgency": 2,
+            "permission": "preview",
+            "relatedSymbols": [
+                {
+                    "symbol": "TWSE:2330",
+                    "logoid": "taiwan-semiconductor"
+                },
+                {
+                    "symbol": "KRX:000660",
+                    "logoid": "sk-telecom"
+                },
+                {
+                    "symbol": "NASDAQ:NVDA",
+                    "logoid": "nvidia"
+                },
+                {
+                    "symbol": "MYX:BURSA",
+                    "logoid": "bursa-malaysia-bhd"
+                },
+                {
+                    "symbol": "PSE:PSEI"
+                },
+                {
+                    "symbol": "SET:SET",
+                    "logoid": "indices/set"
+                },
+                {
+                    "symbol": "TVC:STI",
+                    "logoid": "indices/straits-times-index"
+                },
+                {
+                    "symbol": "FX_IDC:USDMYR",
+                    "currency-logoid": "country/MY",
+                    "base-currency-logoid": "country/US"
+                },
+                {
+                    "symbol": "FX_IDC:USDKRW",
+                    "currency-logoid": "country/KR",
+                    "base-currency-logoid": "country/US"
+                },
+                {
+                    "symbol": "FX_IDC:USDIDR",
+                    "currency-logoid": "country/ID",
+                    "base-currency-logoid": "country/US"
+                },
+                {
+                    "symbol": "FX_IDC:USDTWD",
+                    "currency-logoid": "country/TW",
+                    "base-currency-logoid": "country/US"
+                },
+                {
+                    "symbol": "FX_IDC:USDJPY",
+                    "currency-logoid": "country/JP",
+                    "base-currency-logoid": "country/US"
+                },
+                {
+                    "symbol": "TVC:NI225",
+                    "logoid": "indices/nikkei-225"
+                },
+                {
+                    "symbol": "FX_IDC:USDCNY",
+                    "currency-logoid": "country/CN",
+                    "base-currency-logoid": "country/US"
+                },
+                {
+                    "symbol": "SSE:000001",
+                    "logoid": "indices/sse-composite"
+                },
+                {
+                    "symbol": "FX_IDC:USDINR",
+                    "currency-logoid": "country/IN",
+                    "base-currency-logoid": "country/US"
+                },
+                {
+                    "symbol": "NSE:NIFTY",
+                    "logoid": "indices/nifty-50"
+                },
+                {
+                    "symbol": "IDX:COMPOSITE",
+                    "logoid": "indices/jakarta-composite-index"
+                },
+                {
+                    "symbol": "FX_IDC:USDPHP",
+                    "currency-logoid": "country/PH",
+                    "base-currency-logoid": "country/US"
+                },
+                {
+                    "symbol": "KRX:KOSPI",
+                    "logoid": "indices/korea-composite-index"
+                },
+                {
+                    "symbol": "FX_IDC:USDSGD",
+                    "currency-logoid": "country/SG",
+                    "base-currency-logoid": "country/US"
+                },
+                {
+                    "symbol": "FX_IDC:USDTHB",
+                    "currency-logoid": "country/TH",
+                    "base-currency-logoid": "country/US"
+                },
+                {
+                    "symbol": "HOSE:VNINDEX",
+                    "logoid": "indices/vietnam-index"
+                },
+                {
+                    "symbol": "FX_IDC:USDVND",
+                    "currency-logoid": "country/VN",
+                    "base-currency-logoid": "country/US"
+                }
+            ],
+            "storyPath": "/news/reuters.com,2024:newsml_L4N3KM0E0:0-stocks-in-taiwan-south-korea-slump-after-nvidia-rout-growth-concerns-rise/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2409963:0",
+            "title": "Rapid Nutrition Lands Distribution Deal for Health Products in Korea, Japan",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725428132,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "EURONEXT:ALRPD"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2409963:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2409965:0",
+            "title": "Eraaya Lifespaces Names CFO; Shares Up 5%",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725428076,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "BSE:ERAAYA",
+                    "logoid": "justride-enterprises-limited"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2409965:0/"
+        },
+        {
+            "id": "DJN_DN20240904000602:0",
+            "title": "Nicox Appoints Christine Placet to Board of Directors; Michele Garufi steps down from Board",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725427800,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "EURONEXT:ALCOX",
+                    "logoid": "nicox-sa"
+                }
+            ],
+            "storyPath": "/news/DJN_DN20240904000602:0/"
+        },
+        {
+            "id": "DJN_DN20240904000575:0",
+            "title": "Stellantis Margins Seen Lower as Stock Spirals From March Highs — Market Talk",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725427620,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "MIL:STLAM",
+                    "logoid": "stellantis"
+                }
+            ],
+            "storyPath": "/news/DJN_DN20240904000575:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2409960:0",
+            "title": "Rigol Technologies to Buy Stake in Naisu Electronics for 252 Million Yuan",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725427556,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "SSE:688337",
+                    "logoid": "rigol-technologies"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2409960:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2409958:0",
+            "title": "UK Court of Appeal Blocks Serious Fraud Office's Attempt to Prevent Fine from Wrongful ENRC Probe",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725427551,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "FTSE:UKX",
+                    "logoid": "country/GB"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2409958:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2409957:0",
+            "title": "Data Image's Consolidated Revenue Drops 19% in August; Shares Slide 3%",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725427404,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "TWSE:3168"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2409957:0/"
+        },
+        {
+            "id": "tag:reuters.com,2024:newsml_L8N3KM03O:0",
+            "title": "Volvo Cars to deliver first EX90 SUVs this month after delay",
+            "provider": "reuters",
+            "sourceLogoId": "reuters",
+            "published": 1725427333,
+            "source": "Reuters",
+            "urgency": 2,
+            "permission": "preview",
+            "relatedSymbols": [
+                {
+                    "symbol": "OMXSTO:VOLCAR_B",
+                    "logoid": "volvo-car"
+                }
+            ],
+            "storyPath": "/news/reuters.com,2024:newsml_L8N3KM03O:0-volvo-cars-to-deliver-first-ex90-suvs-this-month-after-delay/"
+        },
+        {
+            "id": "coindesk:38d869b9c094b:0",
+            "title": "Bitcoin ETFs Bleed $287M, Largest Daily Outflow in Four Months",
+            "provider": "coindesk",
+            "sourceLogoId": "coindesk",
+            "published": 1725427273,
+            "source": "CoinDesk",
+            "urgency": 2,
+            "relatedSymbols": [
+                {
+                    "symbol": "PYTH:NVDA"
+                },
+                {
+                    "symbol": "BITMEX:XBTETH.P",
+                    "currency-logoid": "country/US",
+                    "base-currency-logoid": "crypto/XTVCBTC"
+                }
+            ],
+            "storyPath": "/news/coindesk:38d869b9c094b:0-bitcoin-etfs-bleed-287m-largest-daily-outflow-in-four-months/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2409956:0",
+            "title": "ComfortDelGro's Subsidiary Awarded Bus Operation Contracts in Australia",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725427123,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "SGX:C52",
+                    "logoid": "comfortdelgro"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2409956:0/"
+        },
+        {
+            "id": "cointelegraph:13ab18ce1094b:0",
+            "title": "Scammers have found a way to burn tokens from inside Solana wallets",
+            "provider": "cointelegraph",
+            "sourceLogoId": "cointelegraph-en",
+            "published": 1725427098,
+            "source": "Cointelegraph",
+            "urgency": 2,
+            "link": "https://cointelegraph.com/news/new-solana-scam-burn-tokens-from-inside-sol-wallets?utm_source=rss_feed&utm_medium=rss-trading-view&utm_campaign=rss_partner_inbound",
+            "storyPath": "/news/cointelegraph:13ab18ce1094b:0-scammers-have-found-a-way-to-burn-tokens-from-inside-solana-wallets/"
+        },
+        {
+            "id": "tag:reuters.com,2024:newsml_L1N3KM03H:0",
+            "title": "Stocks hammered by renewed growth concerns, Nvidia's selloff",
+            "provider": "reuters",
+            "sourceLogoId": "reuters",
+            "published": 1725427093,
+            "source": "Reuters",
+            "urgency": 2,
+            "permission": "preview",
+            "relatedSymbols": [
+                {
+                    "symbol": "TVC:NI225",
+                    "logoid": "indices/nikkei-225"
+                },
+                {
+                    "symbol": "NASDAQ:NVDA",
+                    "logoid": "nvidia"
+                },
+                {
+                    "symbol": "TSE:6857",
+                    "logoid": "advantest"
+                },
+                {
+                    "symbol": "TWSE:2330",
+                    "logoid": "taiwan-semiconductor"
+                },
+                {
+                    "symbol": "KRX:000660",
+                    "logoid": "sk-telecom"
+                },
+                {
+                    "symbol": "CME_MINI:ES1!",
+                    "logoid": "indices/s-and-p-500"
+                },
+                {
+                    "symbol": "CME_MINI:NQ1!",
+                    "logoid": "indices/nasdaq-100"
+                },
+                {
+                    "symbol": "EUREX:FESX1!",
+                    "logoid": "indices/euro-stoxx-50"
+                },
+                {
+                    "symbol": "ICEEUR:Z1!",
+                    "logoid": "indices/uk-100"
+                },
+                {
+                    "symbol": "ICEEUR:BRN1!",
+                    "logoid": "crude-oil"
+                },
+                {
+                    "symbol": "NYMEX:CL1!",
+                    "logoid": "crude-oil"
+                },
+                {
+                    "symbol": "HSI:HSI",
+                    "logoid": "indices/hang-seng"
+                },
+                {
+                    "symbol": "SZSE:399300"
+                },
+                {
+                    "symbol": "FX_IDC:USDJPY",
+                    "currency-logoid": "country/JP",
+                    "base-currency-logoid": "country/US"
+                },
+                {
+                    "symbol": "FX:EURUSD",
+                    "currency-logoid": "country/US",
+                    "base-currency-logoid": "country/EU"
+                },
+                {
+                    "symbol": "FX:AUDUSD",
+                    "currency-logoid": "country/US",
+                    "base-currency-logoid": "country/AU"
+                },
+                {
+                    "symbol": "TVC:US10Y",
+                    "logoid": "country/US"
+                },
+                {
+                    "symbol": "TVC:GOLD",
+                    "logoid": "metal/gold"
+                },
+                {
+                    "symbol": "ICEUS:DXY",
+                    "logoid": "indices/u-s-dollar-index"
+                }
+            ],
+            "storyPath": "/news/reuters.com,2024:newsml_L1N3KM03H:0-stocks-hammered-by-renewed-growth-concerns-nvidia-s-selloff/"
+        },
+        {
+            "id": "DJN_DN20240904000316:0",
+            "title": "New Zealand Shares Rise 0.15% Despite Global Equities Gloom — Market Talk",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725427020,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "storyPath": "/news/DJN_DN20240904000316:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2409950:0",
+            "title": "Alliance Aviation Services Inks Letters of Intent for Sale of Airframes, Engine Cores to European Clients",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725426823,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "ASX:AQZ"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2409950:0/"
+        },
+        {
+            "id": "tag:reuters.com,2024:newsml_L1N3KM02O:0",
+            "title": "China, HK shares fall as Wall Street sell-off hits sentiment in Asia",
+            "provider": "reuters",
+            "sourceLogoId": "reuters",
+            "published": 1725426789,
+            "source": "Reuters",
+            "urgency": 2,
+            "permission": "preview",
+            "relatedSymbols": [
+                {
+                    "symbol": "SZSE:399300"
+                },
+                {
+                    "symbol": "SSE:000001",
+                    "logoid": "indices/sse-composite"
+                },
+                {
+                    "symbol": "HSI:HSI",
+                    "logoid": "indices/hang-seng"
+                },
+                {
+                    "symbol": "NASDAQ:NVDA",
+                    "logoid": "nvidia"
+                },
+                {
+                    "symbol": "SSE:000928",
+                    "logoid": "sector/energy"
+                },
+                {
+                    "symbol": "SSE:600938",
+                    "logoid": "cnooc-limited"
+                },
+                {
+                    "symbol": "SSE:601857",
+                    "logoid": "petrochina"
+                },
+                {
+                    "symbol": "HSI:HSTECH"
+                },
+                {
+                    "symbol": "SZSE:399006"
+                },
+                {
+                    "symbol": "SZSE:399106",
+                    "logoid": "indices/szse-composite-index"
+                },
+                {
+                    "symbol": "HSI:HSCEI",
+                    "logoid": "indices/hang-seng-china-enterprises"
+                }
+            ],
+            "storyPath": "/news/reuters.com,2024:newsml_L1N3KM02O:0-china-hk-shares-fall-as-wall-street-sell-off-hits-sentiment-in-asia/"
+        },
+        {
+            "id": "cointelegraph:c1f207501094b:0",
+            "title": "Trader turns $5k into $670K on Ethereum Pump.fun rival Ethervista",
+            "provider": "cointelegraph",
+            "sourceLogoId": "cointelegraph-en",
+            "published": 1725426702,
+            "source": "Cointelegraph",
+            "urgency": 2,
+            "link": "https://cointelegraph.com/news/ethervista-launch-token-trader-massive-profits-solana-pumpfun-rival?utm_source=rss_feed&utm_medium=rss-trading-view&utm_campaign=rss_partner_inbound",
+            "relatedSymbols": [
+                {
+                    "symbol": "BINANCE:ETHUSD",
+                    "currency-logoid": "country/US",
+                    "base-currency-logoid": "crypto/XTVCETH"
+                },
+                {
+                    "symbol": "BINANCE:ETHUSDT",
+                    "currency-logoid": "crypto/XTVCUSDT",
+                    "base-currency-logoid": "crypto/XTVCETH"
+                }
+            ],
+            "storyPath": "/news/cointelegraph:c1f207501094b:0-trader-turns-5k-into-670k-on-ethereum-pump-fun-rival-ethervista/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2409955:0",
+            "title": "Lithium Plus Minerals Advances Exploration at Bynoe Project",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725426661,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "ASX:LPM"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2409955:0/"
+        },
+        {
+            "id": "moneycontrol:4f2f17e91094b:0",
+            "title": "OMC and paint stocks cheer for fall in crude prices while ONGC and Oil India sulk into red",
+            "provider": "moneycontrol",
+            "sourceLogoId": "moneycontrol",
+            "published": 1725426382,
+            "source": "Moneycontrol",
+            "urgency": 2,
+            "link": "https://www.moneycontrol.com/news/business/markets/crude-price-drops-omc-and-paint-stocks-rejoice-ongc-and-oil-india-slip-into-red-12813999.html",
+            "relatedSymbols": [
+                {
+                    "symbol": "NSE:IOC",
+                    "logoid": "indian-oil"
+                },
+                {
+                    "symbol": "NSE:BPCL",
+                    "logoid": "bharat-petroleum"
+                }
+            ],
+            "storyPath": "/news/moneycontrol:4f2f17e91094b:0-omc-and-paint-stocks-cheer-for-fall-in-crude-prices-while-ongc-and-oil-india-sulk-into-red/"
+        },
+        {
+            "id": "DJN_DN20240904000102:0",
+            "title": "Australian Equities Roundup — Market Talk",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725426120,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "storyPath": "/news/DJN_DN20240904000102:0/"
+        },
+        {
+            "id": "financemagnates:cf0f9860b094b:0",
+            "title": "FXOpen Has Lost Its Australian License",
+            "provider": "financemagnates",
+            "sourceLogoId": "financemagnates",
+            "published": 1725426093,
+            "source": "Finance Magnates",
+            "urgency": 2,
+            "link": "https://www.financemagnates.com/forex/fxopen-has-lost-its-australian-license/",
+            "storyPath": "/news/financemagnates:cf0f9860b094b:0-fxopen-has-lost-its-australian-license/"
+        },
+        {
+            "id": "DJN_DN20240904000097:0",
+            "title": "Asian Chip Stocks Stumble as Recession Fears Resurface, Nvidia Slides",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725426060,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "relatedSymbols": [
+                {
+                    "symbol": "HKEX:981",
+                    "logoid": "semiconductor-manufacturing-international"
+                },
+                {
+                    "symbol": "TWSE:2317",
+                    "logoid": "hon-hai"
+                },
+                {
+                    "symbol": "TWSE:2330",
+                    "logoid": "taiwan-semiconductor"
+                },
+                {
+                    "symbol": "BER:1HH",
+                    "logoid": "hua-hong-semi"
+                },
+                {
+                    "symbol": "TSE:6857",
+                    "logoid": "advantest"
+                },
+                {
+                    "symbol": "TSE:8035",
+                    "logoid": "tokyo-electron"
+                },
+                {
+                    "symbol": "KRX:000660",
+                    "logoid": "sk-telecom"
+                },
+                {
+                    "symbol": "KRX:005930",
+                    "logoid": "samsung"
+                }
+            ],
+            "storyPath": "/news/DJN_DN20240904000097:0-asian-chip-stocks-stumble-as-recession-fears-resurface-nvidia-slides/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2409948:0",
+            "title": "Fitch Affirms Ams-Osram Rating Amid Expectation of FY24 Revenue Decline",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725425988,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "SIX:AMS",
+                    "logoid": "ams-osram"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2409948:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2409943:0",
+            "title": "Immofinanz Prices Squeeze-out of S Immo Minority Shareholders",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725425911,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "storyPath": "/news/mtnewswires.com:20240904:G2409943:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2409945:0",
+            "title": "Baota Industry Wins 22 Million-Yuan Rolling Bearings Procurement Bid; Shares Up 5%",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725425489,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "SZSE:000595"
+                },
+                {
+                    "symbol": "SZSE:000927",
+                    "logoid": "china-railway-mate"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2409945:0/"
+        },
+        {
+            "id": "tag:reuters.com,2024:newsml_L4N3KM0BZ:0",
+            "title": "India's RBL Bank falls on target price cut by Morgan Stanley",
+            "provider": "reuters",
+            "sourceLogoId": "reuters",
+            "published": 1725425431,
+            "source": "Reuters",
+            "urgency": 2,
+            "permission": "preview",
+            "relatedSymbols": [
+                {
+                    "symbol": "NSE:RBLBANK",
+                    "logoid": "rbl-bank"
+                }
+            ],
+            "storyPath": "/news/reuters.com,2024:newsml_L4N3KM0BZ:0-india-s-rbl-bank-falls-on-target-price-cut-by-morgan-stanley/"
+        },
+        {
+            "id": "benzinga:ec2d2dba2094b:0",
+            "title": "Dollar Tree Gears Up For Q2 Print; Here Are The Recent Forecast Changes From Wall Street's Most Accurate Analysts",
+            "provider": "benzinga",
+            "sourceLogoId": "benzinga",
+            "published": 1725425350,
+            "source": "Benzinga",
+            "urgency": 2,
+            "link": "https://www.benzinga.com/news/earnings/24/09/40700162/dollar-tree-gears-up-for-q2-print-here-are-the-recent-forecast-changes-from-wall-streets-most-accur",
+            "permission": "preview",
+            "relatedSymbols": [
+                {
+                    "symbol": "NASDAQ:DLTR",
+                    "logoid": "dollar-tree"
+                }
+            ],
+            "storyPath": "/news/benzinga:ec2d2dba2094b:0-dollar-tree-gears-up-for-q2-print-here-are-the-recent-forecast-changes-from-wall-street-s-most-accurate-analysts/"
+        },
+        {
+            "id": "DJN_DN20240904000075:0",
+            "title": "Haier Smart Home's Domestic Sales Could Improve in 2H — Market Talk",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725425340,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "SSE:600690",
+                    "logoid": "haier-smart-home"
+                }
+            ],
+            "storyPath": "/news/DJN_DN20240904000075:0/"
+        },
+        {
+            "id": "DJN_DN20240904000070:0",
+            "title": "Australian Consumers May Be Ready for Comeback — Market Talk",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725425220,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "ECONOMICS:AUGDP",
+                    "logoid": "country/AU"
+                }
+            ],
+            "storyPath": "/news/DJN_DN20240904000070:0/"
+        },
+        {
+            "id": "benzinga:f14a06882094b:0",
+            "title": "DOJ Revamps Social Media Strategy On Combating Foreign Threats Days After Meta CEO Mark Zuckerberg Said Facebook Was 'Pressured' By Biden Administration",
+            "provider": "benzinga",
+            "sourceLogoId": "benzinga",
+            "published": 1725425182,
+            "source": "Benzinga",
+            "urgency": 2,
+            "link": "https://www.benzinga.com/news/24/09/40700150/doj-revamps-social-media-strategy-on-combating-foreign-threats-days-after-meta-ceo-mark-zuckerberg-s",
+            "permission": "preview",
+            "relatedSymbols": [
+                {
+                    "symbol": "NASDAQ:META",
+                    "logoid": "meta-platforms"
+                }
+            ],
+            "storyPath": "/news/benzinga:f14a06882094b:0-doj-revamps-social-media-strategy-on-combating-foreign-threats-days-after-meta-ceo-mark-zuckerberg-said-facebook-was-pressured-by-biden-administration/"
+        },
+        {
+            "id": "tag:reuters.com,2024:newsml_L1N3KL0Y9:0",
+            "title": "Volkswagen goes head-to-head with workforce over proposed company cuts",
+            "provider": "reuters",
+            "sourceLogoId": "reuters",
+            "published": 1725425018,
+            "source": "Reuters",
+            "urgency": 2,
+            "permission": "preview",
+            "relatedSymbols": [
+                {
+                    "symbol": "XETR:VOW",
+                    "logoid": "volkswagen"
+                }
+            ],
+            "storyPath": "/news/reuters.com,2024:newsml_L1N3KL0Y9:0-volkswagen-goes-head-to-head-with-workforce-over-proposed-company-cuts/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2409934:0",
+            "title": "Shenzhen Sunxing Light Alloys Materials to Buy Stake in Hongxin Semiconductor for 10 Million Yuan; Shares Soar 10%",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725424838,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "SSE:603978",
+                    "logoid": "shenzhen-sunxing-light-alloys-materials"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2409934:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2409933:0",
+            "title": "Emu Closes Unmarketable Parcel Share Sale Facility",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725424589,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "ASX:EMU"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2409933:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2409932:0",
+            "title": "BoldTek's CEO Passes Away",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725424494,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "SGX:5VI"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2409932:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2409929:0",
+            "title": "Guizhou Yibai Pharmaceutical Gets China Approval for Multiple, Non-Hodgkin's Lymphoma Drug",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725424353,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "SSE:600594",
+                    "logoid": "guizhou-yibai-pharmaceutical"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2409929:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2409927:0",
+            "title": "Kalgoorlie Gold Mining Raises AU$602,000 via Oversubscribed Share Purchase Plan",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725424331,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "ASX:KAL",
+                    "logoid": "kalgoorlie-gold-mng-ltd"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2409927:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2409925:0",
+            "title": "Holcim Names Successor to Outgoing Chief People Officer",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725424243,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "SIX:HOLN",
+                    "logoid": "holcim-n"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2409925:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2409924:0",
+            "title": "Cupid to Expand B2C Business in India",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725424236,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "NSE:CUPID"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2409924:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2409928:0",
+            "title": "S&P: United Arab Emirates' Non-oil Private Sector Growth Accelerates in August",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725424222,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "storyPath": "/news/mtnewswires.com:20240904:G2409928:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2409920:0",
+            "title": "Fubon Financial's Banking Unit Issues NT$1.5 Billion Debentures",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725424065,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "TWSE:2881",
+                    "logoid": "fubon"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2409920:0/"
+        },
+        {
+            "id": "benzinga:2cbd0d757094b:0",
+            "title": "Bitcoin's Low-Cost Offshoot BSV Becomes Market's Biggest Gainer While King Crypto Plunges Over 4%",
+            "provider": "benzinga",
+            "sourceLogoId": "benzinga",
+            "published": 1725423961,
+            "source": "Benzinga",
+            "urgency": 2,
+            "link": "https://www.benzinga.com/markets/cryptocurrency/24/09/40700041/bitcoins-low-cost-offshoot-bsv-becomes-markets-biggest-gainer-while-king-crypto-plunges-ov",
+            "permission": "preview",
+            "storyPath": "/news/benzinga:2cbd0d757094b:0-bitcoin-s-low-cost-offshoot-bsv-becomes-market-s-biggest-gainer-while-king-crypto-plunges-over-4/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2409921:0",
+            "title": "KPI Green Energy Gets Chief Electrical Inspector's Nod for 16MW Solar Power Projects",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725423905,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "NSE:KPIGREEN"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2409921:0/"
+        },
+        {
+            "id": "tag:reuters.com,2024:newsml_L1N3KM02Q:0",
+            "title": "Base metals pressured by risk-off sentiment; Shanghai copper hits 3-week low",
+            "provider": "reuters",
+            "sourceLogoId": "reuters",
+            "published": 1725423840,
+            "source": "Reuters",
+            "urgency": 2,
+            "permission": "preview",
+            "relatedSymbols": [
+                {
+                    "symbol": "COMEX:HG1!",
+                    "logoid": "metal/copper"
+                },
+                {
+                    "symbol": "COMEX:ALI1!",
+                    "logoid": "metal/aluminum"
+                },
+                {
+                    "symbol": "MCX:NICKEL1!",
+                    "logoid": "metal/nickel"
+                },
+                {
+                    "symbol": "COMEX:ZNC1!",
+                    "logoid": "metal/zinc"
+                },
+                {
+                    "symbol": "MCX:LEAD1!",
+                    "logoid": "metal/lead"
+                },
+                {
+                    "symbol": "MYX:FTIN1!",
+                    "logoid": "metal/tin"
+                }
+            ],
+            "storyPath": "/news/reuters.com,2024:newsml_L1N3KM02Q:0-base-metals-pressured-by-risk-off-sentiment-shanghai-copper-hits-3-week-low/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2409916:0",
+            "title": "Arundel Refinances Existing Facility with New EUR60 Million Loan from German Real Estate Bank",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725423793,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "SIX:ARON",
+                    "logoid": "arundel-n"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2409916:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2409917:0",
+            "title": "Nextool Technology's Acting Chairman Proposes Up to 30 Million Yuan Share Buyback",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725423536,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "SSE:688419",
+                    "logoid": "nextool-technology-coltd"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2409917:0/"
+        },
+        {
+            "id": "tag:reuters.com,2024:newsml_L1N3KM02Z:0",
+            "title": "Trina Solar to supply Vanda RE solar PV modules for Indonesia project",
+            "provider": "reuters",
+            "sourceLogoId": "reuters",
+            "published": 1725423494,
+            "source": "Reuters",
+            "urgency": 2,
+            "permission": "preview",
+            "relatedSymbols": [
+                {
+                    "symbol": "SSE:688599",
+                    "logoid": "trina-solar"
+                }
+            ],
+            "storyPath": "/news/reuters.com,2024:newsml_L1N3KM02Z:0-trina-solar-to-supply-vanda-re-solar-pv-modules-for-indonesia-project/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2409913:0",
+            "title": "Ticketmaster Faces EU Probe After UK Competition Watchdog Launches Investigation",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725423472,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "TVC:SXXP",
+                    "logoid": "indices/stoxx-600"
+                },
+                {
+                    "symbol": "FTSE:UKX",
+                    "logoid": "country/GB"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2409913:0/"
+        },
+        {
+            "id": "benzinga:c96eb783f094b:0",
+            "title": "Trump's Upcoming Crypto Initiative Reportedly Modeled Around DeFi Platform That Was Hacked For Over $2M",
+            "provider": "benzinga",
+            "sourceLogoId": "benzinga",
+            "published": 1725423396,
+            "source": "Benzinga",
+            "urgency": 2,
+            "link": "https://www.benzinga.com/markets/cryptocurrency/24/09/40700018/trumps-upcoming-crypto-initiative-reportedly-modeled-around-defi-platform-that-was-hacked-",
+            "permission": "preview",
+            "storyPath": "/news/benzinga:c96eb783f094b:0-trump-s-upcoming-crypto-initiative-reportedly-modeled-around-defi-platform-that-was-hacked-for-over-2m/"
+        },
+        {
+            "id": "DJN_DN20240904000043:0",
+            "title": "EMEA Morning Briefing: Risk-Off Mood May Weigh on Shares",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725423360,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "storyPath": "/news/DJN_DN20240904000043:0-emea-morning-briefing-risk-off-mood-may-weigh-on-shares/"
+        },
+        {
+            "id": "DJN_DN20240904000041:0",
+            "title": "Global Commodities Roundup: Market Talk",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725423300,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "storyPath": "/news/DJN_DN20240904000041:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2409881:0",
+            "title": "Lumos Diagnostics Launches AU$10 Million Entitlement Offer; Secures Tattarang Backing",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725423286,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "ASX:LDX",
+                    "logoid": "lumos-diagnostics-hldgs-ltd"
+                },
+                {
+                    "symbol": "ASX:FMG",
+                    "logoid": "fortescue-metals-group"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2409881:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2409915:0",
+            "title": "Shandong Xinhua Pharmaceutical Gets Regulatory OK for Supplemental Drug Application for Blood Flow Injection",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725423207,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "SZSE:000756"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2409915:0/"
+        },
+        {
+            "id": "DJN_DN20240904000025:0",
+            "title": "It's the Season for Hot Pot; Yihai International Expected to Benefit — Market Talk",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725422760,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "HKEX:1579",
+                    "logoid": "yihai-international"
+                }
+            ],
+            "storyPath": "/news/DJN_DN20240904000025:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2409901:0",
+            "title": "GTI Energy Extends Entitlement Offer Deadline; Shares Rise 33%",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725422745,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "ASX:GTR",
+                    "logoid": "gti-energy-ltd"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2409901:0/"
+        },
+        {
+            "id": "benzinga:576722006094b:0",
+            "title": "Snap CEO Evan Spiegel Announces Focus On Ad Business And AR Amid Still Competition From TikTok And Mark Zuckerberg's Meta",
+            "provider": "benzinga",
+            "sourceLogoId": "benzinga",
+            "published": 1725422650,
+            "source": "Benzinga",
+            "urgency": 2,
+            "link": "https://www.benzinga.com/markets/equities/24/09/40699921/snap-ceo-evan-spiegel-announces-focus-on-ad-business-and-ar-amid-still-competition-from-tiktok-a",
+            "permission": "preview",
+            "relatedSymbols": [
+                {
+                    "symbol": "NYSE:SNAP",
+                    "logoid": "snap"
+                },
+                {
+                    "symbol": "NASDAQ:META",
+                    "logoid": "meta-platforms"
+                }
+            ],
+            "storyPath": "/news/benzinga:576722006094b:0-snap-ceo-evan-spiegel-announces-focus-on-ad-business-and-ar-amid-still-competition-from-tiktok-and-mark-zuckerberg-s-meta/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240904:G2409909:0",
+            "title": "Great Microwave Technology's Chairman Proposes Up to 40 Million Yuan Share Buyback",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725422567,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "SSE:688270",
+                    "logoid": "great-microwave-technology-coltd"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240904:G2409909:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240903:G2409905:0",
+            "title": "DAM Capital Advisors Files Draft Papers for IPO",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725422347,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "BSE:SENSEX",
+                    "logoid": "indices/bse-sensex"
+                },
+                {
+                    "symbol": "NSE:NIFTY1!",
+                    "logoid": "indices/nifty-50"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240903:G2409905:0/"
+        },
+        {
+            "id": "marketindex:ac890be59094b:0",
+            "title": "Did the “September Scare” just begin for the Australian share market?",
+            "provider": "marketindex",
+            "sourceLogoId": "marketindex",
+            "published": 1725422322,
+            "source": "Market Index",
+            "urgency": 2,
+            "link": "https://www.marketindex.com.au/news/did-the-september-scare-just-begin-for-the-australian-share-market",
+            "relatedSymbols": [
+                {
+                    "symbol": "ASX:ANZ",
+                    "logoid": "australia-and-new-zealand-banking"
+                },
+                {
+                    "symbol": "ASX:WBC",
+                    "logoid": "westpac"
+                },
+                {
+                    "symbol": "ASX:NAB",
+                    "logoid": "national-australia-bank"
+                },
+                {
+                    "symbol": "ASX:CBA",
+                    "logoid": "commonwealth-bank"
+                }
+            ],
+            "storyPath": "/news/marketindex:ac890be59094b:0-did-the-september-scare-just-begin-for-the-australian-share-market/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240903:G2409906:0",
+            "title": "Vietnamese Manufacturing Activity Rises Softly in August, Says S&P Survey",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725422252,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "HNX:HNXINDEX",
+                    "logoid": "indices/hanoi-stock-exchange-equity-index"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240903:G2409906:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240903:G2409903:0",
+            "title": "Market Chatter: Carlyle Group Said to Line Up Banks for Watch Parts Maker Acrotec's Swiss IPO",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725422207,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "SIX:SMI",
+                    "logoid": "indices/swiss-market-index"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240903:G2409903:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240903:G2409904:0",
+            "title": "Newly Approved New Zealand Loans Rise in July",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725422187,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "NZX:NZ50G",
+                    "logoid": "indices/s-and-p-nzx-50-index-gross"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240903:G2409904:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240903:G2409902:0",
+            "title": "Labyrinth Resources Amends Timetable of Entitlement Offer",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725422081,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "ASX:LRL"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240903:G2409902:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240903:G2409889:0",
+            "title": "Market Chatter: German Publisher Springer Nature Reportedly Preparing for Imminent IPO",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725422046,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "TVC:SXXP",
+                    "logoid": "indices/stoxx-600"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240903:G2409889:0/"
+        },
+        {
+            "id": "moneycontrol:8f8e11833094b:0",
+            "title": "Havells India shares gain marginally as it starts commercial production at new facility",
+            "provider": "moneycontrol",
+            "sourceLogoId": "moneycontrol",
+            "published": 1725421967,
+            "source": "Moneycontrol",
+            "urgency": 2,
+            "link": "https://www.moneycontrol.com/news/business/stocks/havells-india-starts-commercial-production-at-new-facility-shares-fall-12813935.html",
+            "relatedSymbols": [
+                {
+                    "symbol": "NSE:HAVELLS",
+                    "logoid": "havells"
+                }
+            ],
+            "storyPath": "/news/moneycontrol:8f8e11833094b:0-havells-india-shares-gain-marginally-as-it-starts-commercial-production-at-new-facility/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240903:G2409898:0",
+            "title": "Saudi Arabia's Al Majed for Oud Prices IPO at Upper End of Range",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725421906,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "storyPath": "/news/mtnewswires.com:20240903:G2409898:0/"
+        },
+        {
+            "id": "tag:reuters.com,2024:newsml_L4N3KM097:0",
+            "title": "Dalian iron ore at more than two-week low on softer China data, weakening steel sector",
+            "provider": "reuters",
+            "sourceLogoId": "reuters",
+            "published": 1725421893,
+            "source": "Reuters",
+            "urgency": 2,
+            "permission": "preview",
+            "relatedSymbols": [
+                {
+                    "symbol": "COMEX:TIO1!",
+                    "logoid": "metal/iron"
+                },
+                {
+                    "symbol": "SGX:RBF1!",
+                    "logoid": "metal/steel"
+                },
+                {
+                    "symbol": "COMEX:EHR1!",
+                    "logoid": "metal/steel"
+                },
+                {
+                    "symbol": "COMEX:HRC1!",
+                    "logoid": "commodity/ferrous"
+                },
+                {
+                    "symbol": "NYMEX:ACT1!"
+                }
+            ],
+            "storyPath": "/news/reuters.com,2024:newsml_L4N3KM097:0-dalian-iron-ore-at-more-than-two-week-low-on-softer-china-data-weakening-steel-sector/"
+        },
+        {
+            "id": "DJN_DN20240903010755:0",
+            "title": "Indian Shares Fall 0.7%, Tracking Wall Street Losses — Market Talk",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725421860,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "storyPath": "/news/DJN_DN20240903010755:0/"
+        },
+        {
+            "id": "DJN_DN20240903010757:0",
+            "title": "SK Hynix Could Post 3Q Earnings Miss on Sluggish Non-AI Chip Demand — Market Talk",
+            "provider": "dow-jones",
+            "sourceLogoId": "dow-jones-newswires",
+            "published": 1725421860,
+            "source": "Dow Jones Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "KRX:000660",
+                    "logoid": "sk-telecom"
+                }
+            ],
+            "storyPath": "/news/DJN_DN20240903010757:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240903:G2409896:0",
+            "title": "Humanwell Healthcare Subsidiary Gets China Clinical Trial Approval for Anti-Tumor Drug",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725421689,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "SSE:600079",
+                    "logoid": "humanwell-healthcare-coltd"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240903:G2409896:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240903:G2409899:0",
+            "title": "Bansal Wire Industries Gets Board Nod to Form New Subsidiary",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725421605,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "NSE:BANSALWIRE"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240903:G2409899:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240903:G2409897:0",
+            "title": "Peijia Medical to Change Auditor",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725421562,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "HKEX:9996",
+                    "logoid": "peijia-medical-limited"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240903:G2409897:0/"
+        },
+        {
+            "id": "tag:reuters.com,2024:newsml_L1N3KM02S:0",
+            "title": "Oil extends drop on easing Libyan dispute, demand concerns",
+            "provider": "reuters",
+            "sourceLogoId": "reuters",
+            "published": 1725421495,
+            "source": "Reuters",
+            "urgency": 2,
+            "permission": "preview",
+            "relatedSymbols": [
+                {
+                    "symbol": "ICEEUR:BRN1!",
+                    "logoid": "crude-oil"
+                },
+                {
+                    "symbol": "NYMEX:CL1!",
+                    "logoid": "crude-oil"
+                }
+            ],
+            "storyPath": "/news/reuters.com,2024:newsml_L1N3KM02S:0-oil-extends-drop-on-easing-libyan-dispute-demand-concerns/"
+        },
+        {
+            "id": "tag:reuters.com,2024:newsml_L1N3KM02K:0",
+            "title": "Stocks battered, oil slides as growth concerns resurface",
+            "provider": "reuters",
+            "sourceLogoId": "reuters",
+            "published": 1725421477,
+            "source": "Reuters",
+            "urgency": 2,
+            "permission": "preview",
+            "relatedSymbols": [
+                {
+                    "symbol": "TVC:NI225",
+                    "logoid": "indices/nikkei-225"
+                },
+                {
+                    "symbol": "NASDAQ:NVDA",
+                    "logoid": "nvidia"
+                },
+                {
+                    "symbol": "TSE:6857",
+                    "logoid": "advantest"
+                },
+                {
+                    "symbol": "TWSE:2330",
+                    "logoid": "taiwan-semiconductor"
+                },
+                {
+                    "symbol": "KRX:000660",
+                    "logoid": "sk-telecom"
+                },
+                {
+                    "symbol": "CME_MINI:ES1!",
+                    "logoid": "indices/s-and-p-500"
+                },
+                {
+                    "symbol": "CME_MINI:NQ1!",
+                    "logoid": "indices/nasdaq-100"
+                },
+                {
+                    "symbol": "EUREX:FESX1!",
+                    "logoid": "indices/euro-stoxx-50"
+                },
+                {
+                    "symbol": "ICEEUR:Z1!",
+                    "logoid": "indices/uk-100"
+                },
+                {
+                    "symbol": "ICEEUR:BRN1!",
+                    "logoid": "crude-oil"
+                },
+                {
+                    "symbol": "NYMEX:CL1!",
+                    "logoid": "crude-oil"
+                },
+                {
+                    "symbol": "HSI:HSI",
+                    "logoid": "indices/hang-seng"
+                },
+                {
+                    "symbol": "SZSE:399300"
+                },
+                {
+                    "symbol": "FX_IDC:USDJPY",
+                    "currency-logoid": "country/JP",
+                    "base-currency-logoid": "country/US"
+                },
+                {
+                    "symbol": "FX:EURUSD",
+                    "currency-logoid": "country/US",
+                    "base-currency-logoid": "country/EU"
+                },
+                {
+                    "symbol": "FX:AUDUSD",
+                    "currency-logoid": "country/US",
+                    "base-currency-logoid": "country/AU"
+                },
+                {
+                    "symbol": "TVC:US10Y",
+                    "logoid": "country/US"
+                },
+                {
+                    "symbol": "TVC:GOLD",
+                    "logoid": "metal/gold"
+                },
+                {
+                    "symbol": "ICEUS:DXY",
+                    "logoid": "indices/u-s-dollar-index"
+                }
+            ],
+            "storyPath": "/news/reuters.com,2024:newsml_L1N3KM02K:0-stocks-battered-oil-slides-as-growth-concerns-resurface/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240903:G2409893:0",
+            "title": "NewPeak Metals Notifies Shareholders on Lakes Blue Energy's Planned Sale of Victorian Petroleum Exploration Permit",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725421394,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "ASX:NPM"
+                },
+                {
+                    "symbol": "ASX:LKO"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240903:G2409893:0/"
+        },
+        {
+            "id": "urn:newsml:mtnewswires.com:20240903:G2409892:0",
+            "title": "Market Chatter: Coupang to Open Two New Logistics Centers in South Korea",
+            "provider": "mt-newswires",
+            "sourceLogoId": "mtnewswires",
+            "published": 1725421311,
+            "source": "MT Newswires",
+            "urgency": 2,
+            "permission": "provider",
+            "relatedSymbols": [
+                {
+                    "symbol": "KRX:KOSPI",
+                    "logoid": "indices/korea-composite-index"
+                }
+            ],
+            "storyPath": "/news/mtnewswires.com:20240903:G2409892:0/"
+        }
+    ],
+    "streaming": {
+        "channel": "ceb37eac6a4b90249a9b8520d50e"
+    }
+}
