@@ -4,6 +4,7 @@ from dependency_injector.providers import (AbstractSingleton, Configuration,
 
 from news.provider import NewsProvider, ProviderSelector
 from news.seeking_alpha import SeekingAlpha
+from news.trading_view import TradingView
 
 
 class Container(containers.DeclarativeContainer):
@@ -22,6 +23,13 @@ class Container(containers.DeclarativeContainer):
                 THROTTLING_SECONDS=config.NEWS.SeekingAlpha.THROTTLING_SECONDS,
                 BASE_URL=config.NEWS.SeekingAlpha.BASE_URL,
                 DB_TABLE=config.NEWS.SeekingAlpha.DB_TABLE,
+            ),
+            TradingView.__name__: Singleton(TradingView).add_attributes(
+                WORKERS_NO=config.NEWS.TradingView.WORKERS_NO,
+                THROTTLING_SECONDS=config.NEWS.TradingView.THROTTLING_SECONDS,
+                BASE_URL=config.NEWS.TradingView.BASE_URL,
+                DB_TABLE=config.NEWS.TradingView.DB_TABLE,
+                BASE_URL_WEB=config.NEWS.TradingView.BASE_URL_WEB,
             ),
         }),
     )

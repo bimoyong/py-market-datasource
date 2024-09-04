@@ -12,6 +12,13 @@ NEWS:
     DB_TABLE: datasource.news
     BASE_URL: https://seekingalpha.com
 
+  TradingView:
+    WORKERS_NO: 4
+    THROTTLING_SECONDS: 2
+    DB_TABLE: datasource.news
+    BASE_URL: https://news-headlines.tradingview.com
+    BASE_URL_WEB: https://www.tradingview.com
+
 TICK_DATA:
   WORKERS_NO: 4
 
