@@ -42,6 +42,7 @@ async def master(provider: NewsProvider = Depends(Provide[Container.client]),
             response_model_exclude_none=True)
 @inject
 async def crawl_to_db(source: str = Query(None),
+                      symbol: str = Query(None),
                       category: Category = Query(Category.ALL),
                       from_date: datetime = Query(None),
                       to_date: datetime = Query(None),
@@ -50,6 +51,7 @@ async def crawl_to_db(source: str = Query(None),
     provider = selector.sources[source]
 
     provider.crawl_to_db(source=source,
+                         symbol=symbol,
                          category=category,
                          from_date=from_date,
                          to_date=to_date,

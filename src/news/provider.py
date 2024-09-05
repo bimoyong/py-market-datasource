@@ -23,6 +23,7 @@ class NewsProvider(ABC):
 
     def crawl_to_db(self,
                     source: str = None,
+                    symbol: str = None,
                     category: Union[Category, List[Category]] = None,
                     from_date: datetime = None,
                     to_date: datetime = None,
@@ -50,7 +51,11 @@ LIMIT
                 if not _df.empty:
                     from_date = _df.iloc[-1].loc['timestamp']
 
-        paging = self.crawl(category, from_date, to_date, items_per_page)
+        paging = self.crawl(symbol=symbol,
+                            category=category,
+                            from_date=from_date,
+                            to_date=to_date,
+                            items_per_page=items_per_page)
         news_ls: List[News] = paging.data
 
         df = pd.DataFrame.from_dict([news.model_dump() for news in news_ls])
