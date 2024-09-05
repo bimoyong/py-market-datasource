@@ -73,3 +73,27 @@ else
 
     echo "Scheduler $JOB_NAME does not exist. Creating a new Scheduler..."
 fi
+
+SCHEDULER_NAME=$RUN_NAME-news-crawl-tradingview
+if gcloud scheduler jobs update http $SCHEDULER_NAME \
+    --location $GCLOUD_REGION \
+    --schedule '0 * * * *' \
+    --time-zone America/Chicago \
+    --uri="$SERVICE_URL/v1/news/crawl-to-db?source=TradingView" \
+    --http-method GET \
+    --attempt-deadline 30m \
+    --oidc-service-account-email $SERVICE_ACCOUNT; then
+
+    echo "Updated Scheduler $SCHEDULER_NAME successfully."
+else
+    gcloud scheduler jobs create http $SCHEDULER_NAME \
+        --location $GCLOUD_REGION \
+        --schedule '0 * * * *' \
+        --time-zone America/Chicago \
+        --uri="$SERVICE_URL/v1/news/crawl-to-db?source=TradingView" \
+        --http-method GET \
+        --attempt-deadline 30m \
+        --oidc-service-account-email $SERVICE_ACCOUNT
+
+    echo "Scheduler $JOB_NAME does not exist. Creating a new Scheduler..."
+fi
