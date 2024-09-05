@@ -71,7 +71,7 @@ else
         --attempt-deadline 30m \
         --oidc-service-account-email $SERVICE_ACCOUNT
 
-    echo "Scheduler $JOB_NAME does not exist. Creating a new Scheduler..."
+    echo "Scheduler $SCHEDULER_NAME does not exist. Creating a new Scheduler..."
 fi
 
 SCHEDULER_NAME=$RUN_NAME-news-crawl-tradingview
@@ -95,5 +95,5 @@ else
         --attempt-deadline 30m \
         --oidc-service-account-email $SERVICE_ACCOUNT
 
-    echo "Scheduler $JOB_NAME does not exist. Creating a new Scheduler..."
+    echo "Scheduler $SCHEDULER_NAME does not exist. Creating a new Scheduler..."
 fi
