@@ -58,7 +58,7 @@ if gcloud scheduler jobs update http $SCHEDULER_NAME \
     --uri="$SERVICE_URL/v1/news/crawl-to-db?source=SeekingAlpha" \
     --http-method GET \
     --attempt-deadline 30m \
-    --oidc-service-account-email $SERVICE_ACCOUNT; then
+    --oidc-service-account-email $SERVICE_ACCOUNT >/dev/null 2>&1; then
 
     echo "Updated Scheduler $SCHEDULER_NAME successfully."
 else
@@ -82,7 +82,7 @@ if gcloud scheduler jobs update http $SCHEDULER_NAME \
     --uri="$SERVICE_URL/v1/news/crawl-to-db?source=TradingView" \
     --http-method GET \
     --attempt-deadline 30m \
-    --oidc-service-account-email $SERVICE_ACCOUNT; then
+    --oidc-service-account-email $SERVICE_ACCOUNT >/dev/null 2>&1; then
 
     echo "Updated Scheduler $SCHEDULER_NAME successfully."
 else
