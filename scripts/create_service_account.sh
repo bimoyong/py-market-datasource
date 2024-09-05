@@ -1,7 +1,10 @@
 #!/bin/bash
 
+export WORK_DIR=$(dirname $(dirname $(realpath $0)))
+
+[ -f .env ] && source .env
+
 export GCLOUD_PROJECT=$(gcloud config get project)
-export REGION=asia-southeast1
 export SERVICE_ACCOUNT_NAME=trading-strategy
 
 export SERVICE_ACCOUNT=$(gcloud iam service-accounts list \
@@ -37,5 +40,13 @@ gcloud projects add-iam-policy-binding $GCLOUD_PROJECT \
 gcloud projects add-iam-policy-binding $GCLOUD_PROJECT \
     --member serviceAccount:$SERVICE_ACCOUNT \
     --role 'roles/storage.admin' >/dev/null
+
+gcloud projects add-iam-policy-binding $GCLOUD_PROJECT \
+    --member serviceAccount:$SERVICE_ACCOUNT \
+    --role 'roles/logging.logWriter' >/dev/null
+
+gcloud projects add-iam-policy-binding $GCLOUD_PROJECT \
+    --member serviceAccount:$SERVICE_ACCOUNT \
+    --role 'roles/pubsub.editor' >/dev/null
 
 echo $SERVICE_ACCOUNT
