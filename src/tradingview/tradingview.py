@@ -232,11 +232,12 @@ class TradingView:
             _send_message(ws, 'set_auth_token', ['unauthorized_user_token'])
 
         sess_ls = [_generate_session('cs_') for _ in symbols]
+        sess_symbol_mapper = dict(zip(sess_ls, symbols))
         sess_completed = {i: [] for i in sess_ls}
 
         # Then send a message through the tunnel
         _send_message(ws, 'set_data_quality', ['high'])
-        for i, (_symbol, _sess) in enumerate(zip(symbols, sess_ls)):
+        for i, (_sess, _symbol) in enumerate(sess_symbol_mapper.items()):
             _send_message(ws, 'chart_create_session', [_sess, ''])
             _send_message(ws, 'resolve_symbol', [_sess, f'sds_sym_{i}', "={\"adjustment\":\"" + adjustment + "\",\"currency-id\":\"USD\",\"symbol\":\"" + _symbol + "\"}"])
             _send_message(ws, 'create_series', [_sess, f's_ohclv{i}', f's{i}', f'sds_sym_{i}', str(freq), total_candles, ""])
@@ -249,6 +250,9 @@ class TradingView:
 
         # Start job
         df = _parse_bar_charts(ws, sess_completed=sess_completed)
+
+        df['symbol'] = df.apply(lambda x: sess_symbol_mapper[x['session']], axis=1)
+        df = df.drop('session', axis=1).reset_index().set_index(['timestamp', 'symbol'])
 
         return df
 
@@ -432,7 +436,7 @@ def _parse_bar_charts(ws, sess_completed: Dict[str, Dict[str, bool]]) -> pd.Data
                     symbol_dict[sess] = p[2].get('pro_name')
 
                 if m in ['series_completed', 'study_completed']:
-                    sess_completed = deep_update(sess_completed, {sess: {p[1]: True}})
+                    sess_completed.update(**deep_update(sess_completed, {sess: {p[1]: True}}))
 
                 if isinstance(p[1], dict):
                     series = list(p[1].keys())[0]
@@ -454,15 +458,16 @@ def _parse_bar_charts(ws, sess_completed: Dict[str, Dict[str, bool]]) -> pd.Data
                         _axis = {True: 1, False: 0}[bool(set(_df.columns) - set(_df_exist.columns))]
                         st_dict[sess] = pd.concat([st_dict.get(sess), _df], axis=_axis)
 
-            if all([all(v.values()) for v in sess_completed.values()]):
+            if 'False' not in str(sess_completed):
                 dfs: List[pd.DataFrame] = []
                 for _sess, _symbol in symbol_dict.items():
                     s = s_dict.get(_sess)
                     st = st_dict.get(_sess)
                     _df = pd.concat([s, st], axis=1)
                     _df['symbol'] = [_symbol] * len(_df)
-                    _df['symbol'] = _df['symbol'].astype('string')
-                    _df = _df.reset_index().set_index(['timestamp', 'symbol'])
+                    _df['symbol'] = _df.symbol.astype('string')
+                    _df['session'] = [_sess] * len(_df)
+                    _df['session'] = _df.session.astype('string')
                     dfs.append(_df)
 
                 df = pd.concat(dfs, axis=0)
