@@ -76,7 +76,7 @@ class TradingViewProvider(DataProvider):
                 elif fn == 'ohclv':
                     _ohclv = self.ohclv(symbols=symbols,
                                         freq='1D',
-                                        total_candles=252,
+                                        total_candles=252 * 2,
                                         tzinfo='America/Chicago').reset_index()
 
                     _ohclv['Date'] = _ohclv['Date'].dt.tz_localize(None)
