@@ -18,7 +18,7 @@ def set_index_by_timestamp(df: pd.DataFrame,
     if tzinfo:
         index_names = _df.index.names
         _df.reset_index(inplace=True)
-        _df['timestamp'] = _df['timestamp'].apply(lambda x: x.tz_localize('UTC') if x.tz is None else x).dt.tz_convert('America/Chicago')
+        _df['timestamp'] = _df['timestamp'].apply(lambda x: x.tz_localize('UTC') if x.tz is None else x).dt.tz_convert(tzinfo)
         _df.set_index(index_names, inplace=True)
 
     return _df
