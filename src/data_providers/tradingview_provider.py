@@ -207,8 +207,7 @@ class TradingViewProvider(DataProvider):
                      freq: int = '1D',
                      total_candles: int = 252,
                      tzinfo=None,
-                     periods=['1D', '5D', '10D', '21D']
-                     ) -> List[Dict[str, Any]]:
+                     periods=['1D', '5D', '10D', '21D']) -> pd.DataFrame:
         if isinstance(markets, str):
             markets = [markets]
 
