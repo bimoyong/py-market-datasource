@@ -16,7 +16,7 @@ from pydantic.v1.utils import deep_update
 from requests import get, post
 from websocket import WebSocket, create_connection
 
-_GLOBAL_URL_ = 'https://scanner.tradingview.com/global/scan'
+_SCANNER_URL_ = 'https://scanner.tradingview.com'
 _API_URL_ = 'https://symbol-search.tradingview.com/symbol_search/v3'
 _ECONOMIC_URL = 'https://economic-calendar.tradingview.com'
 _WS_URL_ = 'wss://prodata.tradingview.com/socket.io/websocket?&type=chart'
@@ -253,6 +253,7 @@ class TradingView:
 
         df['symbol'] = df.apply(lambda x: sess_symbol_mapper[x['session']], axis=1)
         df = df.drop('session', axis=1).reset_index().set_index(['timestamp', 'symbol'])
+        df = df.loc[~df.index.duplicated(keep='first')]
 
         return df
 
@@ -376,6 +377,28 @@ class TradingView:
             return []
 
         result = data.get('result')
+
+        return result
+
+    def scan(self, payload: Dict[str, Any]) -> List[Dict[str, Any]]:
+        url = f'{_SCANNER_URL_}/global/scan'
+
+        headers = {
+            'Content-Type': 'application/json'
+        }
+
+        resp = post(url, data=json.dumps(payload), headers=headers, timeout=60)
+
+        if resp.status_code != 200:
+            raise ConnectionError(f'Client returns error "{resp.status_code} {resp.content}"')
+
+        data = resp.json()
+
+        error = data.get('error')
+        if error:
+            raise ConnectionError(f'Client returns error "{resp.status_code} {error}"')
+
+        result = data.get('data')
 
         return result
 

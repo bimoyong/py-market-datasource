@@ -2,8 +2,10 @@ from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime
 from typing import Any, Dict, List, Union
 
+import numpy as np
 import pandas as pd
 import pytz
+from pydantic.v1.utils import deep_update
 from tenacity import retry, stop_after_attempt, wait_exponential
 
 from data_providers.data_provider import DataProvider
@@ -197,6 +199,52 @@ class TradingViewProvider(DataProvider):
 
         return rst
 
+    def correlations(self,
+                     markets: Union[List[str]] = None,
+                     exchanges: Union[List[str]] = None,
+                     sort: Union[str, str] = None,
+                     topn: int = None,
+                     freq: int = '1D',
+                     total_candles: int = 252,
+                     tzinfo=None,
+                     periods=['1D', '5D', '10D', '21D']
+                     ) -> List[Dict[str, Any]]:
+        if isinstance(markets, str):
+            markets = [markets]
+
+        if isinstance(exchanges, str):
+            exchanges = [exchanges]
+
+        sort_by, sort_order = sort
+
+        payload = {
+            'columns': ['name', sort_by],
+            'range': [0, topn],
+            'sort': {'sortBy': sort_by, 'sortOrder': sort_order},
+            'markets': markets or [],
+        }
+        if exchanges:
+            payload = deep_update(payload,
+                                  {'filter': [{
+                                      'left': 'exchange',
+                                      'operation': 'in_range',
+                                      'right': exchanges or []}]})
+
+        # return payload
+        assets = self.tv.scan(payload)
+        symbols = pd.DataFrame(assets)['s']
+
+        ohclv = self.ohclv(symbols=list(symbols),
+                           freq=freq,
+                           total_candles=total_candles,
+                           tzinfo=tzinfo).stack().unstack('Symbol') \
+            .rename_axis(['Date', 'Field'], axis=0).swaplevel().sort_index() \
+            .ffill(axis=0).dropna(how='all')
+
+        rst = _calc_corr(ohclv, periods)
+
+        return rst
+
     def calc_perf(self,
                   ohclv: pd.DataFrame,
                   freq: str = '5d') -> Dict[str, Dict[str, Any]]:
@@ -243,3 +291,30 @@ class TradingViewProvider(DataProvider):
             perf_dict[s] = _ohclv_sym[cols_included].iloc[-1].to_dict()
 
         return perf_dict
+
+
+def _calc_corr(ohclv: pd.DataFrame, periods: List[str]) -> pd.DataFrame:
+    corr_ranks_ls: List[pd.DataFrame] = []
+
+    for p in periods:
+        returns = ohclv.loc['Close'].pct_change(freq=p)
+
+        _corr: pd.DataFrame = returns.corr() \
+            .rename_axis('s1', axis=0).rename_axis('s2', axis=1)
+
+        top_corr = np.argsort(_corr)[:, -2]
+
+        pairs = pd.DataFrame({'s1': _corr.index,
+                              's2': _corr.columns[top_corr]})
+
+        pairs_index = pd.MultiIndex.from_frame(pairs)
+
+        _corr_ranks = _corr.stack().reindex(pairs_index).rename(p)
+
+        corr_ranks_ls.append(_corr_ranks)
+
+    corr_ranks = pd.concat(corr_ranks_ls, axis=1).rename_axis('period', axis=1) \
+        .stack().rename('corr').reset_index().set_index(['period', 'corr']) \
+        .sort_index().reset_index().set_index(['period', 's1', 's2'])
+
+    return corr_ranks
