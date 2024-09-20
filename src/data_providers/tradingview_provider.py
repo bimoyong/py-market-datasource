@@ -297,9 +297,11 @@ def _calc_corr(ohclv: pd.DataFrame, periods: List[str]) -> pd.DataFrame:
     corr_ranks_ls: List[pd.DataFrame] = []
 
     for p in periods:
-        returns = ohclv.loc['Close'].pct_change(freq=p)
+        closes = ohclv.loc['Close']
+        num_intervals = closes.resample(p).count().max().max()
+        returns_fwd = closes.pct_change(-num_intervals)
 
-        _corr: pd.DataFrame = returns.corr() \
+        _corr: pd.DataFrame = returns_fwd.corr() \
             .rename_axis('s1', axis=0).rename_axis('s2', axis=1)
 
         top_corr = np.argsort(_corr)[:, -2]
