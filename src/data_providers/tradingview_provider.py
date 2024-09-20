@@ -175,6 +175,7 @@ class TradingViewProvider(DataProvider):
                                                    'low': 'Low',
                                                    'close': 'Close',
                                                    'volume': 'Volume'})
+        ohclv.rename_axis(axis=1, inplace=True, mapper='Field')
 
         return ohclv
 
