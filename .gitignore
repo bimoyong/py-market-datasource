@@ -14,4 +14,4 @@ venv.bak/
 
 .DS_store
 .vscode
-service_accounts/*
+credentials/*

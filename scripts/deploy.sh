@@ -50,50 +50,50 @@ gcloud run deploy $RUN_NAME \
 
 export SERVICE_URL=$(gcloud run services describe $RUN_NAME --platform managed --region $GCLOUD_REGION --format 'value(status.url)')
 
-SCHEDULER_NAME=$RUN_NAME-news-crawl
-if gcloud scheduler jobs update http $SCHEDULER_NAME \
-    --location $GCLOUD_REGION \
-    --schedule '0 * * * *' \
-    --time-zone America/Chicago \
-    --uri="$SERVICE_URL/v1/news/crawl-to-db?source=SeekingAlpha" \
-    --http-method GET \
-    --attempt-deadline 30m \
-    --oidc-service-account-email $SERVICE_ACCOUNT >/dev/null 2>&1; then
+# SCHEDULER_NAME=$RUN_NAME-news-crawl
+# if gcloud scheduler jobs update http $SCHEDULER_NAME \
+#     --location $GCLOUD_REGION \
+#     --schedule '0 * * * *' \
+#     --time-zone America/Chicago \
+#     --uri="$SERVICE_URL/v1/news/crawl-to-db?source=SeekingAlpha" \
+#     --http-method GET \
+#     --attempt-deadline 30m \
+#     --oidc-service-account-email $SERVICE_ACCOUNT >/dev/null 2>&1; then
 
-    echo "Updated Scheduler $SCHEDULER_NAME successfully."
-else
-    gcloud scheduler jobs create http $SCHEDULER_NAME \
-        --location $GCLOUD_REGION \
-        --schedule '0 * * * *' \
-        --time-zone America/Chicago \
-        --uri="$SERVICE_URL/v1/news/crawl-to-db?source=SeekingAlpha" \
-        --http-method GET \
-        --attempt-deadline 30m \
-        --oidc-service-account-email $SERVICE_ACCOUNT
+#     echo "Updated Scheduler $SCHEDULER_NAME successfully."
+# else
+#     gcloud scheduler jobs create http $SCHEDULER_NAME \
+#         --location $GCLOUD_REGION \
+#         --schedule '0 * * * *' \
+#         --time-zone America/Chicago \
+#         --uri="$SERVICE_URL/v1/news/crawl-to-db?source=SeekingAlpha" \
+#         --http-method GET \
+#         --attempt-deadline 30m \
+#         --oidc-service-account-email $SERVICE_ACCOUNT
 
-    echo "Scheduler $SCHEDULER_NAME does not exist. Creating a new Scheduler..."
-fi
+#     echo "Scheduler $SCHEDULER_NAME does not exist. Creating a new Scheduler..."
+# fi
 
-SCHEDULER_NAME=$RUN_NAME-news-crawl-tradingview
-if gcloud scheduler jobs update http $SCHEDULER_NAME \
-    --location $GCLOUD_REGION \
-    --schedule '0 * * * *' \
-    --time-zone America/Chicago \
-    --uri="$SERVICE_URL/v1/news/crawl-to-db?source=TradingView" \
-    --http-method GET \
-    --attempt-deadline 30m \
-    --oidc-service-account-email $SERVICE_ACCOUNT >/dev/null 2>&1; then
+# SCHEDULER_NAME=$RUN_NAME-news-crawl-tradingview
+# if gcloud scheduler jobs update http $SCHEDULER_NAME \
+#     --location $GCLOUD_REGION \
+#     --schedule '0 * * * *' \
+#     --time-zone America/Chicago \
+#     --uri="$SERVICE_URL/v1/news/crawl-to-db?source=TradingView" \
+#     --http-method GET \
+#     --attempt-deadline 30m \
+#     --oidc-service-account-email $SERVICE_ACCOUNT >/dev/null 2>&1; then
 
-    echo "Updated Scheduler $SCHEDULER_NAME successfully."
-else
-    gcloud scheduler jobs create http $SCHEDULER_NAME \
-        --location $GCLOUD_REGION \
-        --schedule '0 * * * *' \
-        --time-zone America/Chicago \
-        --uri="$SERVICE_URL/v1/news/crawl-to-db?source=TradingView" \
-        --http-method GET \
-        --attempt-deadline 30m \
-        --oidc-service-account-email $SERVICE_ACCOUNT
+#     echo "Updated Scheduler $SCHEDULER_NAME successfully."
+# else
+#     gcloud scheduler jobs create http $SCHEDULER_NAME \
+#         --location $GCLOUD_REGION \
+#         --schedule '0 * * * *' \
+#         --time-zone America/Chicago \
+#         --uri="$SERVICE_URL/v1/news/crawl-to-db?source=TradingView" \
+#         --http-method GET \
+#         --attempt-deadline 30m \
+#         --oidc-service-account-email $SERVICE_ACCOUNT
 
-    echo "Scheduler $SCHEDULER_NAME does not exist. Creating a new Scheduler..."
-fi
+#     echo "Scheduler $SCHEDULER_NAME does not exist. Creating a new Scheduler..."
+# fi
