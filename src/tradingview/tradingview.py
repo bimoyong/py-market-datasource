@@ -155,13 +155,13 @@ class TradingView:
             [adjustment] * len(symbols),
         ]
 
-        ohclv_iter = self._executor.map(self.historical_charts, *args)
-        ohclv = pd.concat(ohclv_iter, axis=0)
+        ohlcv_iter = self._executor.map(self.historical_charts, *args)
+        ohlcv = pd.concat(ohlcv_iter, axis=0)
 
-        if ohclv.empty:
-            ohclv = pd.DataFrame(columns=['Open', 'High', 'Low', 'Close', 'Volume'])
+        if ohlcv.empty:
+            ohlcv = pd.DataFrame(columns=['Open', 'High', 'Low', 'Close', 'Volume'])
 
-        return ohclv
+        return ohlcv
 
     def historical_charts(self,
                           symbol: str,
@@ -183,7 +183,7 @@ class TradingView:
 
         df = pd.DataFrame()
         for i in batched(charts, 3):
-            data = self.ohclv(symbols=[symbol],
+            data = self.ohlcv(symbols=[symbol],
                               freq=interval,
                               total_candles=total_candle,
                               charts=i,
@@ -194,7 +194,7 @@ class TradingView:
                 df = pd.concat([df, data], axis=1).T.drop_duplicates().T
 
         if df.empty:
-            df = self.ohclv(symbols=[symbol],
+            df = self.ohlcv(symbols=[symbol],
                             freq=interval,
                             total_candles=total_candle,
                             adjustment=adjustment)
@@ -211,7 +211,7 @@ class TradingView:
 
         return df
 
-    def ohclv(self,
+    def ohlcv(self,
               symbols: Union[str, List[str]],
               freq: str,
               total_candles: int,
@@ -240,12 +240,12 @@ class TradingView:
         for i, (_sess, _symbol) in enumerate(sess_symbol_mapper.items()):
             _send_message(ws, 'chart_create_session', [_sess, ''])
             _send_message(ws, 'resolve_symbol', [_sess, f'sds_sym_{i}', "={\"adjustment\":\"" + adjustment + "\",\"currency-id\":\"USD\",\"symbol\":\"" + _symbol + "\"}"])
-            _send_message(ws, 'create_series', [_sess, f's_ohclv{i}', f's{i}', f'sds_sym_{i}', str(freq), total_candles, ""])
-            sess_completed = deep_update(sess_completed, {_sess: {f's_ohclv{i}': False}})
+            _send_message(ws, 'create_series', [_sess, f's_ohlcv{i}', f's{i}', f'sds_sym_{i}', str(freq), total_candles, ""])
+            sess_completed = deep_update(sess_completed, {_sess: {f's_ohlcv{i}': False}})
 
             for chart in charts:
                 chart_setting = _CHARTS_SETTINGS[chart]
-                _send_message(ws, 'create_study', [_sess, f's_{chart}', 'st1', f's_ohclv{i}', *chart_setting])
+                _send_message(ws, 'create_study', [_sess, f's_{chart}', 'st1', f's_ohlcv{i}', *chart_setting])
                 sess_completed = deep_update(sess_completed, {_sess: {f's_{chart}': False}})
 
         # Start job

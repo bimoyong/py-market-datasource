@@ -25,7 +25,7 @@ class DataProvider(ABC):
         pass
 
     @abstractmethod
-    def ohclv(self,
+    def ohlcv(self,
               symbols: Union[str, List[str]],
               freq: str,
               total_candles: int,

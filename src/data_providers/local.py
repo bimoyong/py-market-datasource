@@ -13,7 +13,7 @@ class Local(TradingViewProvider):
     def filename(self):
         return join('/tmp', f'{hex(id(self))}.h5')
 
-    def ohclv(self,
+    def ohlcv(self,
               symbols: Union[str, List[str]],
               freq: str,
               total_candles: int,
@@ -25,11 +25,11 @@ class Local(TradingViewProvider):
 
         if exists(self.filename):
             with pd.HDFStore(self.filename) as store:
-                df = store.get('ohclv')
+                df = store.get('ohlcv')
                 if 'symbol' and 'timestamp' in df:
                     df = df.set_index(['symbol', 'timestamp'])
         else:
-            df = super().ohclv(symbols,
+            df = super().ohlcv(symbols,
                                freq,
                                total_candles,
                                charts,
@@ -37,6 +37,6 @@ class Local(TradingViewProvider):
                                tzinfo)
 
             with pd.HDFStore(self.filename) as store:
-                store.put('ohclv', df.reset_index())
+                store.put('ohlcv', df.reset_index())
 
         return df

@@ -72,22 +72,22 @@ class TradingViewProvider(DataProvider):
                     is_get_change_1m,
                     is_get_change_mtd,
                     is_get_change_ytd]:
-            def _get_quotes_or_ohclv(fn: str):
+            def _get_quotes_or_ohlcv(fn: str):
                 if fn == 'current_quotes':
                     return self.tv.current_quotes(symbols, fields=fields)
-                elif fn == 'ohclv':
-                    _ohclv = self.ohclv(symbols=symbols,
+                elif fn == 'ohlcv':
+                    _ohlcv = self.ohlcv(symbols=symbols,
                                         freq='1D',
                                         total_candles=252 * 2,
                                         tzinfo='America/Chicago').reset_index()
 
-                    _ohclv['Date'] = _ohclv['Date'].dt.tz_localize(None)
+                    _ohlcv['Date'] = _ohlcv['Date'].dt.tz_localize(None)
 
-                    return _ohclv
+                    return _ohlcv
 
                 return
 
-            quotes, ohclv = self.executor.map(_get_quotes_or_ohclv, ['current_quotes', 'ohclv'])
+            quotes, ohlcv = self.executor.map(_get_quotes_or_ohlcv, ['current_quotes', 'ohlcv'])
         else:
             quotes = self.tv.current_quotes(symbols, fields=fields)
 
@@ -114,31 +114,31 @@ class TradingViewProvider(DataProvider):
             rst[symbol] = quote
 
         if is_get_change_24h:
-            perf_dict = self.calc_perf(ohclv, '24H')
+            perf_dict = self.calc_perf(ohlcv, '24H')
 
             for k, v in perf_dict.items():
                 rst[k] = rst[k].model_copy(update={_k: _v for _k, _v in v.items() if _k in fields})
 
         if is_get_change_5d:
-            perf_dict = self.calc_perf(ohclv, '5D')
+            perf_dict = self.calc_perf(ohlcv, '5D')
 
             for k, v in perf_dict.items():
                 rst[k] = rst[k].model_copy(update={_k: _v for _k, _v in v.items() if _k in fields})
 
         if is_get_change_1m:
-            perf_dict = self.calc_perf(ohclv, '1M')
+            perf_dict = self.calc_perf(ohlcv, '1M')
 
             for k, v in perf_dict.items():
                 rst[k] = rst[k].model_copy(update={_k: _v for _k, _v in v.items() if _k in fields})
 
         if is_get_change_mtd:
-            perf_dict = self.calc_perf(ohclv, 'MTD')
+            perf_dict = self.calc_perf(ohlcv, 'MTD')
 
             for k, v in perf_dict.items():
                 rst[k] = rst[k].model_copy(update={_k: _v for _k, _v in v.items() if _k in fields})
 
         if is_get_change_ytd:
-            perf_dict = self.calc_perf(ohclv, 'YTD')
+            perf_dict = self.calc_perf(ohlcv, 'YTD')
 
             for k, v in perf_dict.items():
                 rst[k] = rst[k].model_copy(update={_k: _v for _k, _v in v.items() if _k in fields})
@@ -148,7 +148,7 @@ class TradingViewProvider(DataProvider):
 
         return rst
 
-    def ohclv(self,
+    def ohlcv(self,
               symbols: Union[str, List[str]],
               freq: str,
               total_candles: int,
@@ -161,23 +161,23 @@ class TradingViewProvider(DataProvider):
         if isinstance(tzinfo, str):
             tzinfo = pytz.timezone(tzinfo)
 
-        ohclv = self.tv.ohclv(symbols=symbols,
+        ohlcv = self.tv.ohlcv(symbols=symbols,
                               freq=freq,
                               total_candles=total_candles,
                               charts=charts,
                               adjustment=adjustment.value)
 
-        ohclv = set_index_by_timestamp(ohclv, tzinfo)
-        ohclv.index.rename(inplace=True, names={'timestamp': 'Date',
+        ohlcv = set_index_by_timestamp(ohlcv, tzinfo)
+        ohlcv.index.rename(inplace=True, names={'timestamp': 'Date',
                                                 'symbol': 'Symbol'})
-        ohclv.rename(axis=1, inplace=True, mapper={'open': 'Open',
+        ohlcv.rename(axis=1, inplace=True, mapper={'open': 'Open',
                                                    'high': 'High',
                                                    'low': 'Low',
                                                    'close': 'Close',
                                                    'volume': 'Volume'})
-        ohclv.rename_axis(axis=1, inplace=True, mapper='Field')
+        ohlcv.rename_axis(axis=1, inplace=True, mapper='Field')
 
-        return ohclv
+        return ohlcv
 
     def economic_calendar(self,
                           from_date: Union[str, datetime],
@@ -234,22 +234,22 @@ class TradingViewProvider(DataProvider):
         assets = self.tv.scan(payload)
         symbols = pd.DataFrame(assets)['s']
 
-        ohclv = self.ohclv(symbols=list(symbols),
+        ohlcv = self.ohlcv(symbols=list(symbols),
                            freq=freq,
                            total_candles=total_candles,
                            tzinfo=tzinfo).stack().unstack('Symbol') \
             .rename_axis(['Date', 'Field'], axis=0).swaplevel().sort_index() \
             .ffill(axis=0).dropna(how='all')
 
-        rst = _calc_corr(ohclv, periods)
+        rst = _calc_corr(ohlcv, periods)
 
         return rst
 
     def calc_perf(self,
-                  ohclv: pd.DataFrame,
+                  ohlcv: pd.DataFrame,
                   freq: str = '5d') -> Dict[str, Dict[str, Any]]:
-        symbols = ohclv.Symbol.unique()
-        _ohclv: pd.DataFrame = ohclv.set_index(['Date', 'Symbol'])
+        symbols = ohlcv.Symbol.unique()
+        _ohlcv: pd.DataFrame = ohlcv.set_index(['Date', 'Symbol'])
 
         freq = freq.lower()
         freq_mapper = {
@@ -263,24 +263,24 @@ class TradingViewProvider(DataProvider):
 
         perf_dict = {}
         for s in symbols:
-            _ohclv_sym: pd.DataFrame = _ohclv.loc[:, s, :].copy()
+            _ohlcv_sym: pd.DataFrame = _ohlcv.loc[:, s, :].copy()
 
             if isinstance(freq_num, str):
-                _ohclv_agg: pd.DataFrame = _ohclv_sym.Close.groupby(_ohclv_sym.index.to_period(freq_num)).last().rename('close').to_frame()
-                _ohclv_agg.loc[:, f'close_{freq}_prev'] = _ohclv_agg.close.shift(1)
-                _ohclv_agg.loc[:, f'change_{freq}'] = _ohclv_agg.close - _ohclv_agg[f'close_{freq}_prev']
-                _ohclv_agg.loc[:, f'change_{freq}_pct'] = _ohclv_agg[f'change_{freq}'] / _ohclv_agg[f'close_{freq}_prev']
-                _ohclv_agg.loc[:, f'low_{freq}'] = _ohclv_sym.Low.groupby(_ohclv_sym.index.to_period(freq_num)).min()
-                _ohclv_agg.loc[:, f'high_{freq}'] = _ohclv_sym.High.groupby(_ohclv_sym.index.to_period(freq_num)).max()
-                _ohclv_sym = _ohclv_agg
+                _ohlcv_agg: pd.DataFrame = _ohlcv_sym.Close.groupby(_ohlcv_sym.index.to_period(freq_num)).last().rename('close').to_frame()
+                _ohlcv_agg.loc[:, f'close_{freq}_prev'] = _ohlcv_agg.close.shift(1)
+                _ohlcv_agg.loc[:, f'change_{freq}'] = _ohlcv_agg.close - _ohlcv_agg[f'close_{freq}_prev']
+                _ohlcv_agg.loc[:, f'change_{freq}_pct'] = _ohlcv_agg[f'change_{freq}'] / _ohlcv_agg[f'close_{freq}_prev']
+                _ohlcv_agg.loc[:, f'low_{freq}'] = _ohlcv_sym.Low.groupby(_ohlcv_sym.index.to_period(freq_num)).min()
+                _ohlcv_agg.loc[:, f'high_{freq}'] = _ohlcv_sym.High.groupby(_ohlcv_sym.index.to_period(freq_num)).max()
+                _ohlcv_sym = _ohlcv_agg
 
             elif isinstance(freq_num, int):
-                _ohclv_sym.rename({'Close': 'close'}, axis=1, inplace=True)
-                _ohclv_sym.loc[:, f'close_{freq}_prev'] = _ohclv_sym.close.shift(freq_num)
-                _ohclv_sym.loc[:, f'change_{freq}'] = _ohclv_sym.close - _ohclv_sym[f'close_{freq}_prev']
-                _ohclv_sym.loc[:, f'change_{freq}_pct'] = _ohclv_sym[f'change_{freq}'] / _ohclv_sym[f'close_{freq}_prev']
-                _ohclv_sym.loc[:, f'low_{freq}'] = _ohclv_sym.Low.rolling(freq_num).min()
-                _ohclv_sym.loc[:, f'high_{freq}'] = _ohclv_sym.High.rolling(freq_num).max()
+                _ohlcv_sym.rename({'Close': 'close'}, axis=1, inplace=True)
+                _ohlcv_sym.loc[:, f'close_{freq}_prev'] = _ohlcv_sym.close.shift(freq_num)
+                _ohlcv_sym.loc[:, f'change_{freq}'] = _ohlcv_sym.close - _ohlcv_sym[f'close_{freq}_prev']
+                _ohlcv_sym.loc[:, f'change_{freq}_pct'] = _ohlcv_sym[f'change_{freq}'] / _ohlcv_sym[f'close_{freq}_prev']
+                _ohlcv_sym.loc[:, f'low_{freq}'] = _ohlcv_sym.Low.rolling(freq_num).min()
+                _ohlcv_sym.loc[:, f'high_{freq}'] = _ohlcv_sym.High.rolling(freq_num).max()
 
             cols_included = ['close',
                              f'change_{freq}',
@@ -288,16 +288,16 @@ class TradingViewProvider(DataProvider):
                              f'low_{freq}',
                              f'high_{freq}']
 
-            perf_dict[s] = _ohclv_sym[cols_included].iloc[-1].to_dict()
+            perf_dict[s] = _ohlcv_sym[cols_included].iloc[-1].to_dict()
 
         return perf_dict
 
 
-def _calc_corr(ohclv: pd.DataFrame, periods: List[str]) -> pd.DataFrame:
+def _calc_corr(ohlcv: pd.DataFrame, periods: List[str]) -> pd.DataFrame:
     corr_ranks_ls: List[pd.DataFrame] = []
 
     for p in periods:
-        closes = ohclv.loc['Close']
+        closes = ohlcv.loc['Close']
         num_intervals = closes.resample(p).count().max().max()
         returns_fwd = closes.pct_change(-num_intervals)
 
