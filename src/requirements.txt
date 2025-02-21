@@ -4,9 +4,12 @@ fastapi==0.115.8
 google-cloud-bigquery[pandas]==3.29.0
 google-cloud-logging==3.11.4
 google-cloud-storage==3.0.0
-numpy==1.26.0
+humanize==4.12.1
+numpy==1.26.4
+pandas_ta==0.3.14b0
 pandas==2.2.3
 pydantic==2.10.6
+quantrocket-moonchart==2.10.0.0
 tenacity==9.0.0
 tqdm==4.67.1
 uvicorn[standard]==0.34.0
