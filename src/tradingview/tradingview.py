@@ -233,23 +233,23 @@ class TradingView:
 
         sess_ls = [_generate_session('cs_') for _ in symbols]
         sess_symbol_mapper = dict(zip(sess_ls, symbols))
-        sess_completed = {i: [] for i in sess_ls}
+        sessions_completed: Dict[str, bool] = {}
 
         # Then send a message through the tunnel
         _send_message(ws, 'set_data_quality', ['high'])
-        for i, (_sess, _symbol) in enumerate(sess_symbol_mapper.items()):
+        for _sess, _symbol in sess_symbol_mapper.items():
             _send_message(ws, 'chart_create_session', [_sess, ''])
-            _send_message(ws, 'resolve_symbol', [_sess, f'sds_sym_{i}', "={\"adjustment\":\"" + adjustment + "\",\"currency-id\":\"USD\",\"symbol\":\"" + _symbol + "\"}"])
-            _send_message(ws, 'create_series', [_sess, f's_ohlcv{i}', f's{i}', f'sds_sym_{i}', str(freq), total_candles, ""])
-            sess_completed = deep_update(sess_completed, {_sess: {f's_ohlcv{i}': False}})
+            _send_message(ws, 'resolve_symbol', [_sess, 'sds_sym', "={\"adjustment\":\"" + adjustment + "\",\"currency-id\":\"USD\",\"symbol\":\"" + _symbol + "\"}"])
+            _send_message(ws, 'create_series', [_sess, 's_ohlcv', 's', 'sds_sym', str(freq), total_candles, ""])
+            sessions_completed = deep_update(sessions_completed, {f'{_sess}__s_ohlcv': False})
 
             for chart in charts:
                 chart_setting = _CHARTS_SETTINGS[chart]
-                _send_message(ws, 'create_study', [_sess, f's_{chart}', 'st1', f's_ohlcv{i}', *chart_setting])
-                sess_completed = deep_update(sess_completed, {_sess: {f's_{chart}': False}})
+                _send_message(ws, 'create_study', [_sess, f's_{chart}', 'st1', 's_ohlcv', *chart_setting])
+                sessions_completed = deep_update(sessions_completed, {f'{_sess}__s_{chart}': False})
 
         # Start job
-        df = _parse_bar_charts(ws, sess_completed=sess_completed)
+        df = _parse_bar_charts(ws, sessions_completed=sessions_completed)
 
         df['symbol'] = df.apply(lambda x: sess_symbol_mapper[x['session']], axis=1)
         df = df.drop('session', axis=1).reset_index().set_index(['timestamp', 'symbol'])
@@ -419,7 +419,7 @@ def _get_auth_token(username, password):
     return auth_token
 
 
-def _parse_bar_charts(ws, sess_completed: Dict[str, Dict[str, bool]]) -> pd.DataFrame:
+def _parse_bar_charts(ws, sessions_completed: Dict[str, bool]) -> pd.DataFrame:
     symbol_dict: Dict[str, pd.DataFrame] = {}
     s_dict: Dict[str, pd.DataFrame] = {}
     st_dict: Dict[str, pd.DataFrame] = {}
@@ -455,14 +455,14 @@ def _parse_bar_charts(ws, sess_completed: Dict[str, Dict[str, bool]]) -> pd.Data
                 p = _segment_data['p']
                 sess = p[0]
 
-                if m == 'symbol_resolved':
+                if m in ['symbol_resolved']:
                     symbol_dict[sess] = p[2].get('pro_name')
 
                 if m in ['series_completed', 'study_completed']:
-                    sess_completed.update(**deep_update(sess_completed, {sess: {p[1]: True}}))
+                    sessions_completed.update({f'{sess}__{p[1]}': True})
 
-                if isinstance(p[1], dict):
-                    series = list(p[1].keys())[0]
+                if m in ['timescale_update']:
+                    series = next(iter(p[1]))
 
                     s = p[1][series].get('s')
                     st = p[1][series].get('st')
@@ -481,7 +481,7 @@ def _parse_bar_charts(ws, sess_completed: Dict[str, Dict[str, bool]]) -> pd.Data
                         _axis = {True: 1, False: 0}[bool(set(_df.columns) - set(_df_exist.columns))]
                         st_dict[sess] = pd.concat([st_dict.get(sess), _df], axis=_axis)
 
-            if 'False' not in str(sess_completed):
+            if all(sessions_completed.values()):
                 dfs: List[pd.DataFrame] = []
                 for _sess, _symbol in symbol_dict.items():
                     s = s_dict.get(_sess)
@@ -663,11 +663,10 @@ def find_series_prefixes(pattern: str, string: str, s: slice) -> List[str]:
 
 
 def _parse_series(data: List[Dict[str, Union[int, List[float]]]]) -> pd.DataFrame:
-    data_filter = filter(lambda x: x.get('i') > 0, data)
-    data = list(map(lambda x: x.get('v'), data_filter))
-    df = pd.DataFrame(data).set_index(0).rename_axis('timestamp', axis=0)
+    df = pd.DataFrame(pd.DataFrame(data).v.to_list())
+    df.columns = ['timestamp', 'open', 'high', 'low', 'close', 'volume']
+    df.set_index('timestamp', inplace=True)
     df.index = pd.to_datetime(df.index, unit='s', utc=True)
-    df.columns = ['open', 'high', 'low', 'close', 'volume'][:len(df.columns)]
     return df
 
 
