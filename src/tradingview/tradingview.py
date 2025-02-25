@@ -7,9 +7,9 @@ import string
 import time
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime
-from itertools import islice, repeat
+from itertools import repeat
 from time import perf_counter
-from typing import Any, Dict, Iterator, List, Union
+from typing import Any, Dict, List, Union
 
 import pandas as pd
 from pydantic.v1.utils import deep_update
@@ -388,7 +388,7 @@ def _parse_bar_charts(ws, sessions_completed: Dict[str, bool]) -> pd.DataFrame:
                 if m in ['series_completed', 'study_completed']:
                     sessions_completed.update({f'{sess}__{p[1]}': True})
 
-                if m in ['timescale_update']:
+                if m in ['timescale_update', 'du']:
                     series = next(iter(p[1]))
 
                     s = p[1][series].get('s')
@@ -590,20 +590,21 @@ def find_series_prefixes(pattern: str, string: str, s: slice) -> List[str]:
 
 
 def _parse_series(data: List[Dict[str, Union[int, List[float]]]]) -> pd.DataFrame:
-    df = pd.DataFrame(pd.DataFrame(data).v.to_list())
-    df.columns = ['timestamp', 'open', 'high', 'low', 'close', 'volume']
-    df.set_index('timestamp', inplace=True)
+    df_raw = pd.DataFrame(data)
+    df_raw = df_raw[df_raw.i > 0]
+    df = pd.DataFrame(df_raw.v.to_list()).set_index(0).rename_axis('timestamp', axis=0)
     df.index = pd.to_datetime(df.index, unit='s', utc=True)
+    df.columns = ['open', 'high', 'low', 'close', 'volume']
     return df
 
 
 def _parse_study(data: List[Dict[str, Union[int, List[float]]]], name: str) -> pd.DataFrame:
-    data_filter = filter(lambda x: x.get('i') > 0, data)
-    data = list(map(lambda x: x.get('v'), data_filter))
-    df = pd.DataFrame(data).set_index(0).rename_axis('timestamp', axis=0)
+    df_raw = pd.DataFrame(data)
+    df_raw = df_raw[df_raw.i > 0]
+    df = pd.DataFrame(df_raw.v.to_list()).set_index(0).rename_axis('timestamp', axis=0)
     df.index = pd.to_datetime(df.index, unit='s', utc=True)
-    df.columns = {
-        True: [f'{name.removeprefix("s_")}_{i}' for i in df.columns],
-        False:  [f'{name.removeprefix("s_")}' for i in df.columns],
-    }[len(df.columns) > 1]
+    if len(df.columns) > 1:
+        df.columns = [f'{name.removeprefix("s_")}_{i}' for i in df.columns]
+    else:
+        df.columns = [f'{name.removeprefix("s_")}']
     return df
