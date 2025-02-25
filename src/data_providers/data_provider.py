@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from datetime import datetime
-from typing import Any, Dict, List, Union
+from typing import Any, Dict, List, Optional, Union
 
 import pandas as pd
 import pytz
@@ -10,7 +10,7 @@ from models.data_models import Quote
 
 
 class DataProvider(ABC):
-    WORKERS_NO: int = None
+    WORKERS_NO: Optional[int]
 
     @abstractmethod
     def search(self,
