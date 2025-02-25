@@ -549,46 +549,6 @@ def _send_ping_packet(ws, result):
         ws.send('~m~' + str(len(ping_str)) + '~m~' + ping_str)
 
 
-def find_series(string: str) -> Dict[str, List[dict]]:
-    prefix_pattern = '{"s[_a-z0-9]*":\{"node":"'
-    prefix_slice = slice(2, -11)  # 2: {" AND -11: ":{"node":"
-
-    series_ls = find_series_list(prefix_pattern, string)
-    prefixes = find_series_prefixes(prefix_pattern, string, prefix_slice)
-
-    series = dict(zip(prefixes, series_ls))
-
-    return series
-
-
-def find_series_list(pattern: str, string: str) -> List[dict]:
-    '''
-    Find series-liked postfix from a big raw string.
-    '''
-    series_ls = []
-    for i in re.split(f'{pattern}', string):
-        match = re.search('\[{"i":.*?}\]', i)
-        if not match:
-            continue
-
-        bar_ls = json.loads(i[slice(*match.span())])
-        bar_filter = filter(lambda x: x.get('i') > 0, bar_ls)
-        bar_sorted = sorted(bar_filter, key=lambda x: x.get('i'))
-        bar_values = map(lambda x: x.get('v'), bar_sorted)
-
-        series_ls.append(list(bar_values))
-
-    return series_ls
-
-
-def find_series_prefixes(pattern: str, string: str, s: slice) -> List[str]:
-    '''
-    Find series-liked prefixes from a big raw string.
-    '''
-    prefixes = [i.group()[s] for i in re.finditer(f'{pattern}', string)]
-    return prefixes
-
-
 def _parse_series(data: List[Dict[str, Union[int, List[float]]]]) -> pd.DataFrame:
     df_raw = pd.DataFrame(data)
     df_raw = df_raw[df_raw.i > 0]
