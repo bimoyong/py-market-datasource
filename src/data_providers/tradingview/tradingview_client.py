@@ -5,7 +5,6 @@ import random
 import re
 import string
 import time
-from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime
 from itertools import repeat
 from time import perf_counter
@@ -36,13 +35,11 @@ class TradingViewClient:
                  username='',
                  password='',
                  token='',
-                 market='',
-                 workers_no=1) -> None:
+                 market='') -> None:
         self._username = username
         self._password = password
         self._market = market
         self._token = token
-        self._executor = ThreadPoolExecutor(max_workers=workers_no or 1)
 
     @property
     def username(self) -> str:
@@ -61,10 +58,6 @@ class TradingViewClient:
         if not self._token:
             self._token = _get_auth_token(self.username, self.password)
         return self._token
-
-    @property
-    def executor(self) -> ThreadPoolExecutor:
-        return self._executor
 
     def current_quotes(self,
                        symbols: Union[str, List[str]],

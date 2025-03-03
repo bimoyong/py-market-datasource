@@ -1,6 +1,6 @@
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime
-from typing import Any, Dict, List, Union
+from typing import Any, Dict, List, Optional, Union
 
 import numpy as np
 import pandas as pd
@@ -18,7 +18,8 @@ from models.data_models import Quote
 class TradingView(DataProvider):
     STORAGE_BASE_URL = 'https://s3-symbol-logo.tradingview.com'
 
-    _tv: TradingViewClient = None
+    _tv: Optional[TradingViewClient]
+    _executor: Optional[ThreadPoolExecutor]
     username: str = ''
     password: str = ''
     TOKEN: str = ''
@@ -27,17 +28,16 @@ class TradingView(DataProvider):
     @property
     def tv(self) -> TradingViewClient:
         if not self._tv:
-            self._tv = TradingViewClient(self.username,
-                                         self.password,
-                                         self.TOKEN,
-                                         self.market,
-                                         self.WORKERS_NO)
+            self._tv = TradingViewClient(self.username, self.password, self.TOKEN, self.market)
 
         return self._tv
 
     @property
     def executor(self) -> ThreadPoolExecutor:
-        return self.tv.executor
+        if not self._executor:
+            self._executor = ThreadPoolExecutor(max_workers=self.WORKERS_NO or 1)
+
+        return self._executor
 
     def search(self,
                symbols: List[str],
