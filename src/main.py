@@ -8,7 +8,7 @@ from google.cloud.logging import Client as LoggingClient
 
 from data_providers.containers import Container as DataContainerV1
 from data_providers.endpoints import router as data_endpoints
-from data_providers.tradingview_provider import TradingViewProvider
+from data_providers.tradingview.tradingview import TradingView
 from news.containers import Container as NewsContainerV1
 from news.endpoints import router as news_endpoints
 from news.seeking_alpha import SeekingAlpha
@@ -23,7 +23,7 @@ client.setup_logging(log_level=INFO)
 def create_app() -> FastAPI:
     data_container_v1 = DataContainerV1()
     data_container_v1.wire(packages=['data_providers'])
-    data_container_v1.client.override(Singleton(TradingViewProvider).add_attributes(
+    data_container_v1.client.override(Singleton(TradingView).add_attributes(
         WORKERS_NO=data_container_v1.config.MARKET_DATA.WORKERS_NO,
     ))
 

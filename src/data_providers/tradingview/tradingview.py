@@ -10,27 +10,28 @@ from tenacity import retry, stop_after_attempt, wait_exponential
 
 from data_providers.data_provider import DataProvider
 from data_providers.enums import Adjustment
+from data_providers.tradingview.datetime import set_index_by_timestamp
+from data_providers.tradingview.tradingview_client import TradingViewClient
 from models.data_models import Quote
-from tradingview import TradingView, set_index_by_timestamp
 
 
-class TradingViewProvider(DataProvider):
+class TradingView(DataProvider):
     STORAGE_BASE_URL = 'https://s3-symbol-logo.tradingview.com'
 
-    _tv: TradingView = None
+    _tv: TradingViewClient = None
     username: str = ''
     password: str = ''
     TOKEN: str = ''
     market: str = ''
 
     @property
-    def tv(self) -> TradingView:
+    def tv(self) -> TradingViewClient:
         if not self._tv:
-            self._tv = TradingView(self.username,
-                                   self.password,
-                                   self.TOKEN,
-                                   self.market,
-                                   self.WORKERS_NO)
+            self._tv = TradingViewClient(self.username,
+                                         self.password,
+                                         self.TOKEN,
+                                         self.market,
+                                         self.WORKERS_NO)
 
         return self._tv
 

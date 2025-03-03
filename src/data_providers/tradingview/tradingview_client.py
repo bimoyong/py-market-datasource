@@ -31,7 +31,7 @@ _CHARTS_SETTINGS = {
 }
 
 
-class TradingView:
+class TradingViewClient:
     def __init__(self,
                  username='',
                  password='',
