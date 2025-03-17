@@ -18,8 +18,8 @@ from models.data_models import Quote
 class TradingView(DataProvider):
     STORAGE_BASE_URL = 'https://s3-symbol-logo.tradingview.com'
 
-    _tv: Optional[TradingViewClient]
-    _executor: Optional[ThreadPoolExecutor]
+    _tv: Optional[TradingViewClient] = None
+    _executor: Optional[ThreadPoolExecutor] = None
     username: str = ''
     password: str = ''
     TOKEN: str = ''
