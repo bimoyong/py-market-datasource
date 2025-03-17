@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(name='py_market_datasource',
       version='1.0.0',
@@ -7,16 +7,16 @@ setup(name='py_market_datasource',
       author='Trung',
       author_email='trung@t7.sg',
       license='MIT',
-      packages=[
-          'data_providers',
-          'models',
-          'tradingview',
-      ],
-      package_dir={
-          'data_providers': 'src/data_providers',
-          'models': 'src/models',
-          'tradingview': 'src/tradingview',
-      },
+      packages=find_packages(where='src'),
+      package_dir={'': 'src'},
+      # packages=[
+      #     'data_providers',
+      #     'models',
+      # ],
+      # package_dir={
+      #     'data_providers': 'src/data_providers',
+      #     'models': 'src/models',
+      # },
       install_requires=[
           'dependency-injector==4.45.0',
           'pandas==2.2.3',
