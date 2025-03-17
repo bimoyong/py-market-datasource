@@ -9,14 +9,6 @@ setup(name='py_market_datasource',
       license='MIT',
       packages=find_packages(where='src'),
       package_dir={'': 'src'},
-      # packages=[
-      #     'data_providers',
-      #     'models',
-      # ],
-      # package_dir={
-      #     'data_providers': 'src/data_providers',
-      #     'models': 'src/models',
-      # },
       install_requires=[
           'dependency-injector==4.45.0',
           'pandas==2.2.3',
